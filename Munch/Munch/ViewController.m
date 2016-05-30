@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "ResturantCardFactory.h"
 
 @interface ViewController ()
+
+@property (nonatomic) ResturantCardFactory *factory;
 
 @end
 
@@ -17,6 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    _factory = [[ResturantCardFactory alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    [self.view addSubview:_factory];
+    
 }
 
 - (void)didReceiveMemoryWarning {

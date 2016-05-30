@@ -43,22 +43,19 @@
 
 #pragma mark - UIView Lifecycle etc. -
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self setupView];
+    }
+    return self;
+}
+
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
         [self setupView];
-        _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(isDragged:)];
-        
-        _overlay = [[ResturantCardViewOverlay alloc] initWithFrame:self.bounds];
-        _overlay.alpha = 0;
-        [self addSubview:_overlay];
-        
-        _label = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, self.frame.size.width, 200)];
-        _label.text = @"testing";
-        _label.textAlignment = NSTextAlignmentCenter;
-        _label.textColor = [UIColor blackColor];
-        
-        [self addSubview:_label];
         
     }
     
@@ -72,6 +69,22 @@
     self.layer.shadowOpacity = 0.3;
     self.layer.shadowOffset = CGSizeMake(1, 1);
     self.backgroundColor = [UIColor whiteColor];
+    
+    _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(isDragged:)];
+    
+    [self addGestureRecognizer:_panGestureRecognizer];
+    
+    _overlay = [[ResturantCardViewOverlay alloc] initWithFrame:self.bounds];
+    _overlay.alpha = 0;
+    [self addSubview:_overlay];
+    
+    _label = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, self.frame.size.width, 200)];
+    _label.text = @"testing";
+    _label.textAlignment = NSTextAlignmentCenter;
+    _label.textColor = [UIColor blackColor];
+    
+    [self addSubview:_label];
+
 }
 
 -(void)updateOverlay {
@@ -79,10 +92,10 @@
     
     if (self.xFromCentre > 0) {
         // set the overlay to right mode
-        self.overlay.mode = ResturauntCardViewOverlayModeRight;
+        [self.overlay updateMode:ResturauntCardViewOverlayModeRight];
     } else if (self.xFromCentre <= 0) {
         // set the overlay to left mode
-        self.overlay.mode = ResturauntCardViewOverlayModeLeft;
+        [self.overlay updateMode:ResturauntCardViewOverlayModeLeft];
     }
     overlayStrength = MIN((CGFloat)fabsf((float)self.xFromCentre) / 100, 0.5);
     

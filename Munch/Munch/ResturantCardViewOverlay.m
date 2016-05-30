@@ -29,7 +29,7 @@
     return self;
 }
 
--(void)setMode:(ResturauntCardViewOverlayMode)mode {
+-(void)updateMode:(ResturauntCardViewOverlayMode)mode {
     if(self.mode == mode) {
         return;
     }

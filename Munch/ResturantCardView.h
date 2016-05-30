@@ -26,6 +26,7 @@
 @property (nonatomic) ResturantCardViewOverlay *overlay;
 @property (nonatomic) UILabel *label;
 
+
 -(void)yesClickAction;
 -(void)noClickAction;
 

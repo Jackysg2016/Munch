@@ -17,4 +17,6 @@ typedef NS_ENUM(NSInteger, ResturauntCardViewOverlayMode) {
 
 @property (nonatomic) ResturauntCardViewOverlayMode mode;
 
+-(void)updateMode:(ResturauntCardViewOverlayMode)mode;
+
 @end

@@ -51,8 +51,12 @@
 #pragma mark - Card Creation -
 
 -(ResturantCardView*)createResturantCardAtIndex:(NSInteger)index {
-    ResturantCardView *newCard = [[ResturantCardView alloc] initWithFrame:CGRectMake((CGFloat)(self.frame.size.width - CARD_WIDTH / 2), self.frame.size.height - CARD_WIDTH / 2, (CGFloat)CARD_WIDTH, (CGFloat)CARD_HEIGHT)];
-    newCard.label.text = @"some text";
+    
+    CGRect rect = CGRectMake((CGFloat)(self.frame.size.width - CARD_WIDTH / 2), self.frame.size.height - CARD_WIDTH / 2, (CGFloat)CARD_WIDTH, (CGFloat)CARD_HEIGHT);
+    
+    
+    ResturantCardView *newCard = [[ResturantCardView alloc] initWithFrame:(CGRect){CARD_WIDTH / 4,CARD_WIDTH / 2,CARD_WIDTH,CARD_HEIGHT}];
+    newCard.label.text = self.data[index];
     newCard.delegate = self;
     
     // Set up rest of information (images, star ratings etc.)
@@ -122,7 +126,7 @@
     ResturantCardView *cardView = [self.loadedResturants firstObject];
     [self swipedRightWithCard:cardView];
     
-    [cardView.overlay setMode:ResturauntCardViewOverlayModeRight];
+    [cardView.overlay updateMode:ResturauntCardViewOverlayModeRight];
     [UIView animateWithDuration:0.2 animations:^{
         cardView.overlay.alpha = 1;
     } completion:^(BOOL finished) {
@@ -135,7 +139,7 @@
     ResturantCardView *cardView = [self.loadedResturants firstObject];
     [self swipedRightWithCard:cardView];
     
-    [cardView.overlay setMode:ResturauntCardViewOverlayModeLeft];
+    [cardView.overlay updateMode:ResturauntCardViewOverlayModeLeft];
     [UIView animateWithDuration:0.2 animations:^{
         cardView.overlay.alpha = 1;
     } completion:^(BOOL finished) {
