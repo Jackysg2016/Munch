@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import <MapKit/MapKit.h>
+#import "YelpClient.h"
 
 @interface ViewController () <CLLocationManagerDelegate>
 
@@ -46,24 +47,30 @@
         
         [coder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
             
+            CLPlacemark *place = [placemarks firstObject];
+            NSString *lat = [NSString stringWithFormat:@"%f",place.location.coordinate.latitude];
+            NSString *lon = [NSString stringWithFormat:@"%f",place.location.coordinate.longitude];
+            NSString *coord = [NSString stringWithFormat:@"%@,%@", lat, lon ];
             
-            NSString *urlString = @"https://api.yelp.com/v2/search?term=food&ll=37.788022,-122.399797";
+            YelpClient *client = [YelpClient new];
             
-            NSURLSession *session = [NSURLSession sharedSession];
+            NSDictionary *paramDictionary = @{
+                                              @"term" : @"food",
+                                              @"ll" : coord
+                                              };
             
-            NSURLSessionTask *dataTask = [session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-                
-                
-                
-            }];
-            
-            [dataTask resume];
-            
-            
+            [client getPath:@"search" parameters:paramDictionary
+                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                        NSDictionary *objects = responseObject[@"businesses"];
+                        for (NSDictionary *res in objects) {
+                            NSLog(@"%@", res[@"name"]);
+                        }
+                    }
+                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                        NSLog(@"Oops");
+                    }];
+           
         }];
-        
-
-
         
         
     }

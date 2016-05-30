@@ -1,0 +1,5 @@
+use_frameworks!
+
+target 'Munch'
+pod 'AFNetworking', '~> 1.3’
+pod 'AFOAuth1Client', '~> 1.0’
