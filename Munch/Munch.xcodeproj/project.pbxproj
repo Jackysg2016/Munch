@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		582A10CD1CFCBC0500BE7493 /* ResturantCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A10CC1CFCBC0500BE7493 /* ResturantCardView.m */; };
+		582A10D11CFCC5E700BE7493 /* ResturantCardViewOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A10D01CFCC5E700BE7493 /* ResturantCardViewOverlay.m */; };
+		582A10D41CFCDF1D00BE7493 /* ResturantCardFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A10D31CFCDF1D00BE7493 /* ResturantCardFactory.m */; };
 		77B535201CFCB99A004C0A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5351F1CFCB99A004C0A5E /* main.m */; };
 		77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535221CFCB99A004C0A5E /* AppDelegate.m */; };
 		77B535261CFCB99A004C0A5E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535251CFCB99A004C0A5E /* ViewController.m */; };
@@ -21,6 +23,10 @@
 /* Begin PBXFileReference section */
 		582A10CB1CFCBC0500BE7493 /* ResturantCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResturantCardView.h; path = ../ResturantCardView.h; sourceTree = "<group>"; };
 		582A10CC1CFCBC0500BE7493 /* ResturantCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResturantCardView.m; path = ../ResturantCardView.m; sourceTree = "<group>"; };
+		582A10CF1CFCC5E700BE7493 /* ResturantCardViewOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResturantCardViewOverlay.h; sourceTree = "<group>"; };
+		582A10D01CFCC5E700BE7493 /* ResturantCardViewOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResturantCardViewOverlay.m; sourceTree = "<group>"; };
+		582A10D21CFCDF1D00BE7493 /* ResturantCardFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResturantCardFactory.h; sourceTree = "<group>"; };
+		582A10D31CFCDF1D00BE7493 /* ResturantCardFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResturantCardFactory.m; sourceTree = "<group>"; };
 		77B5351B1CFCB99A004C0A5E /* Munch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Munch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B5351F1CFCB99A004C0A5E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		77B535211CFCB99A004C0A5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,6 +58,10 @@
 			children = (
 				582A10CB1CFCBC0500BE7493 /* ResturantCardView.h */,
 				582A10CC1CFCBC0500BE7493 /* ResturantCardView.m */,
+				582A10CF1CFCC5E700BE7493 /* ResturantCardViewOverlay.h */,
+				582A10D01CFCC5E700BE7493 /* ResturantCardViewOverlay.m */,
+				582A10D21CFCDF1D00BE7493 /* ResturantCardFactory.h */,
+				582A10D31CFCDF1D00BE7493 /* ResturantCardFactory.m */,
 			);
 			name = "Swipe Cards";
 			sourceTree = "<group>";
@@ -171,8 +181,10 @@
 			files = (
 				582A10CD1CFCBC0500BE7493 /* ResturantCardView.m in Sources */,
 				77B535261CFCB99A004C0A5E /* ViewController.m in Sources */,
+				582A10D11CFCC5E700BE7493 /* ResturantCardViewOverlay.m in Sources */,
 				77B5352C1CFCB99A004C0A5E /* Munch.xcdatamodeld in Sources */,
 				77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */,
+				582A10D41CFCDF1D00BE7493 /* ResturantCardFactory.m in Sources */,
 				77B535201CFCB99A004C0A5E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

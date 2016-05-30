@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ResturantCardViewOverlay;
 
 @protocol ResturantCardViewDelegate <NSObject>
 
@@ -22,6 +23,10 @@
 @interface ResturantCardView : UIView
 
 @property (nonatomic) id<ResturantCardViewDelegate> delegate;
+@property (nonatomic) ResturantCardViewOverlay *overlay;
+@property (nonatomic) UILabel *label;
 
+-(void)yesClickAction;
+-(void)noClickAction;
 
 @end
