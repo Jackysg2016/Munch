@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		582A10CD1CFCBC0500BE7493 /* ResturantCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A10CC1CFCBC0500BE7493 /* ResturantCardView.m */; };
 		77B535201CFCB99A004C0A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5351F1CFCB99A004C0A5E /* main.m */; };
 		77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535221CFCB99A004C0A5E /* AppDelegate.m */; };
 		77B535261CFCB99A004C0A5E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535251CFCB99A004C0A5E /* ViewController.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		582A10CB1CFCBC0500BE7493 /* ResturantCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResturantCardView.h; path = ../ResturantCardView.h; sourceTree = "<group>"; };
+		582A10CC1CFCBC0500BE7493 /* ResturantCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResturantCardView.m; path = ../ResturantCardView.m; sourceTree = "<group>"; };
 		77B5351B1CFCB99A004C0A5E /* Munch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Munch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B5351F1CFCB99A004C0A5E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		77B535211CFCB99A004C0A5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -44,6 +47,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		582A10CE1CFCBC8500BE7493 /* Swipe Cards */ = {
+			isa = PBXGroup;
+			children = (
+				582A10CB1CFCBC0500BE7493 /* ResturantCardView.h */,
+				582A10CC1CFCBC0500BE7493 /* ResturantCardView.m */,
+			);
+			name = "Swipe Cards";
+			sourceTree = "<group>";
+		};
 		77B535121CFCB99A004C0A5E = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +85,7 @@
 				77B5352F1CFCB99A004C0A5E /* LaunchScreen.storyboard */,
 				77B535321CFCB99A004C0A5E /* Info.plist */,
 				77B5352A1CFCB99A004C0A5E /* Munch.xcdatamodeld */,
+				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
 				77B5351E1CFCB99A004C0A5E /* Supporting Files */,
 			);
 			path = Munch;
@@ -156,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				582A10CD1CFCBC0500BE7493 /* ResturantCardView.m in Sources */,
 				77B535261CFCB99A004C0A5E /* ViewController.m in Sources */,
 				77B5352C1CFCB99A004C0A5E /* Munch.xcdatamodeld in Sources */,
 				77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */,
@@ -308,6 +322,7 @@
 				77B535371CFCB99A004C0A5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
