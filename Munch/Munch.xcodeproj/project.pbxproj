@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340ED4321CFCC6E800609428 /* APIKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 340ED4311CFCC6E800609428 /* APIKeys.m */; };
+		340ED4401CFCE8B300609428 /* YelpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 340ED43F1CFCE8B300609428 /* YelpClient.m */; };
 		77B535201CFCB99A004C0A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5351F1CFCB99A004C0A5E /* main.m */; };
 		77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535221CFCB99A004C0A5E /* AppDelegate.m */; };
 		77B535261CFCB99A004C0A5E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535251CFCB99A004C0A5E /* ViewController.m */; };
@@ -15,9 +17,28 @@
 		77B5352E1CFCB99A004C0A5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77B5352D1CFCB99A004C0A5E /* Assets.xcassets */; };
 		77B535311CFCB99A004C0A5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B5352F1CFCB99A004C0A5E /* LaunchScreen.storyboard */; };
 		77B535391CFCB9BD004C0A5E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B535381CFCB9BD004C0A5E /* CoreData.framework */; };
+		C613BC975401119C8F89B38B /* Pods_Munch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75256FEAF675B6CE308BC748 /* Pods_Munch.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		340ED43D1CFCE15800609428 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		340ED4301CFCC6E800609428 /* APIKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIKeys.h; sourceTree = "<group>"; };
+		340ED4311CFCC6E800609428 /* APIKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIKeys.m; sourceTree = "<group>"; };
+		340ED43E1CFCE8B300609428 /* YelpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpClient.h; sourceTree = "<group>"; };
+		340ED43F1CFCE8B300609428 /* YelpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpClient.m; sourceTree = "<group>"; };
+		75256FEAF675B6CE308BC748 /* Pods_Munch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Munch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B5351B1CFCB99A004C0A5E /* Munch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Munch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B5351F1CFCB99A004C0A5E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		77B535211CFCB99A004C0A5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -30,6 +51,8 @@
 		77B535301CFCB99A004C0A5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77B535321CFCB99A004C0A5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77B535381CFCB9BD004C0A5E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B1B63C3A3A0F20B9B59442EB /* Pods-Munch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Munch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Munch/Pods-Munch.debug.xcconfig"; sourceTree = "<group>"; };
+		C75E06893D705B4BF4EF6DAD /* Pods-Munch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Munch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Munch/Pods-Munch.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77B535391CFCB9BD004C0A5E /* CoreData.framework in Frameworks */,
+				C613BC975401119C8F89B38B /* Pods_Munch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +74,8 @@
 				77B535381CFCB9BD004C0A5E /* CoreData.framework */,
 				77B5351D1CFCB99A004C0A5E /* Munch */,
 				77B5351C1CFCB99A004C0A5E /* Products */,
+				FDB227BC53CF205C5F3AD544 /* Pods */,
+				ECA64AAB12B3221B52291B48 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +94,10 @@
 				77B535221CFCB99A004C0A5E /* AppDelegate.m */,
 				77B535241CFCB99A004C0A5E /* ViewController.h */,
 				77B535251CFCB99A004C0A5E /* ViewController.m */,
+				340ED4301CFCC6E800609428 /* APIKeys.h */,
+				340ED4311CFCC6E800609428 /* APIKeys.m */,
+				340ED43E1CFCE8B300609428 /* YelpClient.h */,
+				340ED43F1CFCE8B300609428 /* YelpClient.m */,
 				77B535271CFCB99A004C0A5E /* Main.storyboard */,
 				77B5352D1CFCB99A004C0A5E /* Assets.xcassets */,
 				77B5352F1CFCB99A004C0A5E /* LaunchScreen.storyboard */,
@@ -86,6 +116,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		ECA64AAB12B3221B52291B48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75256FEAF675B6CE308BC748 /* Pods_Munch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDB227BC53CF205C5F3AD544 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B1B63C3A3A0F20B9B59442EB /* Pods-Munch.debug.xcconfig */,
+				C75E06893D705B4BF4EF6DAD /* Pods-Munch.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -93,9 +140,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77B535351CFCB99A004C0A5E /* Build configuration list for PBXNativeTarget "Munch" */;
 			buildPhases = (
+				95796D9E235B5C684C79DA44 /* 📦 Check Pods Manifest.lock */,
 				77B535171CFCB99A004C0A5E /* Sources */,
 				77B535181CFCB99A004C0A5E /* Frameworks */,
 				77B535191CFCB99A004C0A5E /* Resources */,
+				340ED43D1CFCE15800609428 /* Embed Frameworks */,
+				95843B605EDF6E814D8D310B /* 📦 Embed Pods Frameworks */,
+				49D0DCDEA46E38CCA130A073 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -151,6 +202,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		49D0DCDEA46E38CCA130A073 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Munch/Pods-Munch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95796D9E235B5C684C79DA44 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		95843B605EDF6E814D8D310B /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Munch/Pods-Munch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		77B535171CFCB99A004C0A5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -158,7 +257,9 @@
 			files = (
 				77B535261CFCB99A004C0A5E /* ViewController.m in Sources */,
 				77B5352C1CFCB99A004C0A5E /* Munch.xcdatamodeld in Sources */,
+				340ED4401CFCE8B300609428 /* YelpClient.m in Sources */,
 				77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */,
+				340ED4321CFCC6E800609428 /* APIKeys.m in Sources */,
 				77B535201CFCB99A004C0A5E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,8 +370,14 @@
 		};
 		77B535361CFCB99A004C0A5E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1B63C3A3A0F20B9B59442EB /* Pods-Munch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Munch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enochng.Munch;
@@ -280,8 +387,14 @@
 		};
 		77B535371CFCB99A004C0A5E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C75E06893D705B4BF4EF6DAD /* Pods-Munch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Munch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.enochng.Munch;
@@ -308,6 +421,7 @@
 				77B535371CFCB99A004C0A5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
