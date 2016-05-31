@@ -57,10 +57,6 @@
     
     RestaurantCardView *newCard = [[RestaurantCardView alloc] initWithFrame:(CGRect){leftBuffer,50, CARD_WIDTH, CARD_HEIGHT}];
     
-//    NSArray *xib = [[NSBundle mainBundle] loadNibNamed:@"ResturantCardView" owner:self options:nil];
-//    ResturantCardView *newCard = [xib objectAtIndex:0];
-//
-    
     newCard.titleLabel.text = self.data[index];
     [newCard.titleLabel sizeToFit];
     newCard.delegate = self;

@@ -139,7 +139,7 @@
 
 // This is where all of the labels and images will be set up
 -(void)setupResturant:(Resturant *)resturant {
-    
+#warning incomplete
 }
 
 #pragma mark - Gesture Recognizer -
@@ -166,7 +166,7 @@
             transform = CGAffineTransformMakeRotation(rotationAngle);
             scaleTransform = CGAffineTransformScale(transform, scale, scale);
             
-            self.transform = transform;
+            self.transform = scaleTransform;
             [self updateOverlay];
             break;
             
