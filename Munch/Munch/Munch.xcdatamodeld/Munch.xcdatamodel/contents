@@ -1,4 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="Category" representedClassName="Category" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Deal" representedClassName="Deal" syncable="YES">
+        <attribute name="textDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="imageURLs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" syncable="YES"/>
+    </entity>
+    <entity name="Filter" representedClassName="Filter" syncable="YES">
+        <attribute name="filterByExclusion" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="maxPricing" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="minRating" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pickedCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" syncable="YES"/>
+    </entity>
+    <entity name="Image" representedClassName="Image" syncable="YES">
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Restaurant" representedClassName="Restaurant" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pricing" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="verbalAddress" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" syncable="YES"/>
+        <relationship name="deals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Deal" syncable="YES"/>
+        <relationship name="imageURLs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" syncable="YES"/>
+    </entity>
+    <entity name="UserSettings" representedClassName="UserSettings" syncable="YES">
+        <attribute name="lastManualLocation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sessionType" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="cravieFilters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Filter" syncable="YES"/>
+        <relationship name="lastFilter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Filter" syncable="YES"/>
+        <relationship name="matchedRestaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" syncable="YES"/>
+        <relationship name="pickieFilters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Filter" syncable="YES"/>
+        <relationship name="yuckRestaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Category" positionX="-27" positionY="-45" width="128" height="58"/>
+        <element name="Deal" positionX="-119" positionY="87" width="128" height="73"/>
+        <element name="Restaurant" positionX="-288" positionY="3" width="128" height="193"/>
+        <element name="UserSettings" positionX="-162" positionY="255" width="128" height="148"/>
+        <element name="Image" positionX="232" positionY="9" width="128" height="58"/>
+        <element name="Filter" positionX="250" positionY="231" width="128" height="118"/>
+    </elements>
 </model>
