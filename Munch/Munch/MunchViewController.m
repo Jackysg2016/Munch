@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *nopeButton;
 @property (weak, nonatomic) IBOutlet UIButton *yuckButton;
 
-
 @property (nonatomic) NSMutableArray *restaurants;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocation *lastLocation;
@@ -59,10 +58,7 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     
-    
 }
-
-
 
 #pragma mark - Button Action & Animation -
 
