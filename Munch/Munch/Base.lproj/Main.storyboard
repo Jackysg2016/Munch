@@ -91,7 +91,7 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="munchButtonStatic" translatesAutoresizingMaskIntoConstraints="NO" id="RxC-im-cS5">
                                         <rect key="frame" x="0.0" y="0.0" width="480" height="292"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDf-Aq-hhI">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDf-Aq-hhI">
                                         <rect key="frame" x="232" y="43" width="205" height="204"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1051" id="tcF-o7-D0e"/>
@@ -104,27 +104,33 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="munchNowPressed:" destination="n5x-aA-xW3" eventType="touchUpInside" id="cr0-NH-ZzN"/>
+                                            <action selector="holdDown:" destination="n5x-aA-xW3" eventType="touchDown" id="K2P-kF-Dko"/>
+                                            <action selector="holdRelease:" destination="n5x-aA-xW3" eventType="touchUpInside" id="YHD-sv-xO5"/>
+                                            <action selector="holdReleaseOutside:" destination="n5x-aA-xW3" eventType="touchUpOutside" id="v6q-a5-kTk"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epS-E7-pWv">
-                                        <rect key="frame" x="67" y="104" width="129" height="128"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="epS-E7-pWv" secondAttribute="height" multiplier="1:1" id="usQ-Ja-UxD"/>
-                                        </constraints>
-                                        <state key="normal" title="Button" image="nopeButtonDynamic"/>
-                                        <connections>
-                                            <action selector="noPressed:" destination="n5x-aA-xW3" eventType="touchUpInside" id="hAS-V8-46i"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0s-Gi-TYK">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0s-Gi-TYK">
                                         <rect key="frame" x="26" y="53" width="53" height="53"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="i0s-Gi-TYK" secondAttribute="height" multiplier="1:1" id="jB7-wF-TX7"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="yuckButtonDynamic"/>
                                         <connections>
-                                            <action selector="yukPressed:" destination="n5x-aA-xW3" eventType="touchUpInside" id="6QU-M3-eOC"/>
+                                            <action selector="holdDown:" destination="n5x-aA-xW3" eventType="touchDown" id="urI-Tq-CDk"/>
+                                            <action selector="holdRelease:" destination="n5x-aA-xW3" eventType="touchUpInside" id="8GR-7i-RNr"/>
+                                            <action selector="holdReleaseOutside:" destination="n5x-aA-xW3" eventType="touchUpOutside" id="tvA-S6-g70"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epS-E7-pWv">
+                                        <rect key="frame" x="67" y="103" width="129" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="epS-E7-pWv" secondAttribute="height" multiplier="1:1" id="usQ-Ja-UxD"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="nopeButtonDynamic"/>
+                                        <connections>
+                                            <action selector="holdDown:" destination="n5x-aA-xW3" eventType="touchDown" id="6do-BO-ice"/>
+                                            <action selector="holdRelease:" destination="n5x-aA-xW3" eventType="touchUpInside" id="gVO-Aw-SIq"/>
+                                            <action selector="holdReleaseOutside:" destination="n5x-aA-xW3" eventType="touchUpOutside" id="yVz-SJ-cbb"/>
                                         </connections>
                                     </button>
                                 </subviews>

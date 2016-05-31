@@ -285,13 +285,7 @@
 }
 
 -(void)yukClickAction {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.transform = CGAffineTransformMakeScale(0.0, 0.0);
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-        // We do not need to call the delegate because the event will be
-        // already handled.
-    }];
+    [self removeFromSuperview];
 }
 
 /* 
