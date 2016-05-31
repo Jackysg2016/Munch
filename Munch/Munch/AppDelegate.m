@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "UserSettings.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //if first session
+    
+    //checks to see if previous UserSettings exist
+    NSArray *userSettingsDataArray = [self fetchUserSettings];
+    
+    //if db doesnt have it yet, create it
+    if([userSettingsDataArray count] == 0){
+        UserSettings *newUserSettings = [NSEntityDescription insertNewObjectForEntityForName:@"UserSettings" inManagedObjectContext:self.managedObjectContext];
+        NSError *error;
+        [self.managedObjectContext save:&error];
+        NSLog(@"no previous user settings detected, created new User Settings");
+    }
+    
     return YES;
 }
 
@@ -122,5 +137,12 @@
         }
     }
 }
+
+-(NSArray *)fetchUserSettings{
+    NSError *error;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"UserSettings"];
+    return [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+}
+
 
 @end
