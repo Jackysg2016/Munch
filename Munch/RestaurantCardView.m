@@ -6,8 +6,8 @@
 //  Copyright © 2016 Enoch Ng. All rights reserved.
 //
 
-#import "ResturantCardView.h"
-#import "ResturantCardViewOverlay.h"
+#import "RestaurantCardView.h"
+#import "RestaurantCardViewOverlay.h"
 
 #define ACTION_MARGIN 120
 #define SCALE_STRENGTH 4
@@ -16,7 +16,8 @@
 #define ROTATION_STRENGTH 320
 #define ROTATION_ANGLE (M_PI/8)
 
-@interface ResturantCardView ()
+@class Resturant;
+@interface RestaurantCardView ()
 
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
@@ -31,7 +32,7 @@
 
 @end
 
-@implementation ResturantCardView
+@implementation RestaurantCardView
 
 #pragma mark - UIView Lifecycle etc. -
 
@@ -78,56 +79,45 @@
     [self addGestureRecognizer:_panGestureRecognizer];
     
     // Overlay
-    _overlay = [[ResturantCardViewOverlay alloc] initWithFrame:self.bounds];
+    _overlay = [[RestaurantCardViewOverlay alloc] initWithFrame:self.bounds];
     _overlay.alpha = 0;
-    [self addSubview:_overlay];
+    
     
     // Resturant Title Label
     
     // WithFrame:CGRectMake(0, self.frame.size.height - 30, 20, 30)
-    _titleLabel = [[UILabel alloc] init];
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height - 90, self.frame.size.width / 2, 30)];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = [UIColor blackColor];
-    _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     // Cusine Type Label
-    _cusineLabel = [[UILabel alloc]init];
+    _cusineLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, self.frame.size.height - 60, self.frame.size.width / 2, 30)];
     _cusineLabel.textColor = [UIColor blackColor];
-    _cusineLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _cusineLabel.text = @"mexican";
     
     // Price Label
-    _priceLabel = [[UILabel alloc] init];
+    _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height - 30, self.frame.size.width / 2, 30)];
     _priceLabel.textColor = [UIColor blackColor];
-    _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _priceLabel.text = @"$$$";
     
+    // Image View
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 0.7)];
+    _imageView.backgroundColor = [UIColor redColor];
+    
+    // Distance Label
+    _distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width - 50, 0, 50, 20)];
+    _distanceLabel.textColor = [UIColor whiteColor];
+    _distanceLabel.text = @"2 min";
+    
+    // Add all of the views to the card
     [self addSubview:_titleLabel];
     [self addSubview:_cusineLabel];
     [self addSubview:_priceLabel];
+    [self addSubview:_imageView];
+    [self addSubview:_distanceLabel];
     
-    [self setupConstraints];
+    [self addSubview:_overlay];
 
-}
-
--(void)setupConstraints {
-    
-    // Price Label
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.priceLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
-    
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.priceLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottomMargin multiplier:1 constant:0]];
-
-    
-    // Cusine Label
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
-    
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.priceLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
-    
-    // Title Label
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.cusineLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
-    
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
-    
 }
 
 -(void)updateOverlay {
@@ -135,15 +125,20 @@
     
     if (self.xFromCentre > 0) {
         // set the overlay to right mode
-        [self.overlay updateMode:ResturauntCardViewOverlayModeRight];
+        [self.overlay updateMode:RestaurantCardViewOverlayModeRight];
     } else if (self.xFromCentre <= 0) {
         // set the overlay to left mode
-        [self.overlay updateMode:ResturauntCardViewOverlayModeLeft];
+        [self.overlay updateMode:RestaurantCardViewOverlayModeLeft];
     }
     overlayStrength = MIN((CGFloat)fabsf((float)self.xFromCentre) / 100, 0.5);
     
     // set the overlay alpha to overlayStrength
     self.overlay.alpha = overlayStrength;
+    
+}
+
+// This is where all of the labels and images will be set up
+-(void)setupResturant:(Resturant *)resturant {
     
 }
 
@@ -171,7 +166,7 @@
             transform = CGAffineTransformMakeRotation(rotationAngle);
             scaleTransform = CGAffineTransformScale(transform, scale, scale);
             
-            self.transform = scaleTransform;
+            self.transform = transform;
             [self updateOverlay];
             break;
             

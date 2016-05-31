@@ -6,16 +6,16 @@
 //  Copyright © 2016 Enoch Ng. All rights reserved.
 //
 
-#import "ResturantCardFactory.h"
-#import "ResturantCardView.h"
-#import "ResturantCardViewOverlay.h"
+#import "RestaurantCardFactory.h"
+#import "RestaurantCardView.h"
+#import "RestaurantCardViewOverlay.h"
 
 
 #define CARD_WIDTH      300
 #define CARD_HEIGHT     300
 #define MAX_BUFFER_SIZE 3
 
-@interface ResturantCardFactory () <ResturantCardViewDelegate>
+@interface RestaurantCardFactory () <RestaurantCardViewDelegate>
 
 @property (nonatomic) NSMutableArray *resturants;
 @property (nonatomic) NSMutableArray *loadedResturants;
@@ -25,7 +25,7 @@
 @property (nonatomic) CGFloat verticalOffset;
 @end
 
-@implementation ResturantCardFactory
+@implementation RestaurantCardFactory
 
 #pragma mark - UIView Lifecycle etc. -
 - (instancetype)initWithFrame:(CGRect)frame
@@ -51,11 +51,11 @@
 
 #pragma mark - Card Creation -
 
--(ResturantCardView*)createResturantCardAtIndex:(NSInteger)index {
+-(RestaurantCardView*)createResturantCardAtIndex:(NSInteger)index {
     
     CGFloat leftBuffer = (self.frame.size.width - CARD_WIDTH) / 2;
     
-    ResturantCardView *newCard = [[ResturantCardView alloc] initWithFrame:(CGRect){leftBuffer,50, CARD_WIDTH, CARD_HEIGHT}];
+    RestaurantCardView *newCard = [[RestaurantCardView alloc] initWithFrame:(CGRect){leftBuffer,50, CARD_WIDTH, CARD_HEIGHT}];
     
 //    NSArray *xib = [[NSBundle mainBundle] loadNibNamed:@"ResturantCardView" owner:self options:nil];
 //    ResturantCardView *newCard = [xib objectAtIndex:0];
@@ -74,7 +74,7 @@
 -(void)refreshData {
     
     // Get rid of the now outdated views
-    for (ResturantCardView *view in self.loadedResturants) {
+    for (RestaurantCardView *view in self.loadedResturants) {
         [view removeFromSuperview];
     }
     
@@ -103,7 +103,7 @@
     // For all of the data we got (resturants to show) create a resturant object and if applicable
     // add it to the loaded buffer
     for (int i = 0; i < self.data.count; i++) {
-        ResturantCardView *newCard = [self createResturantCardAtIndex:i];
+        RestaurantCardView *newCard = [self createResturantCardAtIndex:i];
         
         [self.resturants addObject:newCard];
         
@@ -130,10 +130,10 @@
 #pragma mark - Button Methods -
 
 -(void)yesPressed {
-    ResturantCardView *cardView = [self.loadedResturants firstObject];
+    RestaurantCardView *cardView = [self.loadedResturants firstObject];
     [self swipedRightWithCard:cardView];
     
-    [cardView.overlay updateMode:ResturauntCardViewOverlayModeRight];
+    [cardView.overlay updateMode:RestaurantCardViewOverlayModeRight];
     [UIView animateWithDuration:0.2 animations:^{
         cardView.overlay.alpha = 1;
     } completion:^(BOOL finished) {
@@ -143,10 +143,10 @@
 }
 
 -(void)noPressed {
-    ResturantCardView *cardView = [self.loadedResturants firstObject];
+    RestaurantCardView *cardView = [self.loadedResturants firstObject];
     [self swipedRightWithCard:cardView];
     
-    [cardView.overlay updateMode:ResturauntCardViewOverlayModeLeft];
+    [cardView.overlay updateMode:RestaurantCardViewOverlayModeLeft];
     [UIView animateWithDuration:0.2 animations:^{
         cardView.overlay.alpha = 1;
     } completion:^(BOOL finished) {

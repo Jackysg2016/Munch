@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ResturantCardViewOverlay;
+@class RestaurantCardViewOverlay;
+@class Resturant;
 
-@protocol ResturantCardViewDelegate <NSObject>
+@protocol RestaurantCardViewDelegate <NSObject>
 
 -(void)swipedLeftWithCard:(UIView*)card;
 -(void)swipedRightWithCard:(UIView*)card;
@@ -20,10 +21,10 @@
 
 @end
 
-@interface ResturantCardView : UIView
+@interface RestaurantCardView : UIView
 
-@property (nonatomic) id<ResturantCardViewDelegate> delegate;
-@property (nonatomic) ResturantCardViewOverlay *overlay;
+@property (nonatomic) id<RestaurantCardViewDelegate> delegate;
+@property (nonatomic) RestaurantCardViewOverlay *overlay;
 
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *cusineLabel;
@@ -34,7 +35,7 @@
 
 -(void)yesClickAction;
 -(void)noClickAction;
-
+-(void)setupResturant:(Resturant *)resturant;
 -(void)setupView;
 
 @end

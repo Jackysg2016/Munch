@@ -6,15 +6,15 @@
 //  Copyright © 2016 Enoch Ng. All rights reserved.
 //
 
-#import "ResturantCardViewOverlay.h"
+#import "RestaurantCardViewOverlay.h"
 
-@interface ResturantCardViewOverlay ()
+@interface RestaurantCardViewOverlay ()
 
 @property (nonatomic) UIImageView *imageView;
 
 @end
 
-@implementation ResturantCardViewOverlay
+@implementation RestaurantCardViewOverlay
 
 -(instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -29,14 +29,14 @@
     return self;
 }
 
--(void)updateMode:(ResturauntCardViewOverlayMode)mode {
+-(void)updateMode:(RestaurantCardViewOverlayMode)mode {
     if(self.mode == mode) {
         return;
     }
     
     self.mode = mode;
     
-    if(mode == ResturauntCardViewOverlayModeLeft) {
+    if(mode == RestaurantCardViewOverlayModeLeft) {
         self.imageView.image = [UIImage imageNamed:@"x"];
     } else {
         self.imageView.image = [UIImage imageNamed:@"check"];

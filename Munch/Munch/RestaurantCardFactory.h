@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResturantCardFactory : UIView
+@interface RestaurantCardFactory : UIView
 
 @end
