@@ -10,4 +10,6 @@
 
 @interface MunchViewController : UIViewController
 
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end
