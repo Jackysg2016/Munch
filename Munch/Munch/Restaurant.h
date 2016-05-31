@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Restaurant : NSManagedObject
 
-// Insert code here to declare functionality of your managed object subclass
+-(void) addInfoFromDictionary:(NSDictionary *)info;
+
+-(NSManagedObject *)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context andDictionary:(NSDictionary *)info;
 
 @end
 

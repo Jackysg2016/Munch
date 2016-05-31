@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) double latitude;
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nonatomic) int64_t pricing;
-@property (nonatomic) int64_t rating;
+@property (nonatomic) float rating;
 @property (nullable, nonatomic, retain) NSString *verbalAddress;
 @property (nullable, nonatomic, retain) NSSet<Category *> *categories;
 @property (nullable, nonatomic, retain) NSSet<Deal *> *deals;

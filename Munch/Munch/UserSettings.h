@@ -13,6 +13,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger,currentSessionType){
+    justMunch,
+    pickieMunch,
+    cravieMunch,
+    thriftyMunch,
+    dareMeMunch
+};
+
 @interface UserSettings : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
