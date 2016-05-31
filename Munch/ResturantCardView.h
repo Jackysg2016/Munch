@@ -24,10 +24,17 @@
 
 @property (nonatomic) id<ResturantCardViewDelegate> delegate;
 @property (nonatomic) ResturantCardViewOverlay *overlay;
-@property (nonatomic) UILabel *label;
+
+@property (nonatomic) UILabel *titleLabel;
+@property (nonatomic) UILabel *cusineLabel;
+@property (nonatomic) UILabel *priceLabel;
+@property (nonatomic) UILabel *distanceLabel;
+@property (nonatomic) UIImageView *imageView;
 
 
 -(void)yesClickAction;
 -(void)noClickAction;
+
+-(void)setupView;
 
 @end

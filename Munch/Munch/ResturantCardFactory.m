@@ -11,8 +11,8 @@
 #import "ResturantCardViewOverlay.h"
 
 
-#define CARD_WIDTH      290
-#define CARD_HEIGHT     290
+#define CARD_WIDTH      300
+#define CARD_HEIGHT     300
 #define MAX_BUFFER_SIZE 3
 
 @interface ResturantCardFactory () <ResturantCardViewDelegate>
@@ -22,7 +22,7 @@
 @property (nonatomic) NSArray *data;
 
 @property (nonatomic) NSInteger resturantLoadedIndex;
-
+@property (nonatomic) CGFloat verticalOffset;
 @end
 
 @implementation ResturantCardFactory
@@ -35,6 +35,7 @@
         [self setupView];
         _resturants = [NSMutableArray array];
         _loadedResturants = [NSMutableArray array];
+        _verticalOffset = 0;
         
         [self loadResturantCards];
     }
@@ -52,11 +53,16 @@
 
 -(ResturantCardView*)createResturantCardAtIndex:(NSInteger)index {
     
-    CGRect rect = CGRectMake((CGFloat)(self.frame.size.width - CARD_WIDTH / 2), self.frame.size.height - CARD_WIDTH / 2, (CGFloat)CARD_WIDTH, (CGFloat)CARD_HEIGHT);
+    CGFloat leftBuffer = (self.frame.size.width - CARD_WIDTH) / 2;
     
+    ResturantCardView *newCard = [[ResturantCardView alloc] initWithFrame:(CGRect){leftBuffer,50, CARD_WIDTH, CARD_HEIGHT}];
     
-    ResturantCardView *newCard = [[ResturantCardView alloc] initWithFrame:(CGRect){CARD_WIDTH / 4,CARD_WIDTH / 2,CARD_WIDTH,CARD_HEIGHT}];
-    newCard.label.text = self.data[index];
+//    NSArray *xib = [[NSBundle mainBundle] loadNibNamed:@"ResturantCardView" owner:self options:nil];
+//    ResturantCardView *newCard = [xib objectAtIndex:0];
+//
+    
+    newCard.titleLabel.text = self.data[index];
+    [newCard.titleLabel sizeToFit];
     newCard.delegate = self;
     
     // Set up rest of information (images, star ratings etc.)
@@ -81,7 +87,7 @@
     
 }
 
-#warning not implemented
+
 -(void)loadResturantCards {
     // Some sample data
     self.data = @[@"Subway",@"Noodlebox",@"La Taqueria",@"Meat & Bread"];
@@ -109,6 +115,7 @@
     
     // Now we load the views onto the screen
     for (int i = 0; i < self.loadedResturants.count; i++) {
+        
         if (i > 0) {
             [self insertSubview:[self.loadedResturants objectAtIndex:i] belowSubview:[self.loadedResturants objectAtIndex:i - 1]];
         } else {

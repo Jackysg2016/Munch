@@ -33,14 +33,6 @@
 
 @implementation ResturantCardView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
 #pragma mark - UIView Lifecycle etc. -
 
 - (instancetype)init
@@ -62,29 +54,80 @@
     return self;
 }
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self setupView];
+    }
+    
+    return self;
+}
+
 
 -(void)setupView {
+    
+    // Card properties
     self.layer.cornerRadius = 4;
     self.layer.shadowRadius = 10;
     self.layer.shadowOpacity = 0.3;
     self.layer.shadowOffset = CGSizeMake(1, 1);
     self.backgroundColor = [UIColor whiteColor];
     
+    // Gesture Recognizer
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(isDragged:)];
-    
     [self addGestureRecognizer:_panGestureRecognizer];
     
+    // Overlay
     _overlay = [[ResturantCardViewOverlay alloc] initWithFrame:self.bounds];
     _overlay.alpha = 0;
     [self addSubview:_overlay];
     
-    _label = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, self.frame.size.width, 200)];
-    _label.text = @"testing";
-    _label.textAlignment = NSTextAlignmentCenter;
-    _label.textColor = [UIColor blackColor];
+    // Resturant Title Label
     
-    [self addSubview:_label];
+    // WithFrame:CGRectMake(0, self.frame.size.height - 30, 20, 30)
+    _titleLabel = [[UILabel alloc] init];
+    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.textColor = [UIColor blackColor];
+    _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    // Cusine Type Label
+    _cusineLabel = [[UILabel alloc]init];
+    _cusineLabel.textColor = [UIColor blackColor];
+    _cusineLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _cusineLabel.text = @"mexican";
+    
+    // Price Label
+    _priceLabel = [[UILabel alloc] init];
+    _priceLabel.textColor = [UIColor blackColor];
+    _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _priceLabel.text = @"$$$";
+    
+    [self addSubview:_titleLabel];
+    [self addSubview:_cusineLabel];
+    [self addSubview:_priceLabel];
+    
+    [self setupConstraints];
 
+}
+
+-(void)setupConstraints {
+    
+    // Price Label
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.priceLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.priceLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottomMargin multiplier:1 constant:0]];
+
+    
+    // Cusine Label
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.priceLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    
+    // Title Label
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.cusineLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    
 }
 
 -(void)updateOverlay {
@@ -123,7 +166,6 @@
         case UIGestureRecognizerStateChanged:
             rotationStrength = MIN(self.xFromCentre / (CGFloat)ROTATION_STRENGTH, (CGFloat)ROTATION_MAX);
             rotationAngle = (CGFloat)ROTATION_ANGLE * rotationStrength;
-            // max(CGFloat(1-fabsf(Float(rotationStrength))) / CGFloat(SCALE_STRENGTH), CGFloat(SCALE_MAX))
             scale = MAX((CGFloat)(1-fabsf((float)rotationStrength)) / (CGFloat)SCALE_STRENGTH , (CGFloat)SCALE_MAX);
             self.center = CGPointMake(self.originalPoint.x + self.xFromCentre, self.originalPoint.y + self.yFromCentre);
             transform = CGAffineTransformMakeRotation(rotationAngle);
