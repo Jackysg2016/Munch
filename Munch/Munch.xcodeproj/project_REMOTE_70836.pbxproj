@@ -7,12 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		340ED4321CFCC6E800609428 /* APIKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 340ED4311CFCC6E800609428 /* APIKeys.m */; };
 		340ED4401CFCE8B300609428 /* YelpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 340ED43F1CFCE8B300609428 /* YelpClient.m */; };
-		582A10CD1CFCBC0500BE7493 /* RestaurantCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A10CC1CFCBC0500BE7493 /* RestaurantCardView.m */; };
-		582A10D11CFCC5E700BE7493 /* RestaurantCardViewOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A10D01CFCC5E700BE7493 /* RestaurantCardViewOverlay.m */; };
-		582A10D41CFCDF1D00BE7493 /* RestaurantCardFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A10D31CFCDF1D00BE7493 /* RestaurantCardFactory.m */; };
-		582A11071CFD1FC800BE7493 /* APIKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A11061CFD1FC800BE7493 /* APIKeys.m */; };
-		582A11081CFD219700BE7493 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535251CFCB99A004C0A5E /* ViewController.m */; };
 		7724961B1CFD15D200F7972B /* Filter+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 772496041CFD15D200F7972B /* Filter+CoreDataProperties.m */; };
 		7724961C1CFD15D200F7972B /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 772496061CFD15D200F7972B /* Filter.m */; };
 		7724961D1CFD15D200F7972B /* Deal+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 772496081CFD15D200F7972B /* Deal+CoreDataProperties.m */; };
@@ -28,6 +24,7 @@
 		77AFACC71CFD7B4C001850AC /* MunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AFACC61CFD7B4C001850AC /* MunchViewController.m */; };
 		77B535201CFCB99A004C0A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5351F1CFCB99A004C0A5E /* main.m */; };
 		77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535221CFCB99A004C0A5E /* AppDelegate.m */; };
+		77B535261CFCB99A004C0A5E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535251CFCB99A004C0A5E /* ViewController.m */; };
 		77B535291CFCB99A004C0A5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B535271CFCB99A004C0A5E /* Main.storyboard */; };
 		77B5352C1CFCB99A004C0A5E /* Munch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 77B5352A1CFCB99A004C0A5E /* Munch.xcdatamodeld */; };
 		77B5352E1CFCB99A004C0A5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77B5352D1CFCB99A004C0A5E /* Assets.xcassets */; };
@@ -51,15 +48,9 @@
 
 /* Begin PBXFileReference section */
 		340ED4301CFCC6E800609428 /* APIKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIKeys.h; sourceTree = "<group>"; };
+		340ED4311CFCC6E800609428 /* APIKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIKeys.m; sourceTree = "<group>"; };
 		340ED43E1CFCE8B300609428 /* YelpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YelpClient.h; sourceTree = "<group>"; };
 		340ED43F1CFCE8B300609428 /* YelpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YelpClient.m; sourceTree = "<group>"; };
-		582A10CB1CFCBC0500BE7493 /* RestaurantCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestaurantCardView.h; path = ../RestaurantCardView.h; sourceTree = "<group>"; };
-		582A10CC1CFCBC0500BE7493 /* RestaurantCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestaurantCardView.m; path = ../RestaurantCardView.m; sourceTree = "<group>"; };
-		582A10CF1CFCC5E700BE7493 /* RestaurantCardViewOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantCardViewOverlay.h; sourceTree = "<group>"; };
-		582A10D01CFCC5E700BE7493 /* RestaurantCardViewOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCardViewOverlay.m; sourceTree = "<group>"; };
-		582A10D21CFCDF1D00BE7493 /* RestaurantCardFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantCardFactory.h; sourceTree = "<group>"; };
-		582A10D31CFCDF1D00BE7493 /* RestaurantCardFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCardFactory.m; sourceTree = "<group>"; };
-		582A11061CFD1FC800BE7493 /* APIKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIKeys.m; sourceTree = "<group>"; };
 		75256FEAF675B6CE308BC748 /* Pods_Munch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Munch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		772496031CFD15D200F7972B /* Filter+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Filter+CoreDataProperties.h"; sourceTree = "<group>"; };
 		772496041CFD15D200F7972B /* Filter+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Filter+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -116,19 +107,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		582A10CE1CFCBC8500BE7493 /* Swipe Cards */ = {
-			isa = PBXGroup;
-			children = (
-				582A10CB1CFCBC0500BE7493 /* RestaurantCardView.h */,
-				582A10CC1CFCBC0500BE7493 /* RestaurantCardView.m */,
-				582A10CF1CFCC5E700BE7493 /* RestaurantCardViewOverlay.h */,
-				582A10D01CFCC5E700BE7493 /* RestaurantCardViewOverlay.m */,
-				582A10D21CFCDF1D00BE7493 /* RestaurantCardFactory.h */,
-				582A10D31CFCDF1D00BE7493 /* RestaurantCardFactory.m */,
-			);
-			name = "Swipe Cards";
-			sourceTree = "<group>";
-		};
 		772496271CFD15E900F7972B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,7 +166,7 @@
 				77B535241CFCB99A004C0A5E /* ViewController.h */,
 				77B535251CFCB99A004C0A5E /* ViewController.m */,
 				340ED4301CFCC6E800609428 /* APIKeys.h */,
-				582A11061CFD1FC800BE7493 /* APIKeys.m */,
+				340ED4311CFCC6E800609428 /* APIKeys.m */,
 				340ED43E1CFCE8B300609428 /* YelpClient.h */,
 				340ED43F1CFCE8B300609428 /* YelpClient.m */,
 				77AFACC51CFD7B4C001850AC /* MunchViewController.h */,
@@ -197,7 +175,6 @@
 				77B535271CFCB99A004C0A5E /* Main.storyboard */,
 				77B535321CFCB99A004C0A5E /* Info.plist */,
 				77B5352A1CFCB99A004C0A5E /* Munch.xcdatamodeld */,
-				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
 				77B5352F1CFCB99A004C0A5E /* LaunchScreen.storyboard */,
 				77B5351E1CFCB99A004C0A5E /* Supporting Files */,
 			);
@@ -351,21 +328,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				582A11081CFD219700BE7493 /* ViewController.m in Sources */,
-				582A10CD1CFCBC0500BE7493 /* RestaurantCardView.m in Sources */,
-				582A10D11CFCC5E700BE7493 /* RestaurantCardViewOverlay.m in Sources */,
 				772496231CFD15D200F7972B /* Image+CoreDataProperties.m in Sources */,
+				77B535261CFCB99A004C0A5E /* ViewController.m in Sources */,
 				7724961C1CFD15D200F7972B /* Filter.m in Sources */,
 				77B5352C1CFCB99A004C0A5E /* Munch.xcdatamodeld in Sources */,
 				772496261CFD15D200F7972B /* Restaurant.m in Sources */,
-				582A11071CFD1FC800BE7493 /* APIKeys.m in Sources */,
 				340ED4401CFCE8B300609428 /* YelpClient.m in Sources */,
 				772496241CFD15D200F7972B /* Image.m in Sources */,
 				77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */,
-				582A10D41CFCDF1D00BE7493 /* RestaurantCardFactory.m in Sources */,
 				7724961E1CFD15D200F7972B /* Deal.m in Sources */,
 				7724961D1CFD15D200F7972B /* Deal+CoreDataProperties.m in Sources */,
 				772496221CFD15D200F7972B /* Category.m in Sources */,
+				340ED4321CFCC6E800609428 /* APIKeys.m in Sources */,
 				772496251CFD15D200F7972B /* Restaurant+CoreDataProperties.m in Sources */,
 				772496211CFD15D200F7972B /* Category+CoreDataProperties.m in Sources */,
 				77B535201CFCB99A004C0A5E /* main.m in Sources */,

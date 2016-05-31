@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xOk-Fs-zeM">
     <dependencies>
         <deployment identifier="iOS"/>
@@ -6,12 +7,21 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+>>>>>>> master
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="Z4w-UG-FVf">
             <objects>
+<<<<<<< HEAD
                 <viewController id="xOk-Fs-zeM" sceneMemberID="viewController">
+=======
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+>>>>>>> master
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mhZ-0F-M7K"/>
                         <viewControllerLayoutGuide type="bottom" id="f3Q-tR-uYu"/>
@@ -71,6 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Eo-N1-BVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="-387" y="-683"/>
         </scene>
         <!--Munch-->
@@ -333,6 +344,8 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dVl-iK-aDK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="279" y="-659"/>
+=======
+>>>>>>> master
         </scene>
     </scenes>
     <resources>

@@ -25,7 +25,6 @@
 		772496241CFD15D200F7972B /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 772496161CFD15D200F7972B /* Image.m */; };
 		772496251CFD15D200F7972B /* Restaurant+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 772496181CFD15D200F7972B /* Restaurant+CoreDataProperties.m */; };
 		772496261CFD15D200F7972B /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724961A1CFD15D200F7972B /* Restaurant.m */; };
-		77AFACC71CFD7B4C001850AC /* MunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AFACC61CFD7B4C001850AC /* MunchViewController.m */; };
 		77B535201CFCB99A004C0A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5351F1CFCB99A004C0A5E /* main.m */; };
 		77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535221CFCB99A004C0A5E /* AppDelegate.m */; };
 		77B535291CFCB99A004C0A5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B535271CFCB99A004C0A5E /* Main.storyboard */; };
@@ -85,8 +84,6 @@
 		772496181CFD15D200F7972B /* Restaurant+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Restaurant+CoreDataProperties.m"; sourceTree = "<group>"; };
 		772496191CFD15D200F7972B /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
 		7724961A1CFD15D200F7972B /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
-		77AFACC51CFD7B4C001850AC /* MunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MunchViewController.h; sourceTree = "<group>"; };
-		77AFACC61CFD7B4C001850AC /* MunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MunchViewController.m; sourceTree = "<group>"; };
 		77B5351B1CFCB99A004C0A5E /* Munch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Munch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B5351F1CFCB99A004C0A5E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		77B535211CFCB99A004C0A5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -191,14 +188,12 @@
 				582A11061CFD1FC800BE7493 /* APIKeys.m */,
 				340ED43E1CFCE8B300609428 /* YelpClient.h */,
 				340ED43F1CFCE8B300609428 /* YelpClient.m */,
-				77AFACC51CFD7B4C001850AC /* MunchViewController.h */,
-				77AFACC61CFD7B4C001850AC /* MunchViewController.m */,
-				77B5352D1CFCB99A004C0A5E /* Assets.xcassets */,
 				77B535271CFCB99A004C0A5E /* Main.storyboard */,
+				77B5352D1CFCB99A004C0A5E /* Assets.xcassets */,
+				77B5352F1CFCB99A004C0A5E /* LaunchScreen.storyboard */,
 				77B535321CFCB99A004C0A5E /* Info.plist */,
 				77B5352A1CFCB99A004C0A5E /* Munch.xcdatamodeld */,
 				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
-				77B5352F1CFCB99A004C0A5E /* LaunchScreen.storyboard */,
 				77B5351E1CFCB99A004C0A5E /* Supporting Files */,
 			);
 			path = Munch;
@@ -371,7 +366,6 @@
 				77B535201CFCB99A004C0A5E /* main.m in Sources */,
 				772496201CFD15D200F7972B /* UserSettings.m in Sources */,
 				7724961F1CFD15D200F7972B /* UserSettings+CoreDataProperties.m in Sources */,
-				77AFACC71CFD7B4C001850AC /* MunchViewController.m in Sources */,
 				7724961B1CFD15D200F7972B /* Filter+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
