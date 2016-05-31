@@ -10,12 +10,6 @@
 
 @interface MunchViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *munchNowButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *nopeButton;
-
-@property (weak, nonatomic) IBOutlet UIButton *yuckButton;
-
 @end
 
 
@@ -25,10 +19,6 @@
 
 
 -(void)viewDidLoad{
-
-    [self.munchNowButton addTarget:self action:@selector(holdDown) forControlEvents:UIControlEventTouchDown];
-    [self.munchNowButton addTarget:self action:@selector(holdRelease) forControlEvents:UIControlEventTouchUpInside];
-    [self.munchNowButton addTarget:self action:@selector(holdReleaseOutside) forControlEvents:UIControlEventTouchUpOutside]; //add this for your case releasing the finger out side of the button's frame
 
 }
 

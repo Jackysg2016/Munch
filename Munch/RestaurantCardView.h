@@ -33,8 +33,11 @@
 @property (nonatomic) UIImageView *imageView;
 
 
+@property (weak, nonatomic) IBOutlet UIView *baseView;
+
 -(void)yesClickAction;
 -(void)noClickAction;
+-(void)yukClickAction;
 -(void)setupResturant:(Resturant *)resturant;
 -(void)setupView;
 

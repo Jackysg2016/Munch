@@ -23,6 +23,14 @@
 
 @property (nonatomic) NSInteger resturantLoadedIndex;
 @property (nonatomic) CGFloat verticalOffset;
+
+// UI Stuff
+@property (weak, nonatomic) IBOutlet UIButton *munchNowButton;
+@property (weak, nonatomic) IBOutlet UIButton *nopeButton;
+@property (weak, nonatomic) IBOutlet UIButton *yukButton;
+
+
+
 @end
 
 @implementation RestaurantCardFactory
@@ -42,6 +50,20 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _resturants = [NSMutableArray array];
+        _loadedResturants = [NSMutableArray array];
+        _verticalOffset = 0;
+        
+        [self loadResturantCards];
+
+    }
+    return self;
+}
+
 -(void)setupView {
     self.layer.borderWidth = 1;
     self.backgroundColor = [UIColor clearColor];
@@ -53,18 +75,38 @@
 
 -(RestaurantCardView*)createResturantCardAtIndex:(NSInteger)index {
     
-    CGFloat leftBuffer = (self.frame.size.width - CARD_WIDTH) / 2;
+    NSArray *array = @[@"1",@"2",@"3",@"4"];
     
-    RestaurantCardView *newCard = [[RestaurantCardView alloc] initWithFrame:(CGRect){leftBuffer,50, CARD_WIDTH, CARD_HEIGHT}];
+    RestaurantCardView *newCard = [[RestaurantCardView alloc] init];
     
+    newCard.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    newCard.overlay.frame = newCard.baseView.frame;
     newCard.titleLabel.text = self.data[index];
-    [newCard.titleLabel sizeToFit];
+
+    newCard.distanceLabel.text = array[index];
+    newCard.cusineLabel.text = self.data[index];
+    
+    newCard.priceLabel.text = @"$ $ $";
+    newCard.imageView.image = [UIImage imageNamed:@"testImage"];
+    
     newCard.delegate = self;
+    
+    
+    [self layoutIfNeeded];
     
     // Set up rest of information (images, star ratings etc.)
     
     return newCard;
     
+}
+
+-(void)setupConstraintsForCard:(RestaurantCardView*)card {
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:card attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0.5 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:card attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:0.9 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:card attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:card attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:20]];
 }
 
 -(void)refreshData {
@@ -117,15 +159,18 @@
         } else {
             [self addSubview:[self.loadedResturants objectAtIndex:i]];
         }
+        
+        [self setupConstraintsForCard:[self.loadedResturants objectAtIndex:i]];
+        
+        //[self layoutIfNeeded];
         self.resturantLoadedIndex += 1;
     }
     
-    
+    [self layoutIfNeeded];
 }
 
 #pragma mark - Button Methods -
-
--(void)yesPressed {
+- (IBAction)munchNowPressed:(UIButton *)sender {
     RestaurantCardView *cardView = [self.loadedResturants firstObject];
     [self swipedRightWithCard:cardView];
     
@@ -135,10 +180,8 @@
     } completion:^(BOOL finished) {
         [cardView yesClickAction];
     }];
-    
 }
-
--(void)noPressed {
+- (IBAction)noPressed:(UIButton *)sender {
     RestaurantCardView *cardView = [self.loadedResturants firstObject];
     [self swipedRightWithCard:cardView];
     
@@ -149,30 +192,67 @@
         [cardView noClickAction];
     }];
 }
+- (IBAction)yukPressed:(UIButton *)sender {
+#warning incomplete
+    
+    RestaurantCardView *cardView = [self.loadedResturants firstObject];
+    
+    [cardView yukClickAction];
+}
+
+// This is so that when there are no items left we cannot press a button and crash the app
+-(void)checkButtons {
+    if (self.loadedResturants.count == 0) {
+        self.yukButton.enabled = NO;
+        self.nopeButton.enabled = NO;
+        self.munchNowButton.enabled = NO;
+    }
+}
+
 #pragma mark - ResturantCardViewDelegate Methods -
 
+#warning incomplete - this is where the action should be set
 -(void)swipedRightWithCard:(UIView *)card {
+    // Remove the top card
     [self.loadedResturants removeObjectAtIndex:0];
     
     if(self.resturantLoadedIndex < self.resturants.count) {
+        // If we have more restaurants to load
         [self.loadedResturants addObject:[self.resturants objectAtIndex:self.resturantLoadedIndex]];
         self.resturantLoadedIndex += 1;
         
+        // Add the view and set it up
         [self insertSubview:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 2]];
+        [self setupConstraintsForCard:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 1]];
+        
+        [self layoutIfNeeded];
+
     }
+    
+    // Check to see if the buttons should be enabled or not
+    [self checkButtons];
     
 }
 
+#warning incomplete - this is where the action should be set
 -(void)swipedLeftWithCard:(UIView *)card {
+    // Remove the top card
     [self.loadedResturants removeObjectAtIndex:0];
     
     if(self.resturantLoadedIndex < self.resturants.count) {
+        // If we have more restaurants to load
         [self.loadedResturants addObject:[self.resturants objectAtIndex:self.resturantLoadedIndex]];
         self.resturantLoadedIndex += 1;
         
+        // Add the view and set it up
         [self insertSubview:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 2]];
+        [self setupConstraintsForCard:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 1]];
+        
+        [self layoutIfNeeded];
     }
 
+    // Check to see if the buttons should be enabled or not
+    [self checkButtons];
 }
 
 @end

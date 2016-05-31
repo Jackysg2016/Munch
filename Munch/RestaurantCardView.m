@@ -21,10 +21,6 @@
 
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
 
-
-
-
-
 // Values for translation
 @property (nonatomic) CGFloat xFromCentre;
 @property (nonatomic) CGFloat yFromCentre;
@@ -45,25 +41,6 @@
     return self;
 }
 
--(instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if(self) {
-        [self setupView];
-        
-    }
-    
-    return self;
-}
-
--(instancetype)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self setupView];
-    }
-    
-    return self;
-}
-
 
 -(void)setupView {
     
@@ -79,35 +56,36 @@
     [self addGestureRecognizer:_panGestureRecognizer];
     
     // Overlay
-    _overlay = [[RestaurantCardViewOverlay alloc] initWithFrame:self.bounds];
+    _overlay = [[RestaurantCardViewOverlay alloc] init];
+    _overlay.translatesAutoresizingMaskIntoConstraints = NO;
     _overlay.alpha = 0;
     
-    
     // Resturant Title Label
-    
-    // WithFrame:CGRectMake(0, self.frame.size.height - 30, 20, 30)
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height - 90, self.frame.size.width / 2, 30)];
+    _titleLabel = [[UILabel alloc] init];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = [UIColor blackColor];
+    _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     // Cusine Type Label
-    _cusineLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, self.frame.size.height - 60, self.frame.size.width / 2, 30)];
+    _cusineLabel = [[UILabel alloc]init];
     _cusineLabel.textColor = [UIColor blackColor];
-    _cusineLabel.text = @"mexican";
+    _cusineLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     // Price Label
-    _priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.size.height - 30, self.frame.size.width / 2, 30)];
+    _priceLabel = [[UILabel alloc] init];
     _priceLabel.textColor = [UIColor blackColor];
-    _priceLabel.text = @"$$$";
+    _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     // Image View
-    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height * 0.7)];
-    _imageView.backgroundColor = [UIColor redColor];
+    _imageView = [[UIImageView alloc] init];
+    _imageView.backgroundColor = [UIColor clearColor];
+    _imageView.translatesAutoresizingMaskIntoConstraints = NO;
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     // Distance Label
-    _distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width - 50, 0, 50, 20)];
-    _distanceLabel.textColor = [UIColor whiteColor];
-    _distanceLabel.text = @"2 min";
+    _distanceLabel = [[UILabel alloc] init];
+    _distanceLabel.textColor = [UIColor blackColor];
+    _distanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     // Add all of the views to the card
     [self addSubview:_titleLabel];
@@ -116,8 +94,45 @@
     [self addSubview:_imageView];
     [self addSubview:_distanceLabel];
     
+    // Make sure the overlay is last
     [self addSubview:_overlay];
+    
+    [self setupConstraints];
 
+}
+
+-(void)setupConstraints{
+    // Price Label
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.priceLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.priceLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    
+    // Cusine Label
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.priceLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    
+    // Title Label
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.cusineLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    
+    // ImageView
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1 constant:-8]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0.6 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.distanceLabel attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    
+    // Distance Label
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.distanceLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailingMargin multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.distanceLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTopMargin multiplier:1 constant:0]];
+    
+    // Overlay
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.overlay attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.overlay attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.overlay attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.overlay attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.overlay attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.overlay attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    
 }
 
 -(void)updateOverlay {
@@ -130,11 +145,11 @@
         // set the overlay to left mode
         [self.overlay updateMode:RestaurantCardViewOverlayModeLeft];
     }
+    // calculate the strength
     overlayStrength = MIN((CGFloat)fabsf((float)self.xFromCentre) / 100, 0.5);
     
     // set the overlay alpha to overlayStrength
     self.overlay.alpha = overlayStrength;
-    
 }
 
 // This is where all of the labels and images will be set up
@@ -148,6 +163,7 @@
     self.xFromCentre = [sender translationInView:self].x;
     self.yFromCentre = [sender translationInView:self].y;
     
+    // All of the values for the swiping
     CGFloat rotationStrength;
     CGFloat rotationAngle;
     CGFloat scale;
@@ -155,9 +171,11 @@
     CGAffineTransform scaleTransform;
     
     switch (sender.state) {
+        // When it begins we keep track of the original center point
         case UIGestureRecognizerStateBegan:
             self.originalPoint = self.center;
             break;
+        // When the state has changed we calculate the transform values
         case UIGestureRecognizerStateChanged:
             rotationStrength = MIN(self.xFromCentre / (CGFloat)ROTATION_STRENGTH, (CGFloat)ROTATION_MAX);
             rotationAngle = (CGFloat)ROTATION_ANGLE * rotationStrength;
@@ -170,6 +188,7 @@
             [self updateOverlay];
             break;
             
+        // When it has ended we run our logic in afterSwipeAction
         case UIGestureRecognizerStateEnded:
             [self afterSwipeAction];
             break;
@@ -189,7 +208,6 @@
         [self leftAction];
     } else {
         // if neither we animate back to the original state
-        
         [UIView animateWithDuration:0.3 animations:^{
             self.center = self.originalPoint;
             self.transform = CGAffineTransformMakeRotation(0);
@@ -199,32 +217,46 @@
 }
 
 -(void)rightAction {
+    // finishPoint is off of the screen to the right
     CGPoint finishPoint = CGPointMake(500, 2 * self.yFromCentre + self.originalPoint.y);
     
+    // animate it
     [UIView animateWithDuration:0.3 animations:^{
         self.center = finishPoint;
     } completion:^(BOOL finished) {
+        // After the animation completes we remove the view
         [self removeFromSuperview];
+        
+        // Then we call the delegate to handle what should be done
+        [self.delegate swipedRightWithCard:self];
     }];
     
-    [self.delegate swipedRightWithCard:self];
+    
 }
 
 -(void)leftAction {
+    // finishPoint is off of the screen to the left
     CGPoint finishPoint = CGPointMake(-500, 2 * self.yFromCentre + self.originalPoint.y);
     
+    // animate it
     [UIView animateWithDuration:0.3 animations:^{
         self.center = finishPoint;
     } completion:^(BOOL finished) {
+        // After the animation completes we remove the view
         [self removeFromSuperview];
+        
+        // Then we call the delegate to handle what should be done
+        [self.delegate swipedLeftWithCard:self];
     }];
     
-    [self.delegate swipedLeftWithCard:self];
+    
 }
 
 #pragma mark actions for when the buttons are clicked rather than swipe
 
 -(void)yesClickAction {
+    // When a button is pressed rather than swiping we animate it
+    // and then remove it.
     CGPoint finishPoint = CGPointMake(600, self.center.y);
     
     [UIView animateWithDuration:0.3 animations:^{
@@ -232,10 +264,14 @@
         self.transform = CGAffineTransformMakeRotation(1);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
+        // We do not need to call the delegate because the event will be
+        // already handled.
     }];
 }
 
 -(void)noClickAction {
+    // When a button is pressed rather than swiping we animate it
+    // and then remove it.
     CGPoint finishPoint =  CGPointMake(-600, self.center.y);
     
     [UIView animateWithDuration:0.3 animations:^{
@@ -243,14 +279,18 @@
         self.transform = CGAffineTransformMakeRotation(-1);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
+        // We do not need to call the delegate because the event will be
+        // already handled.
     }];
 }
 
--(void)yuckClickAction {
+-(void)yukClickAction {
     [UIView animateWithDuration:0.3 animations:^{
         self.transform = CGAffineTransformMakeScale(0.0, 0.0);
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
+        // We do not need to call the delegate because the event will be
+        // already handled.
     }];
 }
 

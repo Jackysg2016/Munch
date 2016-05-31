@@ -16,17 +16,48 @@
 
 @implementation RestaurantCardViewOverlay
 
--(instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    
+- (instancetype)init
+{
+    self = [super init];
     if(self) {
         self.backgroundColor = [UIColor whiteColor];
         
         self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"x"]];
+        self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.imageView];
+        
+        [self setupConstraints];
+        //[self layoutIfNeeded];
+        
+        
     }
-    
     return self;
+}
+
+//-(instancetype)initWithFrame:(CGRect)frame {
+//    self = [super initWithFrame:frame];
+//    
+//    if(self) {
+//        self.backgroundColor = [UIColor whiteColor];
+//        
+//        self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"x"]];
+//        self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
+//        [self addSubview:self.imageView];
+//        
+//        [self setupConstraints];
+//        [self layoutIfNeeded];
+//        
+//        
+//    }
+//    
+//    return self;
+//}
+
+-(void)setupConstraints {
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1 constant:0]];
 }
 
 -(void)updateMode:(RestaurantCardViewOverlayMode)mode {
