@@ -14,13 +14,17 @@
 
 @interface MunchViewController () <CLLocationManagerDelegate>
 
+
 @property (weak, nonatomic) IBOutlet UIButton *munchNowButton;
 @property (weak, nonatomic) IBOutlet UIButton *nopeButton;
 @property (weak, nonatomic) IBOutlet UIButton *yuckButton;
 
+
 @property (nonatomic) NSMutableArray *restaurants;
 @property (nonatomic) CLLocationManager *locationManager;
 @property (nonatomic) CLLocation *lastLocation;
+
+@property (nonatomic) float buttonShrinkRatio;
 
 @end
 
@@ -31,12 +35,17 @@
 
 
 -(void)viewDidLoad{
+    
+    self.buttonShrinkRatio = 0.8;
+    
+    NSArray *ButtonArray = @[self.munchNowButton,self.nopeButton,self.yuckButton];
+    for (UIButton *button in ButtonArray){
+        [button addTarget:self action:@selector(holdDown:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(holdRelease:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(holdReleaseOutside:) forControlEvents:UIControlEventTouchUpOutside];
+        button.adjustsImageWhenHighlighted = NO;
+    }
 
-    [self.munchNowButton addTarget:self action:@selector(holdDown) forControlEvents:UIControlEventTouchDown];
-    [self.munchNowButton addTarget:self action:@selector(holdRelease) forControlEvents:UIControlEventTouchUpInside];
-    [self.munchNowButton addTarget:self action:@selector(holdReleaseOutside) forControlEvents:UIControlEventTouchUpOutside]; //add this for your case releasing the finger out side of the button's frame
-    
-    
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
     
@@ -49,9 +58,13 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         [self.locationManager requestWhenInUseAuthorization];
     }
-    //
-
+    
+    
 }
+
+
+
+#pragma mark - Button Action & Animation -
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
@@ -110,7 +123,6 @@
 
 //munch Now button pressed, take user to Matched View Controller
 - (IBAction)startMatchedView:(UIButton *)sender {
-    NSLog(@"startMatchedView");
 }
 
 //nope button pressed, update cards
@@ -119,22 +131,61 @@
 
 //yuck button pressed, update cards and update yuck list
 - (IBAction)yuckButtonPressed:(UIButton *)sender {
-
-
 }
 
--(void)holdDown{
-    
-    NSLog(@"holdDown");
+-(void)holdDown:(UIButton*) sender{
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         sender.layer.transform = CATransform3DMakeScale(self.buttonShrinkRatio,self.buttonShrinkRatio, 1);
+                     }
+                     completion:^(BOOL finished) {
+                     }];
 }
 
--(void)holdRelease{
-    
-    NSLog(@"holdRelease");
+-(void)holdRelease:(UIButton *) sender{
+    [UIView animateWithDuration:0.1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         sender.layer.transform = CATransform3DMakeScale(1.1,1.1, 1);
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [UIView animateWithDuration:0.05
+                                               delay:0
+                                             options:UIViewAnimationOptionCurveEaseOut
+                                          animations:^{
+                                              
+                                              sender.layer.transform = CATransform3DMakeScale(1,1, 1);
+                                          }
+                                          completion:^(BOOL finished) {
+                                              //run segue
+                                       }];
+                     }];
 }
 
--(void)holdReleaseOutside{
-    
-    NSLog(@"holdReleaseOutside");
+-(void)holdReleaseOutside:(UIButton *)sender{
+    [UIView animateWithDuration:0.1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         sender.layer.transform = CATransform3DMakeScale(1.1,1.1, 1);
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [UIView animateWithDuration:0.05
+                                               delay:0
+                                             options:UIViewAnimationOptionCurveEaseOut
+                                          animations:^{
+                                              sender.layer.transform = CATransform3DMakeScale(1,1, 1);
+                                          }
+                                          completion:^(BOOL finished) {
+                                              //dont run segue
+                                          }];
+                     }];
 }
+
+
 @end
