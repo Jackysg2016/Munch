@@ -21,34 +21,28 @@
 
 -(void)viewDidLoad{
     
-    //if first session
-    
-    //checks to see if previous UserSettings exist
-    NSArray *userSettingsDataArray = [self fetchUserSettings];
-    
-    //if it doesnt, create it
-    if([userSettingsDataArray count] == 0){
-            UserSettings *newUserSettings = [NSEntityDescription insertNewObjectForEntityForName:@"UserSettings" inManagedObjectContext:self.managedObjectContext];
-            NSError *error;
-            [self.managedObjectContext save:&error];
-        
-    }
-    
 }
 
 
 
-
+//
 -(void)updateSession:(int)sessionType{
     
+    NSArray *userSettingsDataArray = [self fetchUserSettings];
+    
+    UserSettings *userSettings = [userSettingsDataArray firstObject];
+    
+    userSettings.sessionType = sessionType;
+    
+    NSError *error;
+    [self.managedObjectContext save:&error];
+    //saved session type as a user default so that next time the user pulls it up, it will still be the same session type unless changed at homescreen
 }
 
 -(NSArray *)fetchUserSettings{
-    
     NSError *error;
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"UserSettings"];
     return [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
 }
 
 
