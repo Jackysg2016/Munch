@@ -8,7 +8,6 @@
         <!--View Controller-->
         <scene sceneID="o7W-vL-8s6">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4hU-3P-1vM" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ytR-iI-rkW" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lfr-en-5SB"/>
@@ -20,6 +19,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4hU-3P-1vM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="145" y="201"/>
         </scene>
