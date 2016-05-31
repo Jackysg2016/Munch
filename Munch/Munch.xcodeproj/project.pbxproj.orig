@@ -197,8 +197,11 @@
 				77B535271CFCB99A004C0A5E /* Main.storyboard */,
 				77B535321CFCB99A004C0A5E /* Info.plist */,
 				77B5352A1CFCB99A004C0A5E /* Munch.xcdatamodeld */,
-				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
+<<<<<<< HEAD
 				77B5352F1CFCB99A004C0A5E /* LaunchScreen.storyboard */,
+=======
+				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
+>>>>>>> master
 				77B5351E1CFCB99A004C0A5E /* Supporting Files */,
 			);
 			path = Munch;
