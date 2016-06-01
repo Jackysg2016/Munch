@@ -9,6 +9,8 @@
 #import "RestaurantCardFactory.h"
 #import "RestaurantCardView.h"
 #import "RestaurantCardViewOverlay.h"
+#import "Restaurant.h"
+#import "Image.h"
 
 
 #define CARD_WIDTH      300
@@ -19,7 +21,7 @@
 
 @property (nonatomic) NSMutableArray *restaurants;
 @property (nonatomic) NSMutableArray *loadedRestaurants;
-@property (nonatomic) NSArray *data;
+
 
 @property (nonatomic) NSInteger restaurantLoadedIndex;
 @property (nonatomic) CGFloat verticalOffset;
@@ -47,7 +49,7 @@
         self.buttonShrinkRatio = 0.8;
 
         
-        [self loadRestaurantCards];
+        //[self loadRestaurantCards];
 
 
     }
@@ -58,19 +60,25 @@
 
 -(RestaurantCardView*)createRestaurantCardAtIndex:(NSInteger)index {
     
-    NSArray *array = @[@"1",@"2",@"3",@"4"];
+    //NSArray *array = @[@"1",@"2",@"3",@"4"];
     
     RestaurantCardView *newCard = [[RestaurantCardView alloc] init];
+    
+    Restaurant *restaurant = self.data[index];
     
     newCard.translatesAutoresizingMaskIntoConstraints = NO;
     
     newCard.overlay.frame = newCard.baseView.frame;
-    newCard.titleLabel.text = self.data[index];
+    newCard.titleLabel.text = restaurant.name;
 
-    newCard.distanceLabel.text = array[index];
-    newCard.cusineLabel.text = self.data[index];
+    newCard.distanceLabel.text = restaurant.verbalAddress;
+    //newCard.cusineLabel.text = self.data[index];
     
-    newCard.priceLabel.text = @"$ $ $";
+    newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %0.1f", restaurant.rating ];
+    
+    Image *img = [restaurant.imageURLs anyObject];
+    [self downloadImageForCard:newCard withURLString:img.imageURL];
+    
     newCard.imageView.image = [UIImage imageNamed:@"testImage"];
     
     newCard.delegate = self;
@@ -78,9 +86,23 @@
     
     [self layoutIfNeeded];
     
-    // Set up rest of information (images, star ratings etc.)
     
     return newCard;
+    
+}
+
+-(void)downloadImageForCard:(RestaurantCardView*)card withURLString:urlString{
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            UIImage *image = [UIImage imageWithData:data];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    card.imageView.image = image;
+                });
+            }
+        }
+    }];
+    [task resume];
     
 }
 
@@ -92,26 +114,29 @@
     [self addConstraint:[NSLayoutConstraint constraintWithItem:card attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:20]];
 }
 
--(void)refreshData {
-    
-    // Get rid of the now outdated views
-    for (RestaurantCardView *view in self.loadedRestaurants) {
-        [view removeFromSuperview];
-    }
-    
-    [self.loadedRestaurants removeAllObjects];
-    [self.restaurants removeAllObjects];
-    
-    self.restaurantLoadedIndex = 0;
-    
-    [self loadRestaurantCards];
-    
-}
+//-(void)refreshData {
+//    
+//    // Get rid of the now outdated views
+//    for (RestaurantCardView *view in self.loadedRestaurants) {
+//        [view removeFromSuperview];
+//    }
+//    
+//    [self.loadedRestaurants removeAllObjects];
+//    [self.restaurants removeAllObjects];
+//    
+//    self.restaurantLoadedIndex = 0;
+//    
+//    [self loadRestaurantCards];
+//    
+//}
 
 
--(void)loadRestaurantCards {
+-(void)loadRestaurantCardsWithData:(NSArray*)data {
     // Some sample data
-    self.data = @[@"Subway",@"Noodlebox",@"La Taqueria",@"Meat & Bread"];
+    //self.data = @[@"Subway",@"Noodlebox",@"La Taqueria",@"Meat & Bread"];
+    
+    // Actual Data
+    self.data = data;
     
     // If we have less than the buffer size of restaurants left we don't want to try to load 3
     NSInteger numLoadedCardsCap;
