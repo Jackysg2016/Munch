@@ -1,24 +1,21 @@
 //
 //  Restaurant.h
-//  
+//  Munch
 //
-//  Created by Enoch Ng on 2016-05-30.
-//
+//  Created by Taylor Benna on 2016-06-01.
+//  Copyright © 2016 Enoch Ng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Category, Deal, Image;
+@class Deal, Image, MNCCategory;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Restaurant : NSManagedObject
 
--(void) addInfoFromDictionary:(NSDictionary *)info;
-
 -(NSManagedObject *)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context andDictionary:(NSDictionary *)info;
-
 @end
 
 NS_ASSUME_NONNULL_END

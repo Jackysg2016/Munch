@@ -11,7 +11,7 @@
 #import "YelpClient.h"
 #import "Restaurant.h"
 #import "AppDelegate.h"
-#import "Category.h"
+#import "MNCCategory.h"
 
 @interface MunchViewController () <CLLocationManagerDelegate>
 
@@ -92,7 +92,7 @@
                             
                             NSLog(@"----------------------");
                             NSLog(@"%@", res.name);
-                            for (Category *cat in res.categories) {
+                            for (MNCCategory *cat in res.categories) {
                                 NSLog(@"%@", cat.name);
                             }
                             
@@ -130,6 +130,7 @@
     
     return paramDictionary;
 }
+
 
 
 @end
