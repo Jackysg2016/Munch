@@ -10,7 +10,7 @@
 #import "UserSettings.h"
 #import "Restaurant.h"
 #import "Filter.h"
-#import "Category.h"
+#import "MNCCategory.h"
 
 
 @interface SettingsViewController : UIViewController

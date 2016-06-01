@@ -1,8 +1,8 @@
 //
-//  Category.h
+//  MNCCategory.h
 //  
 //
-//  Created by Enoch Ng on 2016-05-30.
+//  Created by Taylor Benna on 2016-06-01.
 //
 //
 
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Category : NSManagedObject
+@interface MNCCategory : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -19,4 +19,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Category+CoreDataProperties.h"
+#import "MNCCategory+CoreDataProperties.h"
