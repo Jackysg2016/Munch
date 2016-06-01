@@ -48,8 +48,10 @@
     self.layer.cornerRadius = 7;
     self.layer.shadowRadius = 4;
     self.layer.shadowOpacity = 0.1;
-    self.layer.shadowOffset = CGSizeMake(1, 1);
+    self.layer.shadowOffset = CGSizeMake(0.0f, 6.0f);
     self.backgroundColor = [UIColor whiteColor];
+    self.layer.borderColor = [UIColor colorWithRed:0.464 green:0.465 blue:0.464 alpha:1].CGColor;
+    self.layer.borderWidth = 1.0f;
     
     // Gesture Recognizer
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(isDragged:)];
@@ -65,16 +67,21 @@
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = [UIColor blackColor];
     _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:21];
     
     // Cusine Type Label
     _cusineLabel = [[UILabel alloc]init];
     _cusineLabel.textColor = [UIColor blackColor];
     _cusineLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _cusineLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:17];
+    _cusineLabel.textColor = [UIColor colorWithRed:0.464 green:0.465 blue:0.464 alpha:1];
     
     // Price Label
     _priceLabel = [[UILabel alloc] init];
     _priceLabel.textColor = [UIColor blackColor];
     _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _priceLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:17];
+    _priceLabel.textColor = [UIColor colorWithRed:0.464 green:0.465 blue:0.464 alpha:1];
     
     // Image View
     _imageView = [[UIImageView alloc] init];
@@ -86,6 +93,8 @@
     _distanceLabel = [[UILabel alloc] init];
     _distanceLabel.textColor = [UIColor blackColor];
     _distanceLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    _distanceLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:15];
+    _distanceLabel.textColor = [UIColor colorWithRed:0.464 green:0.465 blue:0.464 alpha:1];
     
     // Add all of the views to the card
     [self addSubview:_titleLabel];
