@@ -47,11 +47,11 @@
     // Card properties
     self.layer.cornerRadius = 7;
     self.layer.shadowRadius = 4;
-    self.layer.shadowOpacity = 0.1;
-    self.layer.shadowOffset = CGSizeMake(0.0f, 6.0f);
+    self.layer.shadowOpacity = 0.07;
+    self.layer.shadowOffset = CGSizeMake(0.0f, 3.0);
     self.backgroundColor = [UIColor whiteColor];
     self.layer.borderColor = [UIColor colorWithRed:0.464 green:0.465 blue:0.464 alpha:1].CGColor;
-    self.layer.borderWidth = 1.0f;
+    self.layer.borderWidth = 0.0f;
     
     // Gesture Recognizer
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(isDragged:)];
@@ -159,11 +159,6 @@
     
     // set the overlay alpha to overlayStrength
     self.overlay.alpha = overlayStrength;
-}
-
-// This is where all of the labels and images will be set up
--(void)setupRestaurant:(Restaurant *)restaurant {
-#warning incomplete
 }
 
 #pragma mark - Gesture Recognizer -

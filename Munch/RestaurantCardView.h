@@ -38,7 +38,6 @@
 -(void)yesClickAction;
 -(void)noClickAction;
 -(void)yukClickAction;
--(void)setupRestaurant:(Restaurant *)restaurant;
 -(void)setupView;
 
 @end

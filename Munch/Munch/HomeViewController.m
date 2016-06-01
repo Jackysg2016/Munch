@@ -67,7 +67,7 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         sender.layer.transform = CATransform3DMakeScale(0.85,0.85, 1);
+                         sender.layer.transform = CATransform3DMakeScale(0.80,0.80, 1);
                      }
                      completion:^(BOOL finished) {
                   
@@ -80,7 +80,7 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         sender.layer.transform = CATransform3DMakeScale(1.05,1.05, 1);
+                         sender.layer.transform = CATransform3DMakeScale(1.1,1.1, 1);
                      }
                      completion:^(BOOL finished) {
                          
@@ -118,7 +118,7 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         sender.layer.transform = CATransform3DMakeScale(1.05,1.05, 1);
+                         sender.layer.transform = CATransform3DMakeScale(1.1,1.1, 1);
                      }
                      completion:^(BOOL finished) {
                          
