@@ -35,6 +35,8 @@
         [button addTarget:self action:@selector(holdReleaseOutside:) forControlEvents:UIControlEventTouchUpOutside];
         button.adjustsImageWhenHighlighted = NO;
     }
+    
+
 
 }
 
@@ -131,4 +133,6 @@
                                           }];
                      }];
 }
+
+
 @end

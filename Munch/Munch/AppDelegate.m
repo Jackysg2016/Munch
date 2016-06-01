@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "UserSettings.h"
+#import "Munch-Swift.h"
+#import "MNCCategory.h"
+
 
 @interface AppDelegate ()
 
@@ -30,7 +33,24 @@
         newUserSettings.sessionType = 0;
         [self.managedObjectContext save:&error];
         NSLog(@"no previous user settings detected, created new User Settings");
-   
+        
+        // Add Categories on first launch too
+
+        ParseData *pd = [[ParseData alloc] init];
+        [pd parseData:self.managedObjectContext];
+        
+    }
+
+    
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Category"];
+    NSError *error;
+    NSMutableArray *myArray = [NSMutableArray new];
+    
+    myArray = [[self.managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
+    
+    for (MNCCategory *cat in myArray) {
+        NSLog(@"%@", cat.name);
     }
     
     return YES;

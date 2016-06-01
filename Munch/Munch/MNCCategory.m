@@ -1,15 +1,14 @@
 //
-//  Filter.m
+//  MNCCategory.m
 //  
 //
-//  Created by Enoch Ng on 2016-05-30.
+//  Created by Taylor Benna on 2016-06-01.
 //
 //
 
-#import "Filter.h"
 #import "MNCCategory.h"
 
-@implementation Filter
+@implementation MNCCategory
 
 // Insert code here to add functionality to your managed object subclass
 

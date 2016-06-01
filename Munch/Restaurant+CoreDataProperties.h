@@ -1,9 +1,9 @@
 //
 //  Restaurant+CoreDataProperties.h
-//  
+//  Munch
 //
-//  Created by Enoch Ng on 2016-05-30.
-//
+//  Created by Taylor Benna on 2016-06-01.
+//  Copyright © 2016 Enoch Ng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -16,13 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Restaurant (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *address;
-@property (nonatomic) double longitude;
-@property (nonatomic) double latitude;
+@property (nullable, nonatomic, retain) NSNumber *latitude;
+@property (nullable, nonatomic, retain) NSNumber *longitude;
 @property (nullable, nonatomic, retain) NSString *name;
-@property (nonatomic) int64_t pricing;
-@property (nonatomic) float rating;
+@property (nullable, nonatomic, retain) NSNumber *pricing;
+@property (nullable, nonatomic, retain) NSNumber *rating;
 @property (nullable, nonatomic, retain) NSString *verbalAddress;
-@property (nullable, nonatomic, retain) NSSet<Category *> *categories;
+@property (nullable, nonatomic, retain) NSSet<MNCCategory *> *categories;
 @property (nullable, nonatomic, retain) NSSet<Deal *> *deals;
 @property (nullable, nonatomic, retain) NSSet<Image *> *imageURLs;
 
@@ -30,10 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Restaurant (CoreDataGeneratedAccessors)
 
-- (void)addCategoriesObject:(Category *)value;
-- (void)removeCategoriesObject:(Category *)value;
-- (void)addCategories:(NSSet<Category *> *)values;
-- (void)removeCategories:(NSSet<Category *> *)values;
+- (void)addCategoriesObject:(MNCCategory *)value;
+- (void)removeCategoriesObject:(MNCCategory *)value;
+- (void)addCategories:(NSSet<MNCCategory *> *)values;
+- (void)removeCategories:(NSSet<MNCCategory *> *)values;
 
 - (void)addDealsObject:(Deal *)value;
 - (void)removeDealsObject:(Deal *)value;
