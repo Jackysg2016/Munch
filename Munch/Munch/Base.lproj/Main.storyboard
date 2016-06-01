@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xOk-Fs-zeM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xOk-Fs-zeM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -165,7 +165,7 @@
                             <outlet property="yukButton" destination="i0s-Gi-TYK" id="Ddo-25-Wyc"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Munch" id="qkZ-KE-BHq"/>
+                    <tabBarItem key="tabBarItem" title="Munch" image="munch-munch" id="qkZ-KE-BHq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHW-Iv-Vif" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -281,7 +281,7 @@
                             <constraint firstItem="lEN-7g-M5t" firstAttribute="centerY" secondItem="P3d-jr-ybG" secondAttribute="centerY" multiplier="0.75" id="qG2-ap-Lzs"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="W2U-Wn-ONM"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="munch-home" id="W2U-Wn-ONM"/>
                     <connections>
                         <outlet property="cravieButton" destination="tUc-a7-0aG" id="6M1-x0-QMv"/>
                         <outlet property="justMunchButton" destination="82T-rn-UU7" id="Zbs-Xl-rYn"/>
@@ -316,7 +316,7 @@
                             <outlet property="delegate" destination="vkD-oa-KCv" id="3n9-Ec-tEb"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="VRx-tu-swl"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="munch-settings" id="VRx-tu-swl"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGz-34-NMI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -335,7 +335,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Discounts" id="GeR-ke-qnM"/>
+                    <tabBarItem key="tabBarItem" title="Discounts" image="munch-discounts" id="GeR-ke-qnM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSE-CT-caC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -368,6 +368,10 @@
         <image name="cravieStatic" width="1667" height="1667"/>
         <image name="justMunchDynamic" width="1167" height="1167"/>
         <image name="justMunchStatic" width="1667" height="1667"/>
+        <image name="munch-discounts" width="30" height="30"/>
+        <image name="munch-home" width="30" height="30"/>
+        <image name="munch-munch" width="30" height="30"/>
+        <image name="munch-settings" width="30" height="30"/>
         <image name="munchButtonStatic" width="2407" height="1467"/>
         <image name="munchLogo" width="625" height="482"/>
         <image name="munchNowDynamic" width="1051" height="1051"/>
@@ -377,6 +381,7 @@
         <image name="yuckButtonDynamic" width="281" height="281"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hVe-ZZ-5A3"/>
+        <segue reference="0J1-Vl-DT6"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="1" green="0.8226297669" blue="0.15693414550000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
