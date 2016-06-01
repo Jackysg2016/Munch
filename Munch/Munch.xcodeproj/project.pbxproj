@@ -28,6 +28,7 @@
 		773935A31CFE26470046ECEC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773935A21CFE26470046ECEC /* HomeViewController.m */; };
 		773935A61CFE35A30046ECEC /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773935A51CFE35A30046ECEC /* SettingsViewController.m */; };
 		77AFACC71CFD7B4C001850AC /* MunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AFACC61CFD7B4C001850AC /* MunchViewController.m */; };
+		77B382991CFF582400FED4DC /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B382981CFF582400FED4DC /* FilterView.m */; };
 		77B535201CFCB99A004C0A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5351F1CFCB99A004C0A5E /* main.m */; };
 		77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535221CFCB99A004C0A5E /* AppDelegate.m */; };
 		77B535291CFCB99A004C0A5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B535271CFCB99A004C0A5E /* Main.storyboard */; };
@@ -93,6 +94,8 @@
 		773935A51CFE35A30046ECEC /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		77AFACC51CFD7B4C001850AC /* MunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MunchViewController.h; sourceTree = "<group>"; };
 		77AFACC61CFD7B4C001850AC /* MunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MunchViewController.m; sourceTree = "<group>"; };
+		77B382971CFF582400FED4DC /* FilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterView.h; sourceTree = "<group>"; };
+		77B382981CFF582400FED4DC /* FilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterView.m; sourceTree = "<group>"; };
 		77B5351B1CFCB99A004C0A5E /* Munch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Munch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77B5351F1CFCB99A004C0A5E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		77B535211CFCB99A004C0A5E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -200,14 +203,16 @@
 				773935A41CFE35A30046ECEC /* SettingsViewController.h */,
 				773935A51CFE35A30046ECEC /* SettingsViewController.m */,
 				773935A11CFE26470046ECEC /* HomeViewController.h */,
+				77B382971CFF582400FED4DC /* FilterView.h */,
+				77B382981CFF582400FED4DC /* FilterView.m */,
 				773935A21CFE26470046ECEC /* HomeViewController.m */,
 				77AFACC51CFD7B4C001850AC /* MunchViewController.h */,
 				77AFACC61CFD7B4C001850AC /* MunchViewController.m */,
+				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
 				77B5352D1CFCB99A004C0A5E /* Assets.xcassets */,
 				77B535271CFCB99A004C0A5E /* Main.storyboard */,
 				77B535321CFCB99A004C0A5E /* Info.plist */,
 				77B5352A1CFCB99A004C0A5E /* Munch.xcdatamodeld */,
-				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
 				77B5352F1CFCB99A004C0A5E /* LaunchScreen.storyboard */,
 				77B5351E1CFCB99A004C0A5E /* Supporting Files */,
 			);
@@ -374,6 +379,7 @@
 				340ED4401CFCE8B300609428 /* YelpClient.m in Sources */,
 				773935A31CFE26470046ECEC /* HomeViewController.m in Sources */,
 				772496241CFD15D200F7972B /* Image.m in Sources */,
+				77B382991CFF582400FED4DC /* FilterView.m in Sources */,
 				77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */,
 				582A10D41CFCDF1D00BE7493 /* RestaurantCardFactory.m in Sources */,
 				7724961E1CFD15D200F7972B /* Deal.m in Sources */,
