@@ -47,11 +47,6 @@
         _loadedRestaurants = [NSMutableArray array];
         _verticalOffset = 0;
         self.buttonShrinkRatio = 0.8;
-
-        
-        //[self loadRestaurantCards];
-
-
     }
     return self;
 }
@@ -59,8 +54,6 @@
 #pragma mark - Card Creation -
 
 -(RestaurantCardView*)createRestaurantCardAtIndex:(NSInteger)index {
-    
-    //NSArray *array = @[@"1",@"2",@"3",@"4"];
     
     RestaurantCardView *newCard = [[RestaurantCardView alloc] init];
     
@@ -72,6 +65,9 @@
     newCard.titleLabel.text = restaurant.name;
 
     newCard.distanceLabel.text = restaurant.verbalAddress;
+    
+    
+    // This needs to be changed to grab a category or something
     //newCard.cusineLabel.text = self.data[index];
     
     newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %0.1f", restaurant.rating ];
@@ -114,6 +110,7 @@
     [self addConstraint:[NSLayoutConstraint constraintWithItem:card attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:20]];
 }
 
+// This may come in handy later so keep it here
 //-(void)refreshData {
 //    
 //    // Get rid of the now outdated views
@@ -132,9 +129,6 @@
 
 
 -(void)loadRestaurantCardsWithData:(NSArray*)data {
-    // Some sample data
-    //self.data = @[@"Subway",@"Noodlebox",@"La Taqueria",@"Meat & Bread"];
-    
     // Actual Data
     self.data = data;
     

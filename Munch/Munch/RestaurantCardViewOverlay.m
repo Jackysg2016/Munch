@@ -26,32 +26,10 @@
         self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.imageView];
         
-        [self setupConstraints];
-        //[self layoutIfNeeded];
-        
-        
+        [self setupConstraints]; 
     }
     return self;
 }
-
-//-(instancetype)initWithFrame:(CGRect)frame {
-//    self = [super initWithFrame:frame];
-//    
-//    if(self) {
-//        self.backgroundColor = [UIColor whiteColor];
-//        
-//        self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"x"]];
-//        self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
-//        [self addSubview:self.imageView];
-//        
-//        [self setupConstraints];
-//        [self layoutIfNeeded];
-//        
-//        
-//    }
-//    
-//    return self;
-//}
 
 -(void)setupConstraints {
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:0]];

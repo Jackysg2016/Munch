@@ -87,7 +87,7 @@
     _imageView = [[UIImageView alloc] init];
     _imageView.backgroundColor = [UIColor clearColor];
     _imageView.translatesAutoresizingMaskIntoConstraints = NO;
-    _imageView.contentMode = UIViewContentModeScaleAspectFit;
+    _imageView.contentMode = UIViewContentModeScaleAspectFill;
     
     // Distance Label
     _distanceLabel = [[UILabel alloc] init];
@@ -159,11 +159,6 @@
     
     // set the overlay alpha to overlayStrength
     self.overlay.alpha = overlayStrength;
-}
-
-// This is where all of the labels and images will be set up
--(void)setupRestaurant:(Restaurant *)restaurant {
-#warning incomplete
 }
 
 #pragma mark - Gesture Recognizer -
