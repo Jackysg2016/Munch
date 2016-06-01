@@ -45,9 +45,9 @@
 -(void)setupView {
     
     // Card properties
-    self.layer.cornerRadius = 4;
-    self.layer.shadowRadius = 10;
-    self.layer.shadowOpacity = 0.3;
+    self.layer.cornerRadius = 7;
+    self.layer.shadowRadius = 4;
+    self.layer.shadowOpacity = 0.1;
     self.layer.shadowOffset = CGSizeMake(1, 1);
     self.backgroundColor = [UIColor whiteColor];
     

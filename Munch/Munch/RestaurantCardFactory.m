@@ -45,8 +45,7 @@
         _loadedResturants = [NSMutableArray array];
         _verticalOffset = 0;
         self.buttonShrinkRatio = 0.8;
-
-        
+    
         [self loadResturantCards];
 
     }
@@ -189,11 +188,7 @@
     } completion:^(BOOL finished) {
         [cardView yukClickAction];
     }];
-    
-    
 
-    
-    
 }
 
 
