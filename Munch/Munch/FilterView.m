@@ -46,7 +46,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
  
-    CategoryCell *selectedCell = [collectionView cellForItemAtIndexPath:indexPath];
+    CategoryCell *selectedCell = (CategoryCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
     if(selectedCell.imageView.alpha == 0.5){
     [UIView animateWithDuration:0.15
