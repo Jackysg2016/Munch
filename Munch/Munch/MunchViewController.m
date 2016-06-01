@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "Category.h"
 #import "RestaurantCardFactory.h"
+#import "FilterView.h"
 
 @interface MunchViewController () <CLLocationManagerDelegate>
 
@@ -25,11 +26,12 @@
 
 @property (weak, nonatomic) IBOutlet RestaurantCardFactory *restaurantFactory;
 
-@property (weak, nonatomic) IBOutlet UIView *filterView;
+@property (weak, nonatomic) IBOutlet FilterView *filterView;
 @property (weak, nonatomic) IBOutlet UIButton *filterTabButton;
 @property (weak, nonatomic) IBOutlet UIView *dimView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterHeightConstraint;
-
+@property (weak, nonatomic) IBOutlet UIView *labelBar1;
+@property (weak, nonatomic) IBOutlet UIView *labelBar2;
 
 @end
 
@@ -56,6 +58,13 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     
+    self.filterView.layer.cornerRadius = 7;
+    self.filterView.layer.shadowRadius = 4;
+    self.filterView.layer.shadowOpacity = 0.2;
+    self.filterView.layer.shadowOffset = CGSizeMake(0.0f, 3.0);
+
+    NSArray *array;
+   [self.filterView setUpCategoryArray:array];
     
 }
 
@@ -146,18 +155,19 @@
     
         if(self.filterHeightConstraint.constant == 0.0){
     
-            self.filterHeightConstraint.constant = self.view.frame.size.height * 0.7;
+            self.filterHeightConstraint.constant = self.view.frame.size.height * 0.8;
     
             [UIView animateWithDuration:0.5
                                   delay:0
                                 options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
                                    self.dimView.alpha = 0.2;
-    
+                               
                              }
                              completion:^(BOOL finished) {
     
                              }];
+
     
         } else {
             
@@ -168,11 +178,11 @@
                                 options:UIViewAnimationOptionCurveEaseInOut
                              animations:^{
                                   self.dimView.alpha = 0.0;
-    
                              }
                              completion:^(BOOL finished) {
     
                          }];
+            
          }
     
         [UIView animateWithDuration:0.5
