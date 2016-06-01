@@ -27,8 +27,10 @@
     if([userSettingsDataArray count] == 0){
         UserSettings *newUserSettings = [NSEntityDescription insertNewObjectForEntityForName:@"UserSettings" inManagedObjectContext:self.managedObjectContext];
         NSError *error;
+        newUserSettings.sessionType = 0;
         [self.managedObjectContext save:&error];
         NSLog(@"no previous user settings detected, created new User Settings");
+   
     }
     
     return YES;

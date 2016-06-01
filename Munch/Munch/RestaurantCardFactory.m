@@ -49,6 +49,7 @@
         
         [self loadRestaurantCards];
 
+
     }
     return self;
 }
@@ -189,11 +190,7 @@
     } completion:^(BOOL finished) {
         [cardView yukClickAction];
     }];
-    
-    
 
-    
-    
 }
 
 

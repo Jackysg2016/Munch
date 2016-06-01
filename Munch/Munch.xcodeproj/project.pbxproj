@@ -203,11 +203,11 @@
 				773935A21CFE26470046ECEC /* HomeViewController.m */,
 				77AFACC51CFD7B4C001850AC /* MunchViewController.h */,
 				77AFACC61CFD7B4C001850AC /* MunchViewController.m */,
+				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
 				77B5352D1CFCB99A004C0A5E /* Assets.xcassets */,
 				77B535271CFCB99A004C0A5E /* Main.storyboard */,
 				77B535321CFCB99A004C0A5E /* Info.plist */,
 				77B5352A1CFCB99A004C0A5E /* Munch.xcdatamodeld */,
-				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
 				77B5352F1CFCB99A004C0A5E /* LaunchScreen.storyboard */,
 				77B5351E1CFCB99A004C0A5E /* Supporting Files */,
 			);
