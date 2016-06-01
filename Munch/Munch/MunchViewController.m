@@ -12,6 +12,7 @@
 #import "Restaurant.h"
 #import "AppDelegate.h"
 #import "Category.h"
+#import "RestaurantCardFactory.h"
 
 @interface MunchViewController () <CLLocationManagerDelegate>
 
@@ -21,6 +22,8 @@
 @property (nonatomic) CLLocation *lastLocation;
 
 @property (nonatomic) float buttonShrinkRatio;
+
+@property (weak, nonatomic) IBOutlet RestaurantCardFactory *restaurantFactory;
 
 @end
 
@@ -46,6 +49,7 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         [self.locationManager requestWhenInUseAuthorization];
     }
+    
     
 }
 
@@ -96,7 +100,7 @@
                                 NSLog(@"%@", cat.name);
                             }
                             
-                            
+                            [self.restaurantFactory loadRestaurantCardsWithData:self.restaurants];
                         }
                     }
                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
