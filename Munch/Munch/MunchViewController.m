@@ -109,13 +109,6 @@
                             
                             [self.restaurants addObject:res];
                             
-                            NSLog(@"----------------------");
-                            NSLog(@"%@", res.name);
-                            for (MNCCategory *cat in res.categories) {
-                                NSLog(@"%@", cat.name);
-                            }
-                            
-                            
                         }
                         [self.restaurantFactory loadRestaurantCardsWithData:self.restaurants];
                     }
