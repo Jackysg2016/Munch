@@ -1,5 +1,5 @@
 //
-//  ResturantCardFactory.h
+//  RestaurantCardFactory.h
 //  Munch
 //
 //  Created by Zach Smoroden on 2016-05-30.
