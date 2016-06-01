@@ -1,5 +1,5 @@
 //
-//  ResturantCardView.h
+//  RestaurantCardView.h
 //  Munch
 //
 //  Created by Zach Smoroden on 2016-05-30.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class RestaurantCardViewOverlay;
-@class Resturant;
+@class Restaurant;
 
 @protocol RestaurantCardViewDelegate <NSObject>
 
@@ -38,7 +38,7 @@
 -(void)yesClickAction;
 -(void)noClickAction;
 -(void)yukClickAction;
--(void)setupResturant:(Resturant *)resturant;
+-(void)setupRestaurant:(Restaurant *)restaurant;
 -(void)setupView;
 
 @end

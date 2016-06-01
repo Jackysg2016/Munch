@@ -1,5 +1,5 @@
 //
-//  ResturantCardView.m
+//  RestaurantCardView.m
 //  Munch
 //
 //  Created by Zach Smoroden on 2016-05-30.
@@ -16,7 +16,7 @@
 #define ROTATION_STRENGTH 320
 #define ROTATION_ANGLE (M_PI/8)
 
-@class Resturant;
+@class Restaurant;
 @interface RestaurantCardView ()
 
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
@@ -60,7 +60,7 @@
     _overlay.translatesAutoresizingMaskIntoConstraints = NO;
     _overlay.alpha = 0;
     
-    // Resturant Title Label
+    // Restaurant Title Label
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.textColor = [UIColor blackColor];
@@ -153,7 +153,7 @@
 }
 
 // This is where all of the labels and images will be set up
--(void)setupResturant:(Resturant *)resturant {
+-(void)setupRestaurant:(Restaurant *)restaurant {
 #warning incomplete
 }
 

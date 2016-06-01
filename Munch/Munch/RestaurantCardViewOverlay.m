@@ -1,5 +1,5 @@
 //
-//  ResturantCardViewOverlay.m
+//  RestaurantCardViewOverlay.m
 //  Munch
 //
 //  Created by Zach Smoroden on 2016-05-30.

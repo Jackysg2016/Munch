@@ -1,5 +1,5 @@
 //
-//  ResturantCardFactory.m
+//  RestaurantCardFactory.m
 //  Munch
 //
 //  Created by Zach Smoroden on 2016-05-30.
@@ -17,11 +17,11 @@
 
 @interface RestaurantCardFactory () <RestaurantCardViewDelegate>
 
-@property (nonatomic) NSMutableArray *resturants;
-@property (nonatomic) NSMutableArray *loadedResturants;
+@property (nonatomic) NSMutableArray *restaurants;
+@property (nonatomic) NSMutableArray *loadedRestaurants;
 @property (nonatomic) NSArray *data;
 
-@property (nonatomic) NSInteger resturantLoadedIndex;
+@property (nonatomic) NSInteger restaurantLoadedIndex;
 @property (nonatomic) CGFloat verticalOffset;
 
 // UI Stuff
@@ -41,12 +41,14 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        _resturants = [NSMutableArray array];
-        _loadedResturants = [NSMutableArray array];
+        _restaurants = [NSMutableArray array];
+        _loadedRestaurants = [NSMutableArray array];
         _verticalOffset = 0;
         self.buttonShrinkRatio = 0.8;
-    
-        [self loadResturantCards];
+
+        
+        [self loadRestaurantCards];
+
 
     }
     return self;
@@ -54,7 +56,7 @@
 
 #pragma mark - Card Creation -
 
--(RestaurantCardView*)createResturantCardAtIndex:(NSInteger)index {
+-(RestaurantCardView*)createRestaurantCardAtIndex:(NSInteger)index {
     
     NSArray *array = @[@"1",@"2",@"3",@"4"];
     
@@ -93,25 +95,25 @@
 -(void)refreshData {
     
     // Get rid of the now outdated views
-    for (RestaurantCardView *view in self.loadedResturants) {
+    for (RestaurantCardView *view in self.loadedRestaurants) {
         [view removeFromSuperview];
     }
     
-    [self.loadedResturants removeAllObjects];
-    [self.resturants removeAllObjects];
+    [self.loadedRestaurants removeAllObjects];
+    [self.restaurants removeAllObjects];
     
-    self.resturantLoadedIndex = 0;
+    self.restaurantLoadedIndex = 0;
     
-    [self loadResturantCards];
+    [self loadRestaurantCards];
     
 }
 
 
--(void)loadResturantCards {
+-(void)loadRestaurantCards {
     // Some sample data
     self.data = @[@"Subway",@"Noodlebox",@"La Taqueria",@"Meat & Bread"];
     
-    // If we have less than the buffer size of resturants left we don't want to try to load 3
+    // If we have less than the buffer size of restaurants left we don't want to try to load 3
     NSInteger numLoadedCardsCap;
     if (self.data.count > 0) {
         numLoadedCardsCap = MAX_BUFFER_SIZE;
@@ -119,32 +121,32 @@
         numLoadedCardsCap = self.data.count;
     }
     
-    // For all of the data we got (resturants to show) create a resturant object and if applicable
+    // For all of the data we got (restaurants to show) create a restaurant object and if applicable
     // add it to the loaded buffer
     for (int i = 0; i < self.data.count; i++) {
-        RestaurantCardView *newCard = [self createResturantCardAtIndex:i];
+        RestaurantCardView *newCard = [self createRestaurantCardAtIndex:i];
         
-        [self.resturants addObject:newCard];
+        [self.restaurants addObject:newCard];
         
         if (i < numLoadedCardsCap) {
-            [self.loadedResturants addObject:newCard];
+            [self.loadedRestaurants addObject:newCard];
         }
         
     }
     
     // Now we load the views onto the screen
-    for (int i = 0; i < self.loadedResturants.count; i++) {
+    for (int i = 0; i < self.loadedRestaurants.count; i++) {
         
         if (i > 0) {
-            [self insertSubview:[self.loadedResturants objectAtIndex:i] belowSubview:[self.loadedResturants objectAtIndex:i - 1]];
+            [self insertSubview:[self.loadedRestaurants objectAtIndex:i] belowSubview:[self.loadedRestaurants objectAtIndex:i - 1]];
         } else {
-            [self addSubview:[self.loadedResturants objectAtIndex:i]];
+            [self addSubview:[self.loadedRestaurants objectAtIndex:i]];
         }
         
-        [self setupConstraintsForCard:[self.loadedResturants objectAtIndex:i]];
+        [self setupConstraintsForCard:[self.loadedRestaurants objectAtIndex:i]];
         
         //[self layoutIfNeeded];
-        self.resturantLoadedIndex += 1;
+        self.restaurantLoadedIndex += 1;
     }
     
     [self layoutIfNeeded];
@@ -153,7 +155,7 @@
 #pragma mark - Button Methods -
 - (void)munchNowPressed:(UIButton *)sender {
 
-    RestaurantCardView *cardView = [self.loadedResturants firstObject];
+    RestaurantCardView *cardView = [self.loadedRestaurants firstObject];
     [self swipedRightWithCard:cardView];
     
     [cardView.overlay updateMode:RestaurantCardViewOverlayModeRight];
@@ -166,7 +168,7 @@
 }
 - (void)noPressed:(UIButton *)sender {
     
-    RestaurantCardView *cardView = [self.loadedResturants firstObject];
+    RestaurantCardView *cardView = [self.loadedRestaurants firstObject];
     [self swipedRightWithCard:cardView];
     
     [cardView.overlay updateMode:RestaurantCardViewOverlayModeLeft];
@@ -180,7 +182,7 @@
 }
 - (void)yukPressed:(UIButton *)sender {
 #warning incomplete
-    RestaurantCardView *cardView = [self.loadedResturants firstObject];
+    RestaurantCardView *cardView = [self.loadedRestaurants firstObject];
     [self swipedDownWithCard:cardView];
     [cardView.overlay updateMode:RestaurantCardViewOverlayModeLeft];
     [UIView animateWithDuration:0.2 animations:^{
@@ -256,28 +258,28 @@
 }
 // This is so that when there are no items left we cannot press a button and crash the app
 -(void)checkButtons {
-    if (self.loadedResturants.count == 0) {
+    if (self.loadedRestaurants.count == 0) {
         self.yukButton.enabled = NO;
         self.nopeButton.enabled = NO;
         self.munchNowButton.enabled = NO;
     }
 }
 
-#pragma mark - ResturantCardViewDelegate Methods -
+#pragma mark - RestaurantCardViewDelegate Methods -
 
 #warning incomplete - this is where the action should be set
 -(void)swipedRightWithCard:(UIView *)card {
     // Remove the top card
-    [self.loadedResturants removeObjectAtIndex:0];
+    [self.loadedRestaurants removeObjectAtIndex:0];
     
-    if(self.resturantLoadedIndex < self.resturants.count) {
+    if(self.restaurantLoadedIndex < self.restaurants.count) {
         // If we have more restaurants to load
-        [self.loadedResturants addObject:[self.resturants objectAtIndex:self.resturantLoadedIndex]];
-        self.resturantLoadedIndex += 1;
+        [self.loadedRestaurants addObject:[self.restaurants objectAtIndex:self.restaurantLoadedIndex]];
+        self.restaurantLoadedIndex += 1;
         
         // Add the view and set it up
-        [self insertSubview:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 2]];
-        [self setupConstraintsForCard:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 1]];
+        [self insertSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 2]];
+        [self setupConstraintsForCard:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1]];
         
         [self layoutIfNeeded];
 
@@ -291,16 +293,16 @@
 #warning incomplete - this is where the action should be set
 -(void)swipedLeftWithCard:(UIView *)card {
     // Remove the top card
-    [self.loadedResturants removeObjectAtIndex:0];
+    [self.loadedRestaurants removeObjectAtIndex:0];
     
-    if(self.resturantLoadedIndex < self.resturants.count) {
+    if(self.restaurantLoadedIndex < self.restaurants.count) {
         // If we have more restaurants to load
-        [self.loadedResturants addObject:[self.resturants objectAtIndex:self.resturantLoadedIndex]];
-        self.resturantLoadedIndex += 1;
+        [self.loadedRestaurants addObject:[self.restaurants objectAtIndex:self.restaurantLoadedIndex]];
+        self.restaurantLoadedIndex += 1;
         
         // Add the view and set it up
-        [self insertSubview:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 2]];
-        [self setupConstraintsForCard:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 1]];
+        [self insertSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 2]];
+        [self setupConstraintsForCard:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1]];
         
         [self layoutIfNeeded];
     }
@@ -311,16 +313,16 @@
 
 -(void)swipedDownWithCard:(UIView *)card {
     // Remove the top card
-    [self.loadedResturants removeObjectAtIndex:0];
+    [self.loadedRestaurants removeObjectAtIndex:0];
     
-    if(self.resturantLoadedIndex < self.resturants.count) {
+    if(self.restaurantLoadedIndex < self.restaurants.count) {
         // If we have more restaurants to load
-        [self.loadedResturants addObject:[self.resturants objectAtIndex:self.resturantLoadedIndex]];
-        self.resturantLoadedIndex += 1;
+        [self.loadedRestaurants addObject:[self.restaurants objectAtIndex:self.restaurantLoadedIndex]];
+        self.restaurantLoadedIndex += 1;
         
         // Add the view and set it up
-        [self insertSubview:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 2]];
-        [self setupConstraintsForCard:[self.loadedResturants objectAtIndex:MAX_BUFFER_SIZE - 1]];
+        [self insertSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 2]];
+        [self setupConstraintsForCard:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1]];
         
         [self layoutIfNeeded];
     }

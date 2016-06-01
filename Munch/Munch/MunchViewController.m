@@ -11,6 +11,7 @@
 #import "YelpClient.h"
 #import "Restaurant.h"
 #import "AppDelegate.h"
+#import "Category.h"
 
 @interface MunchViewController () <CLLocationManagerDelegate>
 
@@ -68,16 +69,15 @@
         [coder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
             //get current coordinates. eventually in seperate function to change search results based on filter
             CLPlacemark *place = [placemarks firstObject];
-            NSString *lat = [NSString stringWithFormat:@"%f",place.location.coordinate.latitude];
-            NSString *lon = [NSString stringWithFormat:@"%f",place.location.coordinate.longitude];
-            NSString *coord = [NSString stringWithFormat:@"%@,%@", lat, lon ];
+
+            NSMutableSet *testCategories = [[NSMutableSet alloc] init];
+            [testCategories addObject:@"mexican"];
+            [testCategories addObject:@"vegetarian"];
+            [testCategories addObject:@"vegan"];
+            
+            NSDictionary *paramDictionary = [self getParamDictionaryWithPlace:place includeFilterCategories:YES withCategoryList:testCategories];
             
             YelpClient *client = [YelpClient new];
-            
-            NSDictionary *paramDictionary = @{
-                                              @"term" : @"food",
-                                              @"ll" : coord
-                                              };
             
             //get the data!
             [client getPath:@"search" parameters:paramDictionary
@@ -90,6 +90,12 @@
                             
                             [self.restaurants addObject:res];
                             
+                            NSLog(@"----------------------");
+                            NSLog(@"%@", res.name);
+                            for (Category *cat in res.categories) {
+                                NSLog(@"%@", cat.name);
+                            }
+                            
                             
                         }
                     }
@@ -101,6 +107,28 @@
     
     self.lastLocation = currentLocation;
     
+}
+
+-(NSDictionary *) getParamDictionaryWithPlace:(CLPlacemark *)place includeFilterCategories:(BOOL)state withCategoryList:(NSSet *)categories {
+    
+    //Get Current Lat & Long//
+    NSString *lat = [NSString stringWithFormat:@"%f",place.location.coordinate.latitude];
+    NSString *lon = [NSString stringWithFormat:@"%f",place.location.coordinate.longitude];
+    NSString *coord = [NSString stringWithFormat:@"%@,%@", lat, lon ];
+    
+    //Set up basic parameters
+    NSMutableDictionary *paramDictionary = [[NSMutableDictionary alloc] init];
+    paramDictionary[@"term"] = @"food,restaurant";
+    paramDictionary[@"ll"] = coord;
+    
+    //If the filter includes categories to search for
+    if (state) {
+        NSArray *catArray = [categories allObjects];
+        NSString *catString = [catArray componentsJoinedByString:@","];
+        paramDictionary[@"category_filter"] = catString;
+    }
+    
+    return paramDictionary;
 }
 
 
