@@ -95,7 +95,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="480" height="292"/>
                                             </imageView>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qDf-Aq-hhI">
-                                                <rect key="frame" x="232.5" y="44" width="204" height="204"/>
+                                                <rect key="frame" x="233" y="44" width="204" height="204"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1051" id="tcF-o7-D0e"/>
                                                     <constraint firstAttribute="width" secondItem="qDf-Aq-hhI" secondAttribute="height" multiplier="1:1" id="vZJ-N7-VZV"/>
@@ -125,7 +125,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epS-E7-pWv">
-                                                <rect key="frame" x="67.5" y="103" width="128" height="128"/>
+                                                <rect key="frame" x="68" y="103" width="128" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="epS-E7-pWv" secondAttribute="height" multiplier="1:1" id="usQ-Ja-UxD"/>
                                                 </constraints>
@@ -181,13 +181,13 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ratings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yer-4q-ZGp" userLabel="Ratings">
                                                 <rect key="frame" x="263" y="269" width="58" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uvn-6a-usn">
                                                 <rect key="frame" x="237" y="15" width="84" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0ED-jk-9wW">
@@ -226,7 +226,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEz-7w-3JC">
-                                        <rect key="frame" x="0.0" y="400" width="600" height="19.5"/>
+                                        <rect key="frame" x="0.0" y="400" width="600" height="20"/>
                                         <color key="backgroundColor" red="1" green="0.8226297669" blue="0.15693414550000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="tintColor" red="0.99594718217849731" green="0.99611717462539673" blue="0.99593645334243774" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Filters"/>
@@ -283,6 +283,9 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Munch" image="munch-munch" id="qkZ-KE-BHq"/>
+                    <connections>
+                        <outlet property="restaurantFactory" destination="n5x-aA-xW3" id="4xm-bd-Ujt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHW-Iv-Vif" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -301,13 +304,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lEN-7g-M5t">
-                                <rect key="frame" x="90" y="-7.5" width="420" height="420"/>
+                                <rect key="frame" x="90" y="-8" width="420" height="421"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="justMunchStatic" translatesAutoresizingMaskIntoConstraints="NO" id="cdu-fk-TKH">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="justMunchStatic" translatesAutoresizingMaskIntoConstraints="NO" id="cdu-fk-TKH">
                                         <rect key="frame" x="0.0" y="0.0" width="420" height="420"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82T-rn-UU7">
-                                        <rect key="frame" x="56.5" y="56.5" width="307" height="307"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82T-rn-UU7">
+                                        <rect key="frame" x="57" y="57" width="307" height="307"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="82T-rn-UU7" secondAttribute="height" multiplier="1:1" id="DFv-Z7-7Ft"/>
                                         </constraints>
@@ -364,8 +367,8 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pickieStatic" translatesAutoresizingMaskIntoConstraints="NO" id="cq9-OL-3k4">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nQ-cv-B3r">
-                                        <rect key="frame" x="36.5" y="35.5" width="168" height="168"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nQ-cv-B3r">
+                                        <rect key="frame" x="37" y="36" width="168" height="168"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="1nQ-cv-B3r" secondAttribute="height" multiplier="1:1" id="syu-5X-2dG"/>
                                         </constraints>
@@ -423,7 +426,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="upY-vN-CCa" id="Ygg-KD-nH5">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

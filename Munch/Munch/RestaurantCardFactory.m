@@ -72,7 +72,7 @@
     newCard.titleLabel.text = restaurant.name;
 
     newCard.distanceLabel.text = restaurant.verbalAddress;
-    newCard.cusineLabel.text = self.data[index];
+    //newCard.cusineLabel.text = self.data[index];
     
     newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %0.1f", restaurant.rating ];
     
