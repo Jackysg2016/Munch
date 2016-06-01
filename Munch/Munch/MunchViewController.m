@@ -15,7 +15,7 @@
 #import "RestaurantCardFactory.h"
 #import "FilterView.h"
 
-@interface MunchViewController () <CLLocationManagerDelegate>
+@interface MunchViewController () <CLLocationManagerDelegate, RestaurantCardFactoryDataSource>
 
 
 @property (nonatomic) NSMutableArray *restaurants;
@@ -190,6 +190,19 @@
     
 
 }
+
+#pragma mark - RestaurantCardFactoryDatasource methods -
+
+-(void)getMoreRestaurants {
+#warning incomplete paging method
+    // this is where we get more
+    
+    NSLog(@"Getting more data....");
+    
+    // Then we ask the factory to load more cards
+    // [self.restaurantFactory loadRestaurantCardsWithData:];
+}
+
 
 
 @end

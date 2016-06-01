@@ -335,6 +335,10 @@
         
         [self layoutIfNeeded];
     }
+    else {
+        // If we have no more restaurants go get more from the datasource
+        [self.delegate getMoreRestaurants];
+    }
     // Check to see if the buttons should be enabled or not
     [self checkButtons];
 
