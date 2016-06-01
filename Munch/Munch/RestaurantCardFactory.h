@@ -11,6 +11,7 @@
 @interface RestaurantCardFactory : UIView
 
 @property (nonatomic) NSArray *data;
+
 -(void)loadRestaurantCardsWithData:(NSArray*)data;
 
 @end

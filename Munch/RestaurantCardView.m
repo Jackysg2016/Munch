@@ -161,11 +161,6 @@
     self.overlay.alpha = overlayStrength;
 }
 
-// This is where all of the labels and images will be set up
--(void)setupRestaurant:(Restaurant *)restaurant {
-#warning incomplete
-}
-
 #pragma mark - Gesture Recognizer -
 
 -(void)isDragged:(UIPanGestureRecognizer*)sender {

@@ -11,6 +11,7 @@
 #import "RestaurantCardViewOverlay.h"
 #import "Restaurant.h"
 #import "Image.h"
+#import "MNCCategory.h"
 
 
 #define CARD_WIDTH      300
@@ -47,11 +48,6 @@
         _loadedRestaurants = [NSMutableArray array];
         _verticalOffset = 0;
         self.buttonShrinkRatio = 0.8;
-
-        
-        //[self loadRestaurantCards];
-
-
     }
     return self;
 }
@@ -59,8 +55,6 @@
 #pragma mark - Card Creation -
 
 -(RestaurantCardView*)createRestaurantCardAtIndex:(NSInteger)index {
-    
-    //NSArray *array = @[@"1",@"2",@"3",@"4"];
     
     RestaurantCardView *newCard = [[RestaurantCardView alloc] init];
     
@@ -72,9 +66,22 @@
     newCard.titleLabel.text = restaurant.name;
 
     newCard.distanceLabel.text = restaurant.verbalAddress;
-    //newCard.cusineLabel.text = self.data[index];
     
-    newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %0.1f", restaurant.rating ];
+    
+    // This needs to be changed to grab a category or something
+    // MNCCategory *category = [restaurant.categories anyObject];
+    
+    NSMutableArray *allCategoryNames = [NSMutableArray array];
+    
+    for (MNCCategory *cat in [restaurant.categories allObjects]) {
+        [allCategoryNames addObject:cat.name];
+    }
+    
+    NSString *categoryString = [allCategoryNames componentsJoinedByString:@", "];
+    
+    newCard.cusineLabel.text = categoryString;
+    
+    newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %@", restaurant.rating ];
     
     Image *img = [restaurant.imageURLs anyObject];
     [self downloadImageForCard:newCard withURLString:img.imageURL];
@@ -114,6 +121,7 @@
     [self addConstraint:[NSLayoutConstraint constraintWithItem:card attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1 constant:20]];
 }
 
+// This may come in handy later so keep it here
 //-(void)refreshData {
 //    
 //    // Get rid of the now outdated views
@@ -132,9 +140,6 @@
 
 
 -(void)loadRestaurantCardsWithData:(NSArray*)data {
-    // Some sample data
-    //self.data = @[@"Subway",@"Noodlebox",@"La Taqueria",@"Meat & Bread"];
-    
     // Actual Data
     self.data = data;
     
