@@ -20,5 +20,7 @@
 @property (nonatomic) id<RestaurantCardFactoryDataSource> delegate;
 
 -(void)loadRestaurantCardsWithData:(NSArray*)data;
+-(void)resetCardsWithData:(NSArray *)data;
+
 
 @end

@@ -122,21 +122,21 @@
 }
 
 // This may come in handy later so keep it here
-//-(void)refreshData {
-//    
-//    // Get rid of the now outdated views
-//    for (RestaurantCardView *view in self.loadedRestaurants) {
-//        [view removeFromSuperview];
-//    }
-//    
-//    [self.loadedRestaurants removeAllObjects];
-//    [self.restaurants removeAllObjects];
-//    
-//    self.restaurantLoadedIndex = 0;
-//    
-//    [self loadRestaurantCards];
-//    
-//}
+-(void)resetCardsWithData:(NSArray *)data {
+    
+    // Get rid of the now outdated views
+    for (RestaurantCardView *view in self.loadedRestaurants) {
+        [view removeFromSuperview];
+    }
+    
+    [self.loadedRestaurants removeAllObjects];
+    [self.restaurants removeAllObjects];
+    
+    self.restaurantLoadedIndex = 0;
+    
+    [self loadRestaurantCardsWithData:data];
+    
+}
 
 
 -(void)loadRestaurantCardsWithData:(NSArray*)data {
@@ -211,7 +211,6 @@
     
 }
 - (void)yukPressed:(UIButton *)sender {
-#warning incomplete
     RestaurantCardView *cardView = [self.loadedRestaurants firstObject];
     [self swipedDownWithCard:cardView];
     [cardView.overlay updateMode:RestaurantCardViewOverlayModeLeft];
@@ -302,7 +301,7 @@
     // Load the next card
     [self loadNextCard];
     
-    // Do action
+    // Go to detailed view of restaurant
 }
 
 #warning incomplete - this is where the action should be set
@@ -313,11 +312,14 @@
     // Do action
 }
 
+#warning incomplete - yuck action needs to be implemented
 -(void)swipedDownWithCard:(UIView *)card {
     // Load the next card
     [self loadNextCard];
     
-    // Do action
+    // Yuck action
+    // Add it to list of yucks
+    
 }
 
 -(void)loadNextCard {
