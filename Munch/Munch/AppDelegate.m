@@ -41,18 +41,6 @@
         
     }
 
-    
-    
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Category"];
-    NSError *error;
-    NSMutableArray *myArray = [NSMutableArray new];
-    
-    myArray = [[self.managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
-    
-    for (MNCCategory *cat in myArray) {
-        NSLog(@"%@", cat.name);
-    }
-    
     return YES;
 }
 
