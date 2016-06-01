@@ -100,8 +100,9 @@
                                 NSLog(@"%@", cat.name);
                             }
                             
-                            [self.restaurantFactory loadRestaurantCardsWithData:self.restaurants];
+                            
                         }
+                        [self.restaurantFactory loadRestaurantCardsWithData:self.restaurants];
                     }
                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                         NSLog(@"Restaurants didn't load! :(");
