@@ -1,18 +1,19 @@
 //
-//  Category+CoreDataProperties.m
+//  MNCCategory+CoreDataProperties.m
 //  
 //
-//  Created by Enoch Ng on 2016-05-30.
+//  Created by Taylor Benna on 2016-06-01.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Category+CoreDataProperties.h"
+#import "MNCCategory+CoreDataProperties.h"
 
-@implementation Category (CoreDataProperties)
+@implementation MNCCategory (CoreDataProperties)
 
 @dynamic name;
+@dynamic searchString;
 
 @end
