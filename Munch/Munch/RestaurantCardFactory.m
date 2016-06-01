@@ -299,49 +299,28 @@
 
 #warning incomplete - this is where the action should be set
 -(void)swipedRightWithCard:(UIView *)card {
-    // Remove the top card
-    [self.loadedRestaurants removeObjectAtIndex:0];
+    // Load the next card
+    [self loadNextCard];
     
-    if(self.restaurantLoadedIndex < self.restaurants.count) {
-        // If we have more restaurants to load
-        [self.loadedRestaurants addObject:[self.restaurants objectAtIndex:self.restaurantLoadedIndex]];
-        self.restaurantLoadedIndex += 1;
-        
-        // Add the view and set it up
-        [self insertSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 2]];
-        [self setupConstraintsForCard:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1]];
-        
-        [self layoutIfNeeded];
-
-    }
-    
-    // Check to see if the buttons should be enabled or not
-    [self checkButtons];
-    
+    // Do action
 }
 
 #warning incomplete - this is where the action should be set
 -(void)swipedLeftWithCard:(UIView *)card {
-    // Remove the top card
-    [self.loadedRestaurants removeObjectAtIndex:0];
+    // Load the next card
+    [self loadNextCard];
     
-    if(self.restaurantLoadedIndex < self.restaurants.count) {
-        // If we have more restaurants to load
-        [self.loadedRestaurants addObject:[self.restaurants objectAtIndex:self.restaurantLoadedIndex]];
-        self.restaurantLoadedIndex += 1;
-        
-        // Add the view and set it up
-        [self insertSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 2]];
-        [self setupConstraintsForCard:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1]];
-        
-        [self layoutIfNeeded];
-    }
-
-    // Check to see if the buttons should be enabled or not
-    [self checkButtons];
+    // Do action
 }
 
 -(void)swipedDownWithCard:(UIView *)card {
+    // Load the next card
+    [self loadNextCard];
+    
+    // Do action
+}
+
+-(void)loadNextCard {
     // Remove the top card
     [self.loadedRestaurants removeObjectAtIndex:0];
     
@@ -356,7 +335,6 @@
         
         [self layoutIfNeeded];
     }
-    
     // Check to see if the buttons should be enabled or not
     [self checkButtons];
 
