@@ -87,7 +87,7 @@
     _imageView = [[UIImageView alloc] init];
     _imageView.backgroundColor = [UIColor clearColor];
     _imageView.translatesAutoresizingMaskIntoConstraints = NO;
-    _imageView.contentMode = UIViewContentModeScaleAspectFill;
+    _imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     // Distance Label
     _distanceLabel = [[UILabel alloc] init];

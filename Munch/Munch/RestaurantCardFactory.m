@@ -11,6 +11,7 @@
 #import "RestaurantCardViewOverlay.h"
 #import "Restaurant.h"
 #import "Image.h"
+#import "MNCCategory.h"
 
 
 #define CARD_WIDTH      300
@@ -68,9 +69,19 @@
     
     
     // This needs to be changed to grab a category or something
-    //newCard.cusineLabel.text = self.data[index];
+    // MNCCategory *category = [restaurant.categories anyObject];
     
-    newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %0.1f", restaurant.rating ];
+    NSMutableArray *allCategoryNames = [NSMutableArray array];
+    
+    for (MNCCategory *cat in [restaurant.categories allObjects]) {
+        [allCategoryNames addObject:cat.name];
+    }
+    
+    NSString *categoryString = [allCategoryNames componentsJoinedByString:@", "];
+    
+    newCard.cusineLabel.text = categoryString;
+    
+    newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %@", restaurant.rating ];
     
     Image *img = [restaurant.imageURLs anyObject];
     [self downloadImageForCard:newCard withURLString:img.imageURL];
