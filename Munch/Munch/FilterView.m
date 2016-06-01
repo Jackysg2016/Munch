@@ -7,83 +7,82 @@
 //
 
 #import "FilterView.h"
+#import "CategoryCell.h"
 
 @interface FilterView ()
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UIButton *filterTabButton;
-@property (weak, nonatomic) IBOutlet UIView *filterScreen;
-@property (weak, nonatomic) IBOutlet UIView *dimScreen;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterHeightConstraint;
+@property (weak,nonatomic) IBOutlet UICollectionView *categoryCollectionView;
 
-@property (nonatomic) NSDictionary *categoryDict;
+@property (nonatomic) NSArray *categoryArray;
 
 @end
 
 @implementation FilterView
 
-//toggle
-- (IBAction)pressedFilterTab:(UIButton *)sender {
+-(void)setUpCategoryArray:(NSArray *)array{
+
+   self.categoryArray = @[@"Chinese",@"Korean",@"Japanese",@"Italian",@"French",@"Fast Food",@"Malaysian",@"Singapore",@"Chinese",@"Korean",@"Japanese",@"Italian",@"French",@"Fast Food",@"Malaysian",@"Singapore",@"Chinese",@"Korean",@"Japanese",@"Italian",@"French",@"Fast Food",@"Malaysian",@"Singapore",@"Chinese",@"Korean",@"Japanese",@"Italian",@"French",@"Fast Food",@"Malaysian",@"Singapore"];
+ 
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if(self.filterHeightConstraint.constant == 0.0){
-        
-        self.filterHeightConstraint.constant = self.frame.size.height * 0.7;
-        
-        [UIView animateWithDuration:0.5
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                               self.dimScreen.alpha = 0.4;
-                             
-                         }
-                         completion:^(BOOL finished) {
-                             
-                         }];
+    CategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"categoryCell" forIndexPath:indexPath];
+
+    cell.label.text = self.categoryArray[indexPath.row];
     
-    } else {
-        self.filterHeightConstraint.constant = 0.0;
-        
-        [UIView animateWithDuration:0.5
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                              self.dimScreen.alpha = 0.0;
-                             
-                         }
-                         completion:^(BOOL finished) {
-                             
-                         }];
-    }
+    return cell;
+
     
-    [UIView animateWithDuration:0.5
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return [self.categoryArray count];
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+ 
+    CategoryCell *selectedCell = [collectionView cellForItemAtIndexPath:indexPath];
+    
+    if(selectedCell.imageView.alpha == 0.5){
+    [UIView animateWithDuration:0.15
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         [self layoutIfNeeded];              
+                         selectedCell.imageView.alpha = 0.0;
+                         selectedCell.imageView.layer.transform = CATransform3DMakeScale(0.8,0.8, 1);
                      }
                      completion:^(BOOL finished) {
                          
                      }];
-    
-}
+    } else {
 
-//-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    TheatreCVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"theatreCell" forIndexPath:indexPath];
-//    
-//    TheatreObject *thisTheatre = self.theatres[indexPath.row];
-//    
-//    cell.theatreLabel.text = thisTheatre.name;
-//    cell.infoLabel.text = thisTheatre.address;
-//    cell.distanceLabel.text = [NSString stringWithFormat:@"%0.1f km",(float)(thisTheatre.distanceFromCurrent/1000)];
-//    //NSLog(@"%@",[NSString stringWithFormat:@"%0.2f km",(float)(thisTheatre.distanceFromCurrent/1000)]);
-//    
-//    return cell;
-//
-//}
+        
+        [UIView animateWithDuration:0.15
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             selectedCell.imageView.alpha = 0.5;
+                             selectedCell.imageView.layer.transform = CATransform3DMakeScale(1.1,1.1, 1);
+                         }
+                         completion:^(BOOL finished) {
+                             
+                             [UIView animateWithDuration:0.05
+                                                   delay:0
+                                                 options:UIViewAnimationOptionCurveEaseOut
+                                              animations:^{
+                                                 selectedCell.imageView.layer.transform = CATransform3DMakeScale(1,1, 1);
+                                              }
+                                              completion:^(BOOL finished) {
+                                                  //dont run segue
+                                              }];
+                         }];
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 20;
+    }
 }
 
 @end

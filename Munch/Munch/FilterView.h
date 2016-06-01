@@ -10,4 +10,6 @@
 
 @interface FilterView : UIView <UICollectionViewDelegate, UICollectionViewDataSource>
 
+-(void)setUpCategoryArray:(NSArray *)array;
+
 @end

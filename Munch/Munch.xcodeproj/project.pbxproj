@@ -29,6 +29,7 @@
 		772496241CFD15D200F7972B /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 772496161CFD15D200F7972B /* Image.m */; };
 		773935A31CFE26470046ECEC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773935A21CFE26470046ECEC /* HomeViewController.m */; };
 		773935A61CFE35A30046ECEC /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773935A51CFE35A30046ECEC /* SettingsViewController.m */; };
+		777B739B1CFF85A600623DFE /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B739A1CFF85A600623DFE /* CategoryCell.m */; };
 		77AFACC71CFD7B4C001850AC /* MunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AFACC61CFD7B4C001850AC /* MunchViewController.m */; };
 		77B382991CFF582400FED4DC /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B382981CFF582400FED4DC /* FilterView.m */; };
 		77B535201CFCB99A004C0A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5351F1CFCB99A004C0A5E /* main.m */; };
@@ -97,6 +98,8 @@
 		773935A21CFE26470046ECEC /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		773935A41CFE35A30046ECEC /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		773935A51CFE35A30046ECEC /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		777B73991CFF85A600623DFE /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
+		777B739A1CFF85A600623DFE /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		77AFACC51CFD7B4C001850AC /* MunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MunchViewController.h; sourceTree = "<group>"; };
 		77AFACC61CFD7B4C001850AC /* MunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MunchViewController.m; sourceTree = "<group>"; };
 		77B382971CFF582400FED4DC /* FilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterView.h; sourceTree = "<group>"; };
@@ -208,9 +211,11 @@
 				773935A41CFE35A30046ECEC /* SettingsViewController.h */,
 				773935A51CFE35A30046ECEC /* SettingsViewController.m */,
 				773935A11CFE26470046ECEC /* HomeViewController.h */,
+				773935A21CFE26470046ECEC /* HomeViewController.m */,
 				77B382971CFF582400FED4DC /* FilterView.h */,
 				77B382981CFF582400FED4DC /* FilterView.m */,
-				773935A21CFE26470046ECEC /* HomeViewController.m */,
+				777B73991CFF85A600623DFE /* CategoryCell.h */,
+				777B739A1CFF85A600623DFE /* CategoryCell.m */,
 				77AFACC51CFD7B4C001850AC /* MunchViewController.h */,
 				77AFACC61CFD7B4C001850AC /* MunchViewController.m */,
 				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
@@ -384,6 +389,7 @@
 				773935A61CFE35A30046ECEC /* SettingsViewController.m in Sources */,
 				342745BB1CFF864E00CD2452 /* MNCCategory+CoreDataProperties.m in Sources */,
 				772496231CFD15D200F7972B /* Image+CoreDataProperties.m in Sources */,
+				777B739B1CFF85A600623DFE /* CategoryCell.m in Sources */,
 				7724961C1CFD15D200F7972B /* Filter.m in Sources */,
 				77B5352C1CFCB99A004C0A5E /* Munch.xcdatamodeld in Sources */,
 				342745BC1CFF864E00CD2452 /* MNCCategory.m in Sources */,
