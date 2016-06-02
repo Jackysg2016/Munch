@@ -7,7 +7,6 @@
 //
 
 #import "RestaurantCardFactory.h"
-#import "RestaurantCardView.h"
 #import "RestaurantCardViewOverlay.h"
 #import "Restaurant.h"
 #import "Image.h"
@@ -307,8 +306,8 @@
 -(void)swipedRightWithCard:(UIView *)card {
     // Load the next card
     [self loadNextCard];
-    
     // Go to detailed view of restaurant
+    [self.delegate performSegueToDetailView];
 }
 
 #warning incomplete - this is where the action should be set
@@ -350,6 +349,14 @@
     }
     // Check to see if the buttons should be enabled or not
     [self checkButtons];
+
+}
+
+
+
+-(void)cardClickedToPerformSegue:(UIView *)card{
+    
+    [self.delegate performSegueToDetailView];
 
 }
 
