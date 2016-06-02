@@ -16,6 +16,7 @@
 #import "FilterView.h"
 #import "UserSettings.h"
 #import "TempRestaurant.h"
+#import "Filter.h"
 
 @interface MunchViewController () <CLLocationManagerDelegate, RestaurantCardFactoryDataSource>
 
@@ -119,7 +120,7 @@
             //get current coordinates. eventually in seperate function to change search results based on filter
             CLPlacemark *place = [placemarks firstObject];
             
-            NSDictionary *paramDictionary = [self getParamDictionaryWithPlace:place includeFilterCategories:NO withCategoryList:nil];
+            NSDictionary *paramDictionary = [self getParamDictionaryWithPlace:place];
             
             YelpClient *client = [YelpClient new];
             
@@ -147,7 +148,7 @@
     
 }
 
--(NSDictionary *) getParamDictionaryWithPlace:(CLPlacemark *)place includeFilterCategories:(BOOL)state withCategoryList:(NSSet *)categories {
+-(NSDictionary *) getParamDictionaryWithPlace:(CLPlacemark *)place {
     
     //Get Current Lat & Long//
     NSString *lat = [NSString stringWithFormat:@"%f",place.location.coordinate.latitude];
@@ -160,9 +161,16 @@
     paramDictionary[@"ll"] = coord;
     
     //If the filter includes categories to search for
-    if (state) {
-        NSArray *catArray = [categories allObjects];
-        NSString *catString = [catArray componentsJoinedByString:@","];
+    
+    self.usingFilter.filterByExclusion = NO;
+    if (self.usingFilter.filterByExclusion == NO) {
+        NSArray *catArray = [self.usingFilter.pickedCategories allObjects];
+        
+        NSMutableArray *searchableCats = [NSMutableArray new];
+        for (MNCCategory *cat in catArray) {
+            [searchableCats addObject:cat.searchString];
+        }
+        NSString *catString = [searchableCats componentsJoinedByString:@","];
         paramDictionary[@"category_filter"] = catString;
     }
     
