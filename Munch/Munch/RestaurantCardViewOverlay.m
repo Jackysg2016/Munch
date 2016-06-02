@@ -22,7 +22,7 @@
     if(self) {
         self.backgroundColor = [UIColor whiteColor];
         
-        self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"x"]];
+        self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"newX"]];
         self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.imageView];
         
@@ -46,16 +46,16 @@
     self.mode = mode;
     
     if(mode == RestaurantCardViewOverlayModeLeft) {
-        self.imageView.image = [UIImage imageNamed:@"x"];
+        self.imageView.image = [UIImage imageNamed:@"newX"];
     } else {
-        self.imageView.image = [UIImage imageNamed:@"check"];
+        self.imageView.image = [UIImage imageNamed:@"newCheckmark"];
     }
 }
 
 -(void)layoutSubviews {
     [super layoutSubviews];
     
-    self.imageView.frame = CGRectMake(50, 50, 100, 100);
+    self.imageView.frame = CGRectMake(0, 0, 300, 300);
     self.imageView.center = CGPointMake(self.bounds.size.height/2, self.bounds.size.width/2);
 }
 
