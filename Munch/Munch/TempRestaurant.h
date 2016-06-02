@@ -29,6 +29,7 @@
 @property (nonatomic) NSString *ratingURL;
 
 @property (nonatomic) UIImage *image;
+@property (nonatomic) UIImage *ratingImage;
 
 - (instancetype)initWithInfo:(NSDictionary *)info;
 
