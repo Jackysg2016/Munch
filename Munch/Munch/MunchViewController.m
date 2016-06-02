@@ -128,6 +128,13 @@
 }
 
 -(void) loadRestaurantsFromYelpWithReset:(BOOL)reset {
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(self.view.center.x, self.view.center.y * 0.6);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
     CLGeocoder *coder = [[CLGeocoder alloc] init];
     
     [coder reverseGeocodeLocation:self.lastLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -158,6 +165,8 @@
                         [self.restaurantFactory loadRestaurantCardsWithData:self.restaurants];
                     }
                     self.offset = @([self.offset integerValue] + self.restaurants.count);
+                    
+                    [spinner stopAnimating];
                 }
                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"Restaurants didn't load! :(");
@@ -267,7 +276,7 @@
 #pragma mark - RestaurantCardFactoryDatasource methods -
 
 -(void)getMoreRestaurants {
-    [self loadRestaurantsFromYelpWithReset:NO];
+        [self loadRestaurantsFromYelpWithReset:NO];
 }
 
 
