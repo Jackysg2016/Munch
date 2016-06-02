@@ -404,6 +404,8 @@
     self.selected = self.data[self.restaurantLoadedIndex - 3];
     RestaurantCardView *pullImageCard = self.loadedRestaurants[0];
     self.selected.image = pullImageCard.imageView.image;
+    self.selected.ratingImage = pullImageCard.ratingImage.image;
+
 }
 
 @end
