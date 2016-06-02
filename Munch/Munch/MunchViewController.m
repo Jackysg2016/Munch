@@ -105,7 +105,7 @@
 
 
 -(void)viewWillDisappear:(BOOL)animated{
-    [self closeFilter];
+    //[self closeFilter];
 }
 
 #pragma mark - Button Action & Animation -
@@ -216,7 +216,7 @@
     } else {
         
         [self closeFilter];
-        
+        [self loadRestaurantsFromYelpWithReset:YES];
     }
 }
 
@@ -246,7 +246,7 @@
                  }];
     
     self.offset = @0;
-    [self loadRestaurantsFromYelpWithReset:YES];
+    
 }
 
 -(void)openFilter{
