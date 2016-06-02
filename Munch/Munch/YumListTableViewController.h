@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YumListTableViewController : UITableViewController
+@interface YumListTableViewController : UIViewController
 
 @end
