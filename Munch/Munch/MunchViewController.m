@@ -17,6 +17,8 @@
 #import "UserSettings.h"
 #import "TempRestaurant.h"
 #import "Filter.h"
+#import "DetailViewController.h"
+#import "ContainerClassViewController.h"
 
 
 @interface MunchViewController () <CLLocationManagerDelegate, RestaurantCardFactoryDataSource>
@@ -36,8 +38,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIView *labelBar1;
 @property (weak, nonatomic) IBOutlet UIView *labelBar2;
-
 @property (nonatomic) Filter *usingFilter;
+@property (nonatomic) TempRestaurant *selectedRestaurant;
 
 @end
 
@@ -289,5 +291,25 @@
     
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"munchToDetailView"]){
+        
+        ContainerClassViewController *CCVC = (ContainerClassViewController *)segue.destinationViewController;
+        
+        CCVC.lastLocation = self.lastLocation;
+        
+        CCVC.receivedRestaurant = self.selectedRestaurant;
+        
+        
+    }
+    
+}
+
+-(void)receivedRestaurant:(TempRestaurant *)tempRestaurant;{
+    
+    self.selectedRestaurant = tempRestaurant;
+    
+}
 
 @end

@@ -8,10 +8,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Container Class View Controller-->
+        <!--View Controller-->
         <scene sceneID="Z4w-UG-FVf">
             <objects>
-                <viewController id="xOk-Fs-zeM" customClass="ContainerClassViewController" sceneMemberID="viewController">
+                <viewController id="xOk-Fs-zeM" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mhZ-0F-M7K"/>
                         <viewControllerLayoutGuide type="bottom" id="f3Q-tR-uYu"/>
@@ -435,8 +435,9 @@
                                     <constraint firstItem="053-Pd-FyW" firstAttribute="width" secondItem="wa2-5K-mgi" secondAttribute="width" id="gMm-G5-JZa"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="X31-qQ-jri">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X31-qQ-jri">
                                 <rect key="frame" x="15" y="15" width="570" height="218.5"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="Zb8-Vh-6g6" id="oJq-32-wkc"/>
                                 </connections>
@@ -604,19 +605,22 @@
                                 <exclude reference="x8J-4i-xhb"/>
                                 <exclude reference="vRT-kL-LZ3"/>
                                 <exclude reference="wPB-pl-ZeV"/>
-                                <exclude reference="1sP-4A-a0f"/>
-                                <exclude reference="PeP-0R-BdO"/>
                                 <exclude reference="rG3-P4-Cci"/>
                                 <exclude reference="MDE-MY-Dlx"/>
+                                <exclude reference="1sP-4A-a0f"/>
+                                <exclude reference="PeP-0R-BdO"/>
                             </mask>
                         </variation>
                     </view>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addressLabel" destination="KsO-YL-dnf" id="xA4-k2-lOg"/>
                         <outlet property="callButton" destination="6YQ-o4-Tbb" id="myA-oq-RuH"/>
                         <outlet property="imageView" destination="WuY-D7-Coq" id="xuI-Kc-Z9F"/>
                         <outlet property="mapView" destination="X31-qQ-jri" id="9ch-Ae-tNr"/>
+                        <outlet property="nameLabel" destination="eSS-he-nh4" id="7eE-2r-HNs"/>
+                        <outlet property="verbalLabel" destination="0FT-5C-lxa" id="EYh-R7-3gU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8M-75-cLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -856,7 +860,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJs-gA-Va4">
                                 <rect key="frame" x="0.0" y="54" width="600" height="486"/>
                                 <connections>
-                                    <segue destination="Zb8-Vh-6g6" kind="embed" id="GTt-8a-xJ2"/>
+                                    <segue destination="Zb8-Vh-6g6" kind="embed" identifier="containerToDetailView" id="GTt-8a-xJ2"/>
                                 </connections>
                             </containerView>
                         </subviews>

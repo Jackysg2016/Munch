@@ -14,7 +14,8 @@
 
 -(void)swipedLeftWithCard:(UIView*)card;
 -(void)swipedRightWithCard:(UIView*)card;
--(void)cardClickedToPerformSegue:(UIView *)card;
+-(void)cardClickedToPerformSegue;
+-(void)updateSelectedRestaurant;
 
 @optional
 -(void)swipedUpWithCard:(UIView*)card;
