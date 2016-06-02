@@ -104,6 +104,22 @@
     
 }
 
+#warning incomplete, get image for rating.
+-(void)downloadRatingImageForCard:(RestaurantCardView*)card withURLString:urlString{
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            UIImage *image = [UIImage imageWithData:data];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    //card.priceLabel = image;
+                });
+            }
+        }
+    }];
+    [task resume];
+    
+}
+
 -(void)setupConstraintsForCard:(RestaurantCardView*)card {
     
     [self addConstraint:[NSLayoutConstraint constraintWithItem:card attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeHeight multiplier:0.5 constant:0]];
