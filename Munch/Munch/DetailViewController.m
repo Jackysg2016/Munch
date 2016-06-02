@@ -26,7 +26,8 @@
 
 -(void)viewDidLoad{
     
-    self.phoneNumberURLString = @"telprompt:://+16043158701";
+    NSString *phoneNumber = @"6043158701";
+    self.phoneNumberURLString = [@"telprompt:://" stringByAppendingString:phoneNumber];
     
     [self.callButton addTarget:self action:@selector(holdDown:) forControlEvents:UIControlEventTouchDown];
     [self.callButton addTarget:self action:@selector(holdRelease:) forControlEvents:UIControlEventTouchUpInside];
