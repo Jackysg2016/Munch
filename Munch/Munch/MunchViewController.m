@@ -14,6 +14,7 @@
 #import "MNCCategory.h"
 #import "RestaurantCardFactory.h"
 #import "FilterView.h"
+#import "UserSettings.h"
 
 @interface MunchViewController () <CLLocationManagerDelegate>
 
@@ -67,6 +68,29 @@
     NSArray *array;
    [self.filterView setUpCategoryArray:array];
     
+  
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    //logic to determine view of mode when starting this view
+    NSError *error;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"UserSettings"];
+    NSArray *userSettingsDataArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    UserSettings *userSettings = [userSettingsDataArray firstObject];
+    
+    if(userSettings.sessionType == 0){
+        [self closeFilter];
+    } else {
+        [self openFilter];
+    }
+
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self closeFilter];
 }
 
 #pragma mark - Button Action & Animation -
@@ -142,50 +166,80 @@
 
 - (IBAction)pressedFilterTab:(UIButton *)sender {
     
-        if(self.filterHeightConstraint.constant == 0.0){
-    
-            self.filterHeightConstraint.constant = self.view.frame.size.height * 0.8;
-    
-            [UIView animateWithDuration:0.5
-                                  delay:0
-                                options:UIViewAnimationOptionCurveEaseInOut
-                             animations:^{
-                                   self.dimView.alpha = 0.2;
-                               
-                             }
-                             completion:^(BOOL finished) {
-    
-                             }];
+    if(self.filterHeightConstraint.constant == 0.0){
+        
+        [self openFilter];
+        
+    } else {
+        
+        [self closeFilter];
+        
+    }
+}
 
+//CLOSE FILTER FUNCTION
+-(void)closeFilter{
     
-        } else {
-            
-            self.filterHeightConstraint.constant = 0.0;
+    self.filterHeightConstraint.constant = 0.0;
     
-            [UIView animateWithDuration:0.5
-                                  delay:0
-                                options:UIViewAnimationOptionCurveEaseInOut
-                             animations:^{
-                                  self.dimView.alpha = 0.0;
-                             }
-                             completion:^(BOOL finished) {
-    
-                         }];
-            
-         }
-    
-        [UIView animateWithDuration:0.5
-                              delay:0
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                             [self.view layoutIfNeeded];
-                         }
-                         completion:^(BOOL finished) {
-                             
-                         }];
-    
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.dimView.alpha = 0.0;
+                     }
+                     completion:^(BOOL finished) {
+                         
+                     }];
+
+   [UIView animateWithDuration:0.5
+                      delay:0
+                    options:UIViewAnimationOptionCurveEaseInOut
+                 animations:^{
+                     [self.view layoutIfNeeded];
+                 }
+                 completion:^(BOOL finished) {
+                     
+                 }];
 
 }
 
+-(void)openFilter{
+    self.filterHeightConstraint.constant = self.view.frame.size.height * 0.8;
+    
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.dimView.alpha = 0.2;
+                         
+                     }
+                     completion:^(BOOL finished) {
+                         
+                     }];
+    
+    [UIView animateWithDuration:0.5
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }
+                     completion:^(BOOL finished) {
+                         
+                     }];
+
+}
+
+//DIM TOUCH CLOSES FILTER
+-(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event //here enable the touch
+{
+    UITouch *touch = [[event allTouches] anyObject];
+    
+    CGPoint touchLocation = [touch locationInView:self.view];
+    if (CGRectContainsPoint(self.dimView.frame, touchLocation))
+    {
+        [self closeFilter];
+    }
+}
 
 @end
