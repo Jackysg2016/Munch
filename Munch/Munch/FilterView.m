@@ -92,7 +92,6 @@
 
     NSError *error;
     [self.managedObjectContext save:&error];
-    NSLog(@"%@",error);
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

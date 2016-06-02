@@ -17,6 +17,8 @@
 #import "UserSettings.h"
 #import "TempRestaurant.h"
 #import "Filter.h"
+#import "DetailViewController.h"
+#import "ContainerClassViewController.h"
 
 
 @interface MunchViewController () <CLLocationManagerDelegate, RestaurantCardFactoryDataSource>
@@ -36,8 +38,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIView *labelBar1;
 @property (weak, nonatomic) IBOutlet UIView *labelBar2;
+@property (nonatomic) NSNumber *offset;
 
 @property (nonatomic) Filter *usingFilter;
+@property (nonatomic) TempRestaurant *selectedRestaurant;
+
 
 @end
 
@@ -64,6 +69,8 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     
+    self.offset = @0;
+    
     //Enochs stuff//
     self.filterView.layer.cornerRadius = 7;
     self.filterView.layer.shadowRadius = 4;
@@ -74,7 +81,7 @@
    [self.filterView setUpCategoryArray:array];
     
     self.restaurantFactory.delegate = self;
-    
+
   
     
 }
@@ -91,10 +98,13 @@
         [self closeFilter];
     } else {
         [self openFilter];
+       
     }
+    
+ 
 
     self.usingFilter = userSettings.lastFilter;
-    
+
 }
 
 
@@ -116,39 +126,59 @@
     CLLocation *currentLocation = [locations firstObject];
     
     if (self.lastLocation == nil) {
+        self.lastLocation = currentLocation;
+        [self loadRestaurantsFromYelpWithReset:NO];
+    }
+//    
+//    self.lastLocation = currentLocation;
+    
+}
+
+-(void) loadRestaurantsFromYelpWithReset:(BOOL)reset {
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(self.view.center.x, self.view.center.y * 0.6);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
+    CLGeocoder *coder = [[CLGeocoder alloc] init];
+    
+    [coder reverseGeocodeLocation:self.lastLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        //get current coordinates. eventually in seperate function to change search results based on filter
+        CLPlacemark *place = [placemarks firstObject];
         
-        CLGeocoder *coder = [[CLGeocoder alloc] init];
+        NSDictionary *paramDictionary = [self getParamDictionaryWithPlace:place];
         
-        [coder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-            //get current coordinates. eventually in seperate function to change search results based on filter
-            CLPlacemark *place = [placemarks firstObject];
-            
-            NSDictionary *paramDictionary = [self getParamDictionaryWithPlace:place];
-            
-            YelpClient *client = [YelpClient new];
-            
-            //get the data!
-            [client getPath:@"search" parameters:paramDictionary
-                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                        NSDictionary *objects = responseObject[@"businesses"];
-                        for (NSDictionary *restaurant in objects) {
-                            
-                            //create restaurant objects
-                            TempRestaurant *res = [[TempRestaurant alloc] initWithInfo:restaurant];
-                            
-                            [self.restaurants addObject:res];
-                            
-                        }
+        YelpClient *client = [YelpClient new];
+        
+        //get the data!
+        [client getPath:@"search" parameters:paramDictionary
+                success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                    NSDictionary *objects = responseObject[@"businesses"];
+                    [self.restaurants removeAllObjects];
+                    for (NSDictionary *restaurant in objects) {
+                        
+                        //create restaurant objects
+                        TempRestaurant *res = [[TempRestaurant alloc] initWithInfo:restaurant];
+                        
+                        [self.restaurants addObject:res];
+                        
+                    }
+                    
+                    if(reset) {
+                        [self.restaurantFactory resetCardsWithData:self.restaurants];
+                    } else {
                         [self.restaurantFactory loadRestaurantCardsWithData:self.restaurants];
                     }
-                    failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                        NSLog(@"Restaurants didn't load! :(");
-                    }];
-        }];
-    }
-    
-    self.lastLocation = currentLocation;
-    
+                    self.offset = @([self.offset integerValue] + self.restaurants.count);
+                    
+                    [spinner stopAnimating];
+                }
+                failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                    NSLog(@"Restaurants didn't load! :(");
+                }];
+    }];
 }
 
 -(NSDictionary *) getParamDictionaryWithPlace:(CLPlacemark *)place {
@@ -162,6 +192,7 @@
     NSMutableDictionary *paramDictionary = [[NSMutableDictionary alloc] init];
     paramDictionary[@"term"] = @"food,restaurant";
     paramDictionary[@"ll"] = coord;
+    paramDictionary[@"offset"] = self.offset;
     
     //If the filter includes categories to search for
     
@@ -189,7 +220,7 @@
     } else {
         
         [self closeFilter];
-        
+        [self loadRestaurantsFromYelpWithReset:YES];
     }
 }
 
@@ -218,15 +249,7 @@
                      
                  }];
     
-#warning should fetch new data with the updated filters
-    // maybe check if the filters actually changed or something
-    // Get the new data
-    // Reset the cards
-    //[self.restaurantFactory resetCardsWithData:data];
-
-}
-
--(void)requestDataFromYelp {
+    self.offset = @0;
     
 }
 
@@ -260,13 +283,7 @@
 #pragma mark - RestaurantCardFactoryDatasource methods -
 
 -(void)getMoreRestaurants {
-#warning incomplete paging method
-    // this is where we get more
-    
-    NSLog(@"Getting more data....");
-    
-    // Then we ask the factory to load more cards
-    // [self.restaurantFactory loadRestaurantCardsWithData:];
+        [self loadRestaurantsFromYelpWithReset:NO];
 }
 
 
@@ -277,10 +294,13 @@
     UITouch *touch = [[event allTouches] anyObject];
     
     CGPoint touchLocation = [touch locationInView:self.view];
-    if (CGRectContainsPoint(self.dimView.frame, touchLocation))
-    {
-        [self closeFilter];
+    if (self.filterHeightConstraint.constant == self.view.frame.size.height * 0.8) {
+        if (CGRectContainsPoint(self.dimView.frame, touchLocation))
+        {
+            [self closeFilter];
+        }
     }
+    
 }
 
 -(void)performSegueToDetailView{
@@ -289,5 +309,25 @@
     
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"munchToDetailView"]){
+        
+        ContainerClassViewController *CCVC = (ContainerClassViewController *)segue.destinationViewController;
+        
+        CCVC.lastLocation = self.lastLocation;
+        
+        CCVC.receivedRestaurant = self.selectedRestaurant;
+        
+        
+    }
+    
+}
+
+-(void)receivedRestaurant:(TempRestaurant *)tempRestaurant;{
+    
+    self.selectedRestaurant = tempRestaurant;
+    
+}
 
 @end

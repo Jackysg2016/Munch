@@ -85,11 +85,10 @@
     _cusineLabel.minimumScaleFactor = 0.5;
     
     // Price Label
-    _priceLabel = [[UILabel alloc] init];
-    _priceLabel.textColor = [UIColor blackColor];
-    _priceLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _priceLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:17];
-    _priceLabel.textColor = [UIColor colorWithRed:0.464 green:0.465 blue:0.464 alpha:1];
+    _ratingImage = [[UIImageView alloc] init];
+    _ratingImage.backgroundColor = [UIColor clearColor];
+    _ratingImage.translatesAutoresizingMaskIntoConstraints = NO;
+    _ratingImage.contentMode = UIViewContentModeScaleAspectFit;
     
     // Image View
     _imageView = [[UIImageView alloc] init];
@@ -107,7 +106,7 @@
     // Add all of the views to the card
     [self addSubview:_titleLabel];
     [self addSubview:_cusineLabel];
-    [self addSubview:_priceLabel];
+    [self addSubview:_ratingImage];
     [self addSubview:_imageView];
     [self addSubview:_distanceLabel];
     
@@ -120,11 +119,11 @@
 
 -(void)setupConstraints{
     // Price Label
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.priceLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.priceLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.ratingImage attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.ratingImage attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
     
     // Cusine Label
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.priceLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.ratingImage attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1 constant:-16]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     
@@ -215,7 +214,8 @@
 -(void)isTapped:(UITapGestureRecognizer*)sender {
 
     if(sender.state == UIGestureRecognizerStateEnded){
-        [self.delegate cardClickedToPerformSegue:self];
+        [self.delegate updateSelectedRestaurant];
+        [self.delegate cardClickedToPerformSegue];
     }
     
 }

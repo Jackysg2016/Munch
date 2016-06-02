@@ -14,7 +14,8 @@
 
 -(void)swipedLeftWithCard:(UIView*)card;
 -(void)swipedRightWithCard:(UIView*)card;
--(void)cardClickedToPerformSegue:(UIView *)card;
+-(void)cardClickedToPerformSegue;
+-(void)updateSelectedRestaurant;
 
 @optional
 -(void)swipedUpWithCard:(UIView*)card;
@@ -29,7 +30,7 @@
 
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *cusineLabel;
-@property (nonatomic) UILabel *priceLabel;
+@property (nonatomic) UIImageView *ratingImage;
 @property (nonatomic) UILabel *distanceLabel;
 @property (nonatomic) UIImageView *imageView;
 

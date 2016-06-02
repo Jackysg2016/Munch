@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xOk-Fs-zeM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xOk-Fs-zeM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,10 +8,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Container Class View Controller-->
+        <!--View Controller-->
         <scene sceneID="Z4w-UG-FVf">
             <objects>
-                <viewController id="xOk-Fs-zeM" customClass="ContainerClassViewController" sceneMemberID="viewController">
+                <viewController id="xOk-Fs-zeM" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mhZ-0F-M7K"/>
                         <viewControllerLayoutGuide type="bottom" id="f3Q-tR-uYu"/>
@@ -71,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Eo-N1-BVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-385" y="-689"/>
+            <point key="canvasLocation" x="-423" y="-689"/>
         </scene>
         <!--Munch-->
         <scene sceneID="sYi-Xj-ST3">
@@ -403,7 +403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHW-Iv-Vif" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="45"/>
+            <point key="canvasLocation" x="279" y="71"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="lBh-s2-IMl">
@@ -435,8 +435,9 @@
                                     <constraint firstItem="053-Pd-FyW" firstAttribute="width" secondItem="wa2-5K-mgi" secondAttribute="width" id="gMm-G5-JZa"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="X31-qQ-jri">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X31-qQ-jri">
                                 <rect key="frame" x="15" y="15" width="570" height="218.5"/>
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="Zb8-Vh-6g6" id="oJq-32-wkc"/>
                                 </connections>
@@ -494,7 +495,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSS-he-nh4">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="21"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="21"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KsO-YL-dnf">
@@ -604,24 +605,27 @@
                                 <exclude reference="x8J-4i-xhb"/>
                                 <exclude reference="vRT-kL-LZ3"/>
                                 <exclude reference="wPB-pl-ZeV"/>
-                                <exclude reference="1sP-4A-a0f"/>
-                                <exclude reference="PeP-0R-BdO"/>
                                 <exclude reference="rG3-P4-Cci"/>
                                 <exclude reference="MDE-MY-Dlx"/>
+                                <exclude reference="1sP-4A-a0f"/>
+                                <exclude reference="PeP-0R-BdO"/>
                             </mask>
                         </variation>
                     </view>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="addressLabel" destination="KsO-YL-dnf" id="xA4-k2-lOg"/>
                         <outlet property="callButton" destination="6YQ-o4-Tbb" id="myA-oq-RuH"/>
                         <outlet property="imageView" destination="WuY-D7-Coq" id="xuI-Kc-Z9F"/>
                         <outlet property="mapView" destination="X31-qQ-jri" id="9ch-Ae-tNr"/>
+                        <outlet property="nameLabel" destination="eSS-he-nh4" id="7eE-2r-HNs"/>
+                        <outlet property="verbalLabel" destination="0FT-5C-lxa" id="EYh-R7-3gU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8M-75-cLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="921" y="735"/>
+            <point key="canvasLocation" x="1059" y="733"/>
         </scene>
         <!--Home-->
         <scene sceneID="TjR-2G-ENC">
@@ -742,24 +746,50 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XHJ-WT-a4L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857" y="-1322"/>
+            <point key="canvasLocation" x="1059" y="-1304"/>
         </scene>
-        <!--Matches-->
+        <!--Yum List-->
         <scene sceneID="X0t-RC-KSa">
             <objects>
-                <tableViewController id="vkD-oa-KCv" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="fuN-Cm-IqE">
+                <tableViewController title="Yum List" id="vkD-oa-KCv" customClass="YumListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" id="fuN-Cm-IqE">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="upY-vN-CCa">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="restaurantCell" rowHeight="68" id="upY-vN-CCa" customClass="RestaurantCell">
+                                <rect key="frame" x="0.0" y="28" width="600" height="68"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="upY-vN-CCa" id="Ygg-KD-nH5">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="67.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fr4-t9-QBf">
+                                            <rect key="frame" x="8" y="8" width="584" height="27.5"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="20"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fht-5E-yPm">
+                                            <rect key="frame" x="8" y="40.5" width="584" height="23.5"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                            <color key="textColor" red="0.43886217948717954" green="0.43886217948717954" blue="0.43886217948717954" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fr4-t9-QBf" secondAttribute="trailing" id="GQ2-Z0-S8H"/>
+                                        <constraint firstItem="fr4-t9-QBf" firstAttribute="leading" secondItem="Ygg-KD-nH5" secondAttribute="leadingMargin" id="aTp-4Q-izC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fht-5E-yPm" secondAttribute="trailing" id="fDF-KF-rQ3"/>
+                                        <constraint firstItem="fht-5E-yPm" firstAttribute="top" secondItem="fr4-t9-QBf" secondAttribute="bottom" constant="5" id="fxy-9L-Le8"/>
+                                        <constraint firstItem="fht-5E-yPm" firstAttribute="leading" secondItem="Ygg-KD-nH5" secondAttribute="leadingMargin" id="sH4-gl-6f0"/>
+                                        <constraint firstItem="fr4-t9-QBf" firstAttribute="top" secondItem="Ygg-KD-nH5" secondAttribute="topMargin" id="udf-3l-y0t"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryLabel" destination="fht-5E-yPm" id="HeQ-nJ-kG5"/>
+                                    <outlet property="nameLabel" destination="fr4-t9-QBf" id="seg-M2-Wl3"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -771,26 +801,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGz-34-NMI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1543" y="-1003"/>
-        </scene>
-        <!--Discounts-->
-        <scene sceneID="s9V-LA-4m4">
-            <objects>
-                <viewController id="kxs-6X-9Tf" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ZGV-Cn-gtz"/>
-                        <viewControllerLayoutGuide type="bottom" id="zmf-tU-g07"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mDf-OP-nrQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Discounts" image="icon4" id="GeR-ke-qnM"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XSE-CT-caC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1661" y="-274"/>
+            <point key="canvasLocation" x="1059" y="-659"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JRJ-yK-e6y">
@@ -805,7 +816,6 @@
                     <connections>
                         <segue destination="Wcs-gC-e2e" kind="relationship" relationship="viewControllers" id="kTk-8c-Lp6"/>
                         <segue destination="9u9-Fm-lQQ" kind="relationship" relationship="viewControllers" id="0J1-Vl-DT6"/>
-                        <segue destination="kxs-6X-9Tf" kind="relationship" relationship="viewControllers" id="MYP-GF-bId"/>
                         <segue destination="vkD-oa-KCv" kind="relationship" relationship="viewControllers" id="ydu-mO-hPY"/>
                     </connections>
                 </tabBarController>
@@ -856,7 +866,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJs-gA-Va4">
                                 <rect key="frame" x="0.0" y="54" width="600" height="486"/>
                                 <connections>
-                                    <segue destination="Zb8-Vh-6g6" kind="embed" id="GTt-8a-xJ2"/>
+                                    <segue destination="Zb8-Vh-6g6" kind="embed" identifier="containerToDetailView" id="GTt-8a-xJ2"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -876,7 +886,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhD-vf-UFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="913" y="45"/>
+            <point key="canvasLocation" x="1059" y="71"/>
         </scene>
     </scenes>
     <resources>
@@ -885,7 +895,6 @@
         <image name="icon1" width="17" height="17"/>
         <image name="icon2" width="25" height="25"/>
         <image name="icon3" width="25" height="25"/>
-        <image name="icon4" width="25" height="25"/>
         <image name="justMunchDynamic" width="1167" height="1167"/>
         <image name="justMunchStatic" width="1667" height="1667"/>
         <image name="munch-munch" width="30" height="30"/>

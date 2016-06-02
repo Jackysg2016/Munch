@@ -9,9 +9,8 @@
 #import "RestaurantCardFactory.h"
 #import "RestaurantCardViewOverlay.h"
 #import "Restaurant.h"
-#import "Image.h"
 #import "MNCCategory.h"
-#import "TempRestaurant.h"
+#import "AppDelegate.h"
 
 #define CARD_WIDTH      300
 #define CARD_HEIGHT     300
@@ -32,6 +31,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *yukButton;
 
 @property (nonatomic) float buttonShrinkRatio;
+
+@property (nonatomic) TempRestaurant *selected;
+
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -59,6 +62,7 @@
     
     TempRestaurant *restaurant = self.data[index];
     
+    
     newCard.translatesAutoresizingMaskIntoConstraints = NO;
     
     newCard.overlay.frame = newCard.baseView.frame;
@@ -72,7 +76,7 @@
     
     newCard.cusineLabel.text = restaurant.categories;
     
-    newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %.1f", restaurant.rating ];
+    [self downloadRatingImageForCard:newCard withURLString:restaurant.ratingURL];
     
     [self downloadImageForCard:newCard withURLString:restaurant.imageURL];
     
@@ -88,13 +92,29 @@
     
 }
 
--(void)downloadImageForCard:(RestaurantCardView*)card withURLString:urlString{
+-(void)downloadImageForCard:(RestaurantCardView*)card withURLString:(NSString *)urlString{
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             UIImage *image = [UIImage imageWithData:data];
             if (image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     card.imageView.image = image;
+                });
+            }
+        }
+    }];
+    [task resume];
+    
+}
+
+#warning incomplete, get image for rating.
+-(void)downloadRatingImageForCard:(RestaurantCardView*)card withURLString:(NSString *)urlString{
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            UIImage *image = [UIImage imageWithData:data];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    card.ratingImage.image = image;
                 });
             }
         }
@@ -168,7 +188,7 @@
         //[self layoutIfNeeded];
         self.restaurantLoadedIndex += 1;
     }
-    
+    [self checkButtons];
     [self layoutIfNeeded];
 }
 
@@ -189,7 +209,7 @@
 - (void)noPressed:(UIButton *)sender {
     
     RestaurantCardView *cardView = [self.loadedRestaurants firstObject];
-    [self swipedRightWithCard:cardView];
+    [self swipedLeftWithCard:cardView];
     
     [cardView.overlay updateMode:RestaurantCardViewOverlayModeLeft];
     [UIView animateWithDuration:0.2 animations:^{
@@ -281,6 +301,10 @@
         self.yukButton.enabled = NO;
         self.nopeButton.enabled = NO;
         self.munchNowButton.enabled = NO;
+    } else {
+        self.yukButton.enabled = YES;
+        self.nopeButton.enabled = YES;
+        self.munchNowButton.enabled = YES;
     }
 }
 
@@ -288,10 +312,15 @@
 
 #warning incomplete - this is where the action should be set
 -(void)swipedRightWithCard:(UIView *)card {
+    
     // Load the next card
     [self loadNextCard];
+    
+    //Save the Restaurant
+    [self saveRestaurant];
+    
     // Go to detailed view of restaurant
-    [self.delegate performSegueToDetailView];
+    [self cardClickedToPerformSegue];
 }
 
 #warning incomplete - this is where the action should be set
@@ -312,8 +341,33 @@
     
 }
 
+-(void) saveRestaurant {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    Restaurant *res = [NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext];
+    
+    res.name = self.selected.name;
+    res.phoneNumber = self.selected.phoneNumber;
+    res.categories = self.selected.categories;
+    res.imageURL = self.selected.imageURL;
+    res.rating = self.selected.rating;
+    res.ratingURL = self.selected.ratingURL;
+    res.latitude = self.selected.latitude;
+    res.longitude = self.selected.longitude;
+    res.address = self.selected.address;
+    res.verbalAddress = self.selected.verbalAddress;
+    res.distance = [self.selected.distance doubleValue];
+    
+    NSError *error;
+    [self.managedObjectContext save:&error];
+    
+}
+
 -(void)loadNextCard {
     // Remove the top card
+    [self updateSelectedRestaurant ];
+    
     [self.loadedRestaurants removeObjectAtIndex:0];
     
     if(self.restaurantLoadedIndex < self.restaurants.count) {
@@ -327,7 +381,7 @@
         
         [self layoutIfNeeded];
     }
-    else {
+    else if (self.loadedRestaurants.count == 0) {
         // If we have no more restaurants go get more from the datasource
         [self.delegate getMoreRestaurants];
     }
@@ -338,9 +392,19 @@
 
 
 
--(void)cardClickedToPerformSegue:(UIView *)card{
+-(void)cardClickedToPerformSegue{
     
+    [self.delegate receivedRestaurant:self.selected];
     [self.delegate performSegueToDetailView];
+    
+
+}
+
+-(void)updateSelectedRestaurant{
+    self.selected = self.data[self.restaurantLoadedIndex - 3];
+    RestaurantCardView *pullImageCard = self.loadedRestaurants[0];
+    self.selected.image = pullImageCard.imageView.image;
+    self.selected.ratingImage = pullImageCard.ratingImage.image;
 
 }
 

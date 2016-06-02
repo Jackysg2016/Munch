@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Deal.h"
-#import "Image.h"
+#import <UIKit/UIKit.h>
 
 @interface TempRestaurant : NSObject
 
@@ -21,12 +20,13 @@
 @property (nonatomic) float rating;
 @property (nonatomic) NSString *verbalAddress;
 @property (nonatomic) NSString *categories;
-@property (nonatomic) NSSet<Deal *> *deals;
 @property (nonatomic) NSString *imageURL;
 @property (nonatomic) NSString *phoneNumber;
 @property (nonatomic) NSNumber *distance;
 @property (nonatomic) NSString *ratingURL;
 
+@property (nonatomic) UIImage *image;
+@property (nonatomic) UIImage *ratingImage;
 
 - (instancetype)initWithInfo:(NSDictionary *)info;
 
