@@ -17,6 +17,8 @@
 #import "UserSettings.h"
 #import "TempRestaurant.h"
 #import "Filter.h"
+#import "DetailViewController.h"
+#import "ContainerClassViewController.h"
 
 
 @interface MunchViewController () <CLLocationManagerDelegate, RestaurantCardFactoryDataSource>
@@ -39,6 +41,7 @@
 @property (nonatomic) NSNumber *offset;
 
 @property (nonatomic) Filter *usingFilter;
+@property (nonatomic) TempRestaurant *selectedRestaurant;
 
 @end
 
@@ -102,7 +105,7 @@
 
 
 -(void)viewWillDisappear:(BOOL)animated{
-    [self closeFilter];
+    //[self closeFilter];
 }
 
 #pragma mark - Button Action & Animation -
@@ -213,7 +216,7 @@
     } else {
         
         [self closeFilter];
-        
+        [self loadRestaurantsFromYelpWithReset:YES];
     }
 }
 
@@ -243,7 +246,7 @@
                  }];
     
     self.offset = @0;
-    [self loadRestaurantsFromYelpWithReset:YES];
+    
 }
 
 -(void)openFilter{
@@ -302,5 +305,25 @@
     
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"munchToDetailView"]){
+        
+        ContainerClassViewController *CCVC = (ContainerClassViewController *)segue.destinationViewController;
+        
+        CCVC.lastLocation = self.lastLocation;
+        
+        CCVC.receivedRestaurant = self.selectedRestaurant;
+        
+        
+    }
+    
+}
+
+-(void)receivedRestaurant:(TempRestaurant *)tempRestaurant;{
+    
+    self.selectedRestaurant = tempRestaurant;
+    
+}
 
 @end

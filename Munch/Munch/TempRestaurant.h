@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "Deal.h"
 #import "Image.h"
 
@@ -27,6 +28,7 @@
 @property (nonatomic) NSNumber *distance;
 @property (nonatomic) NSString *ratingURL;
 
+@property (nonatomic) UIImage *image;
 
 - (instancetype)initWithInfo:(NSDictionary *)info;
 

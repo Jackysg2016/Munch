@@ -7,18 +7,18 @@
 //
 
 #import "DetailViewController.h"
-#import <MapKit/MapKit.h>
-#import "TempRestaurant.h"
 
 @interface DetailViewController () <CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *callButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (nonatomic)  CLLocation *currentLocation;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 @property (nonatomic) NSString *phoneNumberURLString;
-
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *verbalLabel;
 
 @end
 
@@ -26,7 +26,7 @@
 
 -(void)viewDidLoad{
     
-    NSString *phoneNumber = @"6043158701";
+    NSString *phoneNumber = self.receivedRestaurant.phoneNumber;
     self.phoneNumberURLString = [@"telprompt:://" stringByAppendingString:phoneNumber];
     
     [self.callButton addTarget:self action:@selector(holdDown:) forControlEvents:UIControlEventTouchDown];
@@ -34,15 +34,22 @@
     [self.callButton addTarget:self action:@selector(holdReleaseOutside:) forControlEvents:UIControlEventTouchUpOutside];
     self.callButton.adjustsImageWhenHighlighted = NO;
     
-   
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
     
-    TempRestaurant *test = [[TempRestaurant alloc]init];
-    [self createAnnots:test];
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+        //remember to add mapkit and update plist with NSLocationWhenInUseUsageDescription
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.003, 0.003);
+    MKCoordinateRegion region = MKCoordinateRegionMake(self.lastLocation.coordinate, span);
+    [self.mapView setRegion:region animated:YES];
+    [self createAnnots];
     
-    
-    
-    
-    
+    self.imageView.image = self.receivedRestaurant.image;
+    self.addressLabel.text = self.receivedRestaurant.address;
+    self.verbalLabel.text = self.receivedRestaurant.verbalAddress;
+    self.nameLabel.text = self.receivedRestaurant.name;
 }
 
 - (IBAction)backButtonPressed:(UIButton *)sender {
@@ -54,6 +61,25 @@
 }
 
 
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    
+    self.lastLocation = [locations lastObject];
+        
+        //set map view on current location
+        //MKCoordinateSpan span = MKCoordinateSpanMake(0.005, 0.005);
+        
+        //MKCoordinateRegion region = MKCoordinateRegionMake(self.lastLocation.coordinate, span);
+        
+        //[self.mapView setRegion:region animated:YES];
+}
 
 
 
@@ -137,10 +163,10 @@
 }
 
 
--(void)createAnnots:(TempRestaurant *)tempRestaurant{
+-(void)createAnnots{
     
     MKPointAnnotation *newAnnot = [[MKPointAnnotation alloc] init];
-    newAnnot.coordinate = CLLocationCoordinate2DMake(49.214257, -123.068717);
+    newAnnot.coordinate = CLLocationCoordinate2DMake(self.receivedRestaurant.latitude, self.receivedRestaurant.longitude);
     
     [self.mapView addAnnotation:newAnnot];
     

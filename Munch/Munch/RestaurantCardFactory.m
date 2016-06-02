@@ -11,7 +11,7 @@
 #import "Restaurant.h"
 #import "Image.h"
 #import "MNCCategory.h"
-#import "TempRestaurant.h"
+
 
 #define CARD_WIDTH      300
 #define CARD_HEIGHT     300
@@ -32,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *yukButton;
 
 @property (nonatomic) float buttonShrinkRatio;
+
+@property (nonatomic) TempRestaurant *selected;
 
 @end
 
@@ -58,6 +60,7 @@
     RestaurantCardView *newCard = [[RestaurantCardView alloc] init];
     
     TempRestaurant *restaurant = self.data[index];
+    
     
     newCard.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -311,7 +314,7 @@
     // Load the next card
     [self loadNextCard];
     // Go to detailed view of restaurant
-    [self.delegate performSegueToDetailView];
+    [self cardClickedToPerformSegue];
 }
 
 #warning incomplete - this is where the action should be set
@@ -334,6 +337,8 @@
 
 -(void)loadNextCard {
     // Remove the top card
+    [self updateSelectedRestaurant ];
+    
     [self.loadedRestaurants removeObjectAtIndex:0];
     
     if(self.restaurantLoadedIndex < self.restaurants.count) {
@@ -358,10 +363,18 @@
 
 
 
--(void)cardClickedToPerformSegue:(UIView *)card{
+-(void)cardClickedToPerformSegue{
     
+    [self.delegate receivedRestaurant:self.selected];
     [self.delegate performSegueToDetailView];
+    
 
+}
+
+-(void)updateSelectedRestaurant{
+    self.selected = self.data[self.restaurantLoadedIndex - 3];
+    RestaurantCardView *pullImageCard = self.loadedRestaurants[0];
+    self.selected.image = pullImageCard.imageView.image;
 }
 
 @end

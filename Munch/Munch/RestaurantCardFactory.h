@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "RestaurantCardView.h"
+#import "TempRestaurant.h"
 
 @protocol RestaurantCardFactoryDataSource <NSObject>
 
 -(void)getMoreRestaurants;
 -(void)performSegueToDetailView;
+-(void)receivedRestaurant:(TempRestaurant *)tempRestaurant;
 
 @end
 

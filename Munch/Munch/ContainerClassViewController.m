@@ -7,12 +7,29 @@
 //
 
 #import "ContainerClassViewController.h"
+#import "DetailViewController.h"
 
 @implementation ContainerClassViewController
 
 -(void)viewDidLoad{
     
 
+
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([segue.identifier isEqualToString:@"containerToDetailView"]){
+        
+        DetailViewController *DVC = (DetailViewController *)segue.destinationViewController;
+        
+       DVC.lastLocation = self.lastLocation;
+        
+        DVC.receivedRestaurant = self.receivedRestaurant;
+        
+        
+    }
+    
 
 }
 
