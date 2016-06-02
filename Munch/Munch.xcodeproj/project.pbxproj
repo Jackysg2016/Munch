@@ -12,15 +12,15 @@
 		342745B61CFF746B00CD2452 /* ParseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342745B51CFF746B00CD2452 /* ParseData.swift */; };
 		342745BB1CFF864E00CD2452 /* MNCCategory+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 342745B81CFF864E00CD2452 /* MNCCategory+CoreDataProperties.m */; };
 		342745BC1CFF864E00CD2452 /* MNCCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 342745BA1CFF864E00CD2452 /* MNCCategory.m */; };
-		342745C41CFF884700CD2452 /* Restaurant+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 342745C11CFF884700CD2452 /* Restaurant+CoreDataProperties.m */; };
-		342745C51CFF884700CD2452 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 342745C31CFF884700CD2452 /* Restaurant.m */; };
+		342745CA1CFFA62900CD2452 /* Filter+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 342745C71CFFA62900CD2452 /* Filter+CoreDataProperties.m */; };
+		342745CB1CFFA62900CD2452 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 342745C91CFFA62900CD2452 /* Filter.m */; };
+		342745D01CFFB37900CD2452 /* Restaurant+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 342745CD1CFFB37900CD2452 /* Restaurant+CoreDataProperties.m */; };
+		342745D11CFFB37900CD2452 /* Restaurant.m in Sources */ = {isa = PBXBuildFile; fileRef = 342745CF1CFFB37900CD2452 /* Restaurant.m */; };
 		582A10CD1CFCBC0500BE7493 /* RestaurantCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A10CC1CFCBC0500BE7493 /* RestaurantCardView.m */; };
 		582A10D11CFCC5E700BE7493 /* RestaurantCardViewOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A10D01CFCC5E700BE7493 /* RestaurantCardViewOverlay.m */; };
 		582A10D41CFCDF1D00BE7493 /* RestaurantCardFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A10D31CFCDF1D00BE7493 /* RestaurantCardFactory.m */; };
 		582A11071CFD1FC800BE7493 /* APIKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 582A11061CFD1FC800BE7493 /* APIKeys.m */; };
 		582A11081CFD219700BE7493 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B535251CFCB99A004C0A5E /* ViewController.m */; };
-		7724961B1CFD15D200F7972B /* Filter+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 772496041CFD15D200F7972B /* Filter+CoreDataProperties.m */; };
-		7724961C1CFD15D200F7972B /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 772496061CFD15D200F7972B /* Filter.m */; };
 		7724961D1CFD15D200F7972B /* Deal+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 772496081CFD15D200F7972B /* Deal+CoreDataProperties.m */; };
 		7724961E1CFD15D200F7972B /* Deal.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724960A1CFD15D200F7972B /* Deal.m */; };
 		7724961F1CFD15D200F7972B /* UserSettings+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724960C1CFD15D200F7972B /* UserSettings+CoreDataProperties.m */; };
@@ -66,10 +66,14 @@
 		342745B81CFF864E00CD2452 /* MNCCategory+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MNCCategory+CoreDataProperties.m"; sourceTree = "<group>"; };
 		342745B91CFF864E00CD2452 /* MNCCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNCCategory.h; sourceTree = "<group>"; };
 		342745BA1CFF864E00CD2452 /* MNCCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNCCategory.m; sourceTree = "<group>"; };
-		342745C01CFF884700CD2452 /* Restaurant+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Restaurant+CoreDataProperties.h"; path = "../Restaurant+CoreDataProperties.h"; sourceTree = "<group>"; };
-		342745C11CFF884700CD2452 /* Restaurant+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Restaurant+CoreDataProperties.m"; path = "../Restaurant+CoreDataProperties.m"; sourceTree = "<group>"; };
-		342745C21CFF884700CD2452 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Restaurant.h; path = ../Restaurant.h; sourceTree = "<group>"; };
-		342745C31CFF884700CD2452 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Restaurant.m; path = ../Restaurant.m; sourceTree = "<group>"; };
+		342745C61CFFA62900CD2452 /* Filter+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Filter+CoreDataProperties.h"; sourceTree = "<group>"; };
+		342745C71CFFA62900CD2452 /* Filter+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Filter+CoreDataProperties.m"; sourceTree = "<group>"; };
+		342745C81CFFA62900CD2452 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		342745C91CFFA62900CD2452 /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
+		342745CC1CFFB37900CD2452 /* Restaurant+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Restaurant+CoreDataProperties.h"; sourceTree = "<group>"; };
+		342745CD1CFFB37900CD2452 /* Restaurant+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Restaurant+CoreDataProperties.m"; sourceTree = "<group>"; };
+		342745CE1CFFB37900CD2452 /* Restaurant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Restaurant.h; sourceTree = "<group>"; };
+		342745CF1CFFB37900CD2452 /* Restaurant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Restaurant.m; sourceTree = "<group>"; };
 		582A10CB1CFCBC0500BE7493 /* RestaurantCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestaurantCardView.h; path = ../RestaurantCardView.h; sourceTree = "<group>"; };
 		582A10CC1CFCBC0500BE7493 /* RestaurantCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestaurantCardView.m; path = ../RestaurantCardView.m; sourceTree = "<group>"; };
 		582A10CF1CFCC5E700BE7493 /* RestaurantCardViewOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestaurantCardViewOverlay.h; sourceTree = "<group>"; };
@@ -78,10 +82,6 @@
 		582A10D31CFCDF1D00BE7493 /* RestaurantCardFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestaurantCardFactory.m; sourceTree = "<group>"; };
 		582A11061CFD1FC800BE7493 /* APIKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIKeys.m; sourceTree = "<group>"; };
 		75256FEAF675B6CE308BC748 /* Pods_Munch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Munch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		772496031CFD15D200F7972B /* Filter+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Filter+CoreDataProperties.h"; sourceTree = "<group>"; };
-		772496041CFD15D200F7972B /* Filter+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Filter+CoreDataProperties.m"; sourceTree = "<group>"; };
-		772496051CFD15D200F7972B /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
-		772496061CFD15D200F7972B /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
 		772496071CFD15D200F7972B /* Deal+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Deal+CoreDataProperties.h"; sourceTree = "<group>"; };
 		772496081CFD15D200F7972B /* Deal+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Deal+CoreDataProperties.m"; sourceTree = "<group>"; };
 		772496091CFD15D200F7972B /* Deal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deal.h; sourceTree = "<group>"; };
@@ -149,18 +149,22 @@
 		772496271CFD15E900F7972B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				342745CC1CFFB37900CD2452 /* Restaurant+CoreDataProperties.h */,
+				342745CD1CFFB37900CD2452 /* Restaurant+CoreDataProperties.m */,
+				342745CE1CFFB37900CD2452 /* Restaurant.h */,
+				342745CF1CFFB37900CD2452 /* Restaurant.m */,
 				342745B71CFF864E00CD2452 /* MNCCategory+CoreDataProperties.h */,
 				342745B81CFF864E00CD2452 /* MNCCategory+CoreDataProperties.m */,
 				342745B91CFF864E00CD2452 /* MNCCategory.h */,
 				342745BA1CFF864E00CD2452 /* MNCCategory.m */,
-				772496031CFD15D200F7972B /* Filter+CoreDataProperties.h */,
-				772496041CFD15D200F7972B /* Filter+CoreDataProperties.m */,
-				772496051CFD15D200F7972B /* Filter.h */,
-				772496061CFD15D200F7972B /* Filter.m */,
 				772496071CFD15D200F7972B /* Deal+CoreDataProperties.h */,
 				772496081CFD15D200F7972B /* Deal+CoreDataProperties.m */,
 				772496091CFD15D200F7972B /* Deal.h */,
 				7724960A1CFD15D200F7972B /* Deal.m */,
+				342745C61CFFA62900CD2452 /* Filter+CoreDataProperties.h */,
+				342745C71CFFA62900CD2452 /* Filter+CoreDataProperties.m */,
+				342745C81CFFA62900CD2452 /* Filter.h */,
+				342745C91CFFA62900CD2452 /* Filter.m */,
 				7724960B1CFD15D200F7972B /* UserSettings+CoreDataProperties.h */,
 				7724960C1CFD15D200F7972B /* UserSettings+CoreDataProperties.m */,
 				7724960D1CFD15D200F7972B /* UserSettings.h */,
@@ -169,10 +173,6 @@
 				772496141CFD15D200F7972B /* Image+CoreDataProperties.m */,
 				772496151CFD15D200F7972B /* Image.h */,
 				772496161CFD15D200F7972B /* Image.m */,
-				342745C01CFF884700CD2452 /* Restaurant+CoreDataProperties.h */,
-				342745C11CFF884700CD2452 /* Restaurant+CoreDataProperties.m */,
-				342745C21CFF884700CD2452 /* Restaurant.h */,
-				342745C31CFF884700CD2452 /* Restaurant.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -292,7 +292,7 @@
 				TargetAttributes = {
 					77B5351A1CFCB99A004C0A5E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 3C2PX6DCKS;
+						DevelopmentTeam = F9TL8X93F7;
 					};
 				};
 			};
@@ -381,24 +381,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				342745C41CFF884700CD2452 /* Restaurant+CoreDataProperties.m in Sources */,
 				582A11081CFD219700BE7493 /* ViewController.m in Sources */,
 				582A10CD1CFCBC0500BE7493 /* RestaurantCardView.m in Sources */,
+				342745D01CFFB37900CD2452 /* Restaurant+CoreDataProperties.m in Sources */,
 				582A10D11CFCC5E700BE7493 /* RestaurantCardViewOverlay.m in Sources */,
-				342745C51CFF884700CD2452 /* Restaurant.m in Sources */,
 				773935A61CFE35A30046ECEC /* SettingsViewController.m in Sources */,
 				342745BB1CFF864E00CD2452 /* MNCCategory+CoreDataProperties.m in Sources */,
 				772496231CFD15D200F7972B /* Image+CoreDataProperties.m in Sources */,
 				777B739B1CFF85A600623DFE /* CategoryCell.m in Sources */,
-				7724961C1CFD15D200F7972B /* Filter.m in Sources */,
 				77B5352C1CFCB99A004C0A5E /* Munch.xcdatamodeld in Sources */,
 				342745BC1CFF864E00CD2452 /* MNCCategory.m in Sources */,
 				582A11071CFD1FC800BE7493 /* APIKeys.m in Sources */,
 				340ED4401CFCE8B300609428 /* YelpClient.m in Sources */,
 				773935A31CFE26470046ECEC /* HomeViewController.m in Sources */,
+				342745D11CFFB37900CD2452 /* Restaurant.m in Sources */,
 				772496241CFD15D200F7972B /* Image.m in Sources */,
 				77B382991CFF582400FED4DC /* FilterView.m in Sources */,
+				342745CB1CFFA62900CD2452 /* Filter.m in Sources */,
 				77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */,
+				342745CA1CFFA62900CD2452 /* Filter+CoreDataProperties.m in Sources */,
 				582A10D41CFCDF1D00BE7493 /* RestaurantCardFactory.m in Sources */,
 				7724961E1CFD15D200F7972B /* Deal.m in Sources */,
 				7724961D1CFD15D200F7972B /* Deal+CoreDataProperties.m in Sources */,
@@ -407,7 +408,6 @@
 				772496201CFD15D200F7972B /* UserSettings.m in Sources */,
 				7724961F1CFD15D200F7972B /* UserSettings+CoreDataProperties.m in Sources */,
 				77AFACC71CFD7B4C001850AC /* MunchViewController.m in Sources */,
-				7724961B1CFD15D200F7972B /* Filter+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

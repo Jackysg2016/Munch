@@ -10,6 +10,7 @@
 #import "UserSettings.h"
 #import "Munch-Swift.h"
 #import "MNCCategory.h"
+#import "Filter.h"
 
 
 @interface AppDelegate ()
@@ -31,6 +32,9 @@
         UserSettings *newUserSettings = [NSEntityDescription insertNewObjectForEntityForName:@"UserSettings" inManagedObjectContext:self.managedObjectContext];
         NSError *error;
         newUserSettings.sessionType = 0;
+        Filter *newFilter = [NSEntityDescription insertNewObjectForEntityForName:@"Filter" inManagedObjectContext:self.managedObjectContext];
+        newUserSettings.lastFilter = newFilter;
+        
         [self.managedObjectContext save:&error];
         NSLog(@"no previous user settings detected, created new User Settings");
         
