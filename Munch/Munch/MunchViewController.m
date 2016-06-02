@@ -18,6 +18,7 @@
 #import "TempRestaurant.h"
 #import "Filter.h"
 
+
 @interface MunchViewController () <CLLocationManagerDelegate, RestaurantCardFactoryDataSource>
 
 
@@ -197,7 +198,7 @@
     
     self.filterHeightConstraint.constant = 0.0;
     
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:0.7
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -207,7 +208,7 @@
                          
                      }];
 
-   [UIView animateWithDuration:0.5
+   [UIView animateWithDuration:0.7
                       delay:0
                     options:UIViewAnimationOptionCurveEaseInOut
                  animations:^{
@@ -225,10 +226,14 @@
 
 }
 
+-(void)requestDataFromYelp {
+    
+}
+
 -(void)openFilter{
     self.filterHeightConstraint.constant = self.view.frame.size.height * 0.8;
     
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:0.7
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -239,7 +244,7 @@
                          
                      }];
     
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:0.7
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
@@ -276,6 +281,12 @@
     {
         [self closeFilter];
     }
+}
+
+-(void)performSegueToDetailView{
+    
+    [self performSegueWithIdentifier:@"munchToDetailView" sender:self];
+    
 }
 
 

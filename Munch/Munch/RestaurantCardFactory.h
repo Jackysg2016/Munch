@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RestaurantCardView.h"
 
 @protocol RestaurantCardFactoryDataSource <NSObject>
 
 -(void)getMoreRestaurants;
+-(void)performSegueToDetailView;
 
 @end
 

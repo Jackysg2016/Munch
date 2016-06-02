@@ -14,6 +14,7 @@
 
 -(void)swipedLeftWithCard:(UIView*)card;
 -(void)swipedRightWithCard:(UIView*)card;
+-(void)cardClickedToPerformSegue:(UIView *)card;
 
 @optional
 -(void)swipedUpWithCard:(UIView*)card;
