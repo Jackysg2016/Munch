@@ -15,6 +15,7 @@
 #import "RestaurantCardFactory.h"
 #import "FilterView.h"
 #import "UserSettings.h"
+#import "TempRestaurant.h"
 
 @interface MunchViewController () <CLLocationManagerDelegate, RestaurantCardFactoryDataSource>
 
@@ -33,6 +34,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIView *labelBar1;
 @property (weak, nonatomic) IBOutlet UIView *labelBar2;
+
+@property (nonatomic) Filter *usingFilter;
 
 @end
 
@@ -86,6 +89,8 @@
         [self openFilter];
     }
 
+    self.usingFilter = userSettings.lastFilter;
+    
 }
 
 
@@ -125,7 +130,7 @@
                         for (NSDictionary *restaurant in objects) {
                             
                             //create restaurant objects
-                            Restaurant *res = [[Restaurant alloc] initWithEntity:[NSEntityDescription entityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext andDictionary:restaurant] ;
+                            TempRestaurant *res = [[TempRestaurant alloc] initWithInfo:restaurant];
                             
                             [self.restaurants addObject:res];
                             
