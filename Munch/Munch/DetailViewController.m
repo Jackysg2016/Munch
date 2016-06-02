@@ -27,12 +27,17 @@
 -(void)viewDidLoad{
     
     NSString *phoneNumber = self.receivedRestaurant.phoneNumber;
-    self.phoneNumberURLString = [@"telprompt:://" stringByAppendingString:phoneNumber];
+    if(phoneNumber) {
+        self.phoneNumberURLString = [@"telprompt:://" stringByAppendingString:phoneNumber];
+        [self.callButton addTarget:self action:@selector(holdDown:) forControlEvents:UIControlEventTouchDown];
+        [self.callButton addTarget:self action:@selector(holdRelease:) forControlEvents:UIControlEventTouchUpInside];
+        [self.callButton addTarget:self action:@selector(holdReleaseOutside:) forControlEvents:UIControlEventTouchUpOutside];
+        self.callButton.adjustsImageWhenHighlighted = NO;
+    } else {
+        self.callButton.enabled = NO;
+    }
     
-    [self.callButton addTarget:self action:@selector(holdDown:) forControlEvents:UIControlEventTouchDown];
-    [self.callButton addTarget:self action:@selector(holdRelease:) forControlEvents:UIControlEventTouchUpInside];
-    [self.callButton addTarget:self action:@selector(holdReleaseOutside:) forControlEvents:UIControlEventTouchUpOutside];
-    self.callButton.adjustsImageWhenHighlighted = NO;
+    
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;

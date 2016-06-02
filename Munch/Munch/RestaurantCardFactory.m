@@ -208,7 +208,7 @@
 - (void)noPressed:(UIButton *)sender {
     
     RestaurantCardView *cardView = [self.loadedRestaurants firstObject];
-    [self swipedRightWithCard:cardView];
+    [self swipedLeftWithCard:cardView];
     
     [cardView.overlay updateMode:RestaurantCardViewOverlayModeLeft];
     [UIView animateWithDuration:0.2 animations:^{
