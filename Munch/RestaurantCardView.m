@@ -17,10 +17,10 @@
 #define ROTATION_ANGLE (M_PI/8)
 
 @class Restaurant;
-@interface RestaurantCardView ()
+@interface RestaurantCardView () <UIGestureRecognizerDelegate>
 
 @property (nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
-
+@property (nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 // Values for translation
 @property (nonatomic) CGFloat xFromCentre;
 @property (nonatomic) CGFloat yFromCentre;
@@ -56,7 +56,13 @@
     // Gesture Recognizer
     _panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(isDragged:)];
     [self addGestureRecognizer:_panGestureRecognizer];
+    _panGestureRecognizer.delegate = self;
     
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(isTapped:)];
+    _tapGestureRecognizer.numberOfTapsRequired = 1;
+    _tapGestureRecognizer.numberOfTouchesRequired = 1;
+    [self addGestureRecognizer:_tapGestureRecognizer];
+    _tapGestureRecognizer.delegate = self;
     // Overlay
     _overlay = [[RestaurantCardViewOverlay alloc] init];
     _overlay.translatesAutoresizingMaskIntoConstraints = NO;
@@ -206,6 +212,18 @@
     }
 }
 
+-(void)isTapped:(UITapGestureRecognizer*)sender {
+
+    if(sender.state == UIGestureRecognizerStateEnded){
+        [self.delegate cardClickedToPerformSegue:self];
+    }
+    
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
 #pragma mark - Swipe Action Methods - 
 
 -(void)afterSwipeAction {
@@ -330,5 +348,7 @@
     
     [self.delegate swipedDownWithCard:self];
 }
+
+
 
 @end
