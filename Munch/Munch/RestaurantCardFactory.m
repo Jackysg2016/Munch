@@ -75,7 +75,7 @@
     
     newCard.cusineLabel.text = restaurant.categories;
     
-    newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %.1f", restaurant.rating ];
+    [self downloadRatingImageForCard:newCard withURLString:restaurant.ratingURL];
     
     [self downloadImageForCard:newCard withURLString:restaurant.imageURL];
     
@@ -91,13 +91,29 @@
     
 }
 
--(void)downloadImageForCard:(RestaurantCardView*)card withURLString:urlString{
+-(void)downloadImageForCard:(RestaurantCardView*)card withURLString:(NSString *)urlString{
     NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (data) {
             UIImage *image = [UIImage imageWithData:data];
             if (image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     card.imageView.image = image;
+                });
+            }
+        }
+    }];
+    [task resume];
+    
+}
+
+#warning incomplete, get image for rating.
+-(void)downloadRatingImageForCard:(RestaurantCardView*)card withURLString:(NSString *)urlString{
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            UIImage *image = [UIImage imageWithData:data];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    card.ratingImage.image = image;
                 });
             }
         }
@@ -171,7 +187,7 @@
         //[self layoutIfNeeded];
         self.restaurantLoadedIndex += 1;
     }
-    
+    [self checkButtons];
     [self layoutIfNeeded];
 }
 
@@ -284,6 +300,10 @@
         self.yukButton.enabled = NO;
         self.nopeButton.enabled = NO;
         self.munchNowButton.enabled = NO;
+    } else {
+        self.yukButton.enabled = YES;
+        self.nopeButton.enabled = YES;
+        self.munchNowButton.enabled = YES;
     }
 }
 
@@ -332,7 +352,7 @@
         
         [self layoutIfNeeded];
     }
-    else {
+    else if (self.loadedRestaurants.count == 0) {
         // If we have no more restaurants go get more from the datasource
         [self.delegate getMoreRestaurants];
     }

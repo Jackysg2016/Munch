@@ -30,7 +30,7 @@
 
 @property (nonatomic) UILabel *titleLabel;
 @property (nonatomic) UILabel *cusineLabel;
-@property (nonatomic) UILabel *priceLabel;
+@property (nonatomic) UIImageView *ratingImage;
 @property (nonatomic) UILabel *distanceLabel;
 @property (nonatomic) UIImageView *imageView;
 
