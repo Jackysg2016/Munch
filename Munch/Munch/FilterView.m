@@ -67,6 +67,14 @@
     return [self.categoryArray count];
 }
 
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     CategoryCell *selectedCell = (CategoryCell *)[collectionView cellForItemAtIndexPath:indexPath];
@@ -81,8 +89,10 @@
                      completion:^(BOOL finished) {}];
     
     [self.thisFilter removePickedCategoriesObject:self.categoryArray[indexPath.row]];
+
     NSError *error;
     [self.managedObjectContext save:&error];
+    NSLog(@"%@",error);
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -119,13 +129,11 @@
     MNCCategory *currentCategory = self.categoryArray[indexPath.row];
     CategoryCell *currentCell = (CategoryCell *)cell;
     
-    NSLog(@"%@",self.thisFilter.pickedCategories);
-    
     if ([self.thisFilter.pickedCategories containsObject:currentCategory]) {
-        currentCell.selected = YES;
+        [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
         currentCell.imageView.alpha = 0.5;
     } else {
-        currentCell.selected = NO;
+        [collectionView deselectItemAtIndexPath:indexPath animated:NO];
         currentCell.imageView.alpha = 0.0;
     }
 }
