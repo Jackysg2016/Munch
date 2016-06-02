@@ -15,6 +15,9 @@
 
 @property (nonatomic) NSArray *restaurants;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+
 
 @end
 
@@ -35,6 +38,15 @@
     self.restaurants = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     [self.tableView reloadData];
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerCell"];
+    return sectionView;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
