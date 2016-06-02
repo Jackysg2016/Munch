@@ -22,14 +22,17 @@
         self.rating = [info[@"rating"] floatValue];
         self.verbalAddress = info[@"location"][@"cross_streets"];
         
+        self.imageURL = info[@"image_url"];
+        self.distance = @([info[@"distance"] doubleValue]);
+        self.phoneNumber = info[@"display_phone"];
+        self.ratingURL = info[@"rating_img_url"];
+        
         NSMutableArray *categoryArray = [[NSMutableArray alloc] init];
         
         for (NSArray *cat in info[@"categories"]) {
             [categoryArray addObject:[cat firstObject]];
         }
         self.categories = [categoryArray componentsJoinedByString:@", "];
-        
-        self.imageURL = info[@"image_url"];
     }
     return self;
 }

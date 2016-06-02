@@ -2,7 +2,7 @@
 //  Restaurant.m
 //  Munch
 //
-//  Created by Taylor Benna on 2016-06-01.
+//  Created by Taylor Benna on 2016-06-02.
 //  Copyright © 2016 Enoch Ng. All rights reserved.
 //
 
@@ -12,5 +12,6 @@
 
 @implementation Restaurant
 
+// Insert code here to add functionality to your managed object subclass
 
 @end
