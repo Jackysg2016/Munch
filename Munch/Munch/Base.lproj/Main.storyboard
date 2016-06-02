@@ -231,7 +231,7 @@
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="x" translatesAutoresizingMaskIntoConstraints="NO" id="dCT-Ib-WTh">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newCircle" translatesAutoresizingMaskIntoConstraints="NO" id="dCT-Ib-WTh">
                                                                     <rect key="frame" x="0.0" y="0.0" width="75" height="40"/>
                                                                 </imageView>
                                                             </subviews>
@@ -348,10 +348,9 @@
                                     <outlet property="categoryCollectionView" destination="30O-bX-2Ht" id="7Rg-pn-BHd"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWV-k5-u9k">
-                                <rect key="frame" x="0.0" y="400" width="90" height="16"/>
-                                <color key="backgroundColor" red="1" green="0.8226297669" blue="0.15693414550000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Filters">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWV-k5-u9k">
+                                <rect key="frame" x="0.0" y="400" width="120" height="27"/>
+                                <state key="normal" title="Filters" image="tab">
                                     <color key="titleColor" red="0.99594718217849731" green="0.99611717462539673" blue="0.99593645334243774" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -364,13 +363,13 @@
                             <constraint firstItem="CWP-Lb-zR0" firstAttribute="top" secondItem="bVF-0M-PmO" secondAttribute="bottom" id="1pY-Xo-1Lc"/>
                             <constraint firstItem="xWV-k5-u9k" firstAttribute="leading" secondItem="HTg-zm-GwX" secondAttribute="leadingMargin" id="5Zz-ZK-Y7S"/>
                             <constraint firstItem="xWV-k5-u9k" firstAttribute="leading" secondItem="HTg-zm-GwX" secondAttribute="leading" id="60z-Ba-AYv"/>
-                            <constraint firstItem="xWV-k5-u9k" firstAttribute="width" secondItem="HTg-zm-GwX" secondAttribute="width" multiplier="0.15" id="6CN-op-lY0"/>
+                            <constraint firstItem="xWV-k5-u9k" firstAttribute="width" secondItem="HTg-zm-GwX" secondAttribute="width" multiplier="0.2" id="6CN-op-lY0"/>
                             <constraint firstItem="yVM-zS-R4c" firstAttribute="width" secondItem="HTg-zm-GwX" secondAttribute="width" id="7k6-MV-FJ8"/>
                             <constraint firstItem="CWP-Lb-zR0" firstAttribute="centerX" secondItem="HTg-zm-GwX" secondAttribute="centerX" id="CSY-KZ-9CY"/>
                             <constraint firstItem="qDd-qO-naz" firstAttribute="top" secondItem="yVM-zS-R4c" secondAttribute="bottom" id="Csg-1x-plu"/>
                             <constraint firstItem="n5x-aA-xW3" firstAttribute="centerX" secondItem="HTg-zm-GwX" secondAttribute="centerX" id="IC3-G4-55n"/>
                             <constraint firstItem="n5x-aA-xW3" firstAttribute="centerY" secondItem="HTg-zm-GwX" secondAttribute="centerY" multiplier="1.04" id="NIh-D7-15T"/>
-                            <constraint firstItem="xWV-k5-u9k" firstAttribute="height" secondItem="HTg-zm-GwX" secondAttribute="height" multiplier="0.03" id="NaJ-pV-N91"/>
+                            <constraint firstItem="xWV-k5-u9k" firstAttribute="height" secondItem="HTg-zm-GwX" secondAttribute="height" multiplier="0.05" id="NaJ-pV-N91"/>
                             <constraint firstItem="yVM-zS-R4c" firstAttribute="top" secondItem="CWP-Lb-zR0" secondAttribute="bottom" id="OR1-v2-inh"/>
                             <constraint firstItem="yVM-zS-R4c" firstAttribute="centerX" secondItem="HTg-zm-GwX" secondAttribute="centerX" id="PwJ-E2-QaU"/>
                             <constraint firstItem="MUr-rD-vT6" firstAttribute="height" secondItem="HTg-zm-GwX" secondAttribute="height" multiplier="0.04" id="Ruj-kt-ucO"/>
@@ -389,7 +388,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Munch" image="munch-munch" id="qkZ-KE-BHq"/>
+                    <tabBarItem key="tabBarItem" title="Munch" image="icon1" id="qkZ-KE-BHq"/>
                     <connections>
                         <outlet property="dimView" destination="yVM-zS-R4c" id="oqs-0f-5s1"/>
                         <outlet property="filterHeightConstraint" destination="isg-mN-rr5" id="Phr-Ez-Hz6"/>
@@ -436,6 +435,9 @@
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="X31-qQ-jri">
                                 <rect key="frame" x="15" y="15" width="570" height="218.5"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Zb8-Vh-6g6" id="oJq-32-wkc"/>
+                                </connections>
                             </mapView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WuY-D7-Coq">
                                 <rect key="frame" x="15" y="248" width="73" height="73"/>
@@ -455,7 +457,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="6YQ-o4-Tbb" secondAttribute="height" multiplier="1:1" id="r4S-X8-lCf"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="cravieDynamic"/>
+                                        <state key="normal" title="Button" image="phoneDynamic"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -600,10 +602,10 @@
                                 <exclude reference="x8J-4i-xhb"/>
                                 <exclude reference="vRT-kL-LZ3"/>
                                 <exclude reference="wPB-pl-ZeV"/>
-                                <exclude reference="MDE-MY-Dlx"/>
                                 <exclude reference="1sP-4A-a0f"/>
                                 <exclude reference="PeP-0R-BdO"/>
                                 <exclude reference="rG3-P4-Cci"/>
+                                <exclude reference="MDE-MY-Dlx"/>
                             </mask>
                         </variation>
                     </view>
@@ -729,7 +731,7 @@
                             <constraint firstItem="lEN-7g-M5t" firstAttribute="centerY" secondItem="P3d-jr-ybG" secondAttribute="centerY" multiplier="0.75" id="qG2-ap-Lzs"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="munch-home" id="W2U-Wn-ONM"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="icon2" id="W2U-Wn-ONM"/>
                     <connections>
                         <outlet property="cravieButton" destination="tUc-a7-0aG" id="6M1-x0-QMv"/>
                         <outlet property="justMunchButton" destination="82T-rn-UU7" id="Zbs-Xl-rYn"/>
@@ -740,7 +742,7 @@
             </objects>
             <point key="canvasLocation" x="857" y="-1322"/>
         </scene>
-        <!--Item-->
+        <!--Matches-->
         <scene sceneID="X0t-RC-KSa">
             <objects>
                 <tableViewController id="vkD-oa-KCv" sceneMemberID="viewController">
@@ -763,7 +765,7 @@
                             <outlet property="delegate" destination="vkD-oa-KCv" id="3n9-Ec-tEb"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" image="munch-settings" id="VRx-tu-swl"/>
+                    <tabBarItem key="tabBarItem" title="Matches" image="icon3" id="VRx-tu-swl"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGz-34-NMI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -782,7 +784,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Discounts" image="munch-discounts" id="GeR-ke-qnM"/>
+                    <tabBarItem key="tabBarItem" title="Discounts" image="icon4" id="GeR-ke-qnM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XSE-CT-caC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -878,19 +880,22 @@
     <resources>
         <image name="cravieDynamic" width="1167" height="1167"/>
         <image name="cravieStatic" width="1667" height="1667"/>
+        <image name="icon1" width="17" height="17"/>
+        <image name="icon2" width="25" height="25"/>
+        <image name="icon3" width="25" height="25"/>
+        <image name="icon4" width="25" height="25"/>
         <image name="justMunchDynamic" width="1167" height="1167"/>
         <image name="justMunchStatic" width="1667" height="1667"/>
-        <image name="munch-discounts" width="30" height="30"/>
-        <image name="munch-home" width="30" height="30"/>
         <image name="munch-munch" width="30" height="30"/>
-        <image name="munch-settings" width="30" height="30"/>
         <image name="munchButtonStatic" width="2407" height="1467"/>
         <image name="munchLogo" width="625" height="482"/>
         <image name="munchNowDynamic" width="1051" height="1051"/>
+        <image name="newCircle" width="2079" height="1200"/>
         <image name="nopeButtonDynamic" width="667" height="667"/>
+        <image name="phoneDynamic" width="1167" height="1167"/>
         <image name="pickieDynamic" width="1167" height="1167"/>
         <image name="pickieStatic" width="1667" height="1667"/>
-        <image name="x" width="100" height="100"/>
+        <image name="tab" width="2079" height="917"/>
         <image name="yuckButtonDynamic" width="281" height="281"/>
     </resources>
     <color key="tintColor" red="1" green="0.8226297669" blue="0.15693414550000001" alpha="1" colorSpace="calibratedRGB"/>

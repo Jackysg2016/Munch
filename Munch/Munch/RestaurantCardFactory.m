@@ -77,7 +77,7 @@
     
     [self downloadImageForCard:newCard withURLString:restaurant.imageURL];
     
-    newCard.imageView.image = [UIImage imageNamed:@"testImage"];
+    newCard.imageView.image = [UIImage imageNamed:@"defaultImage"];
     
     newCard.delegate = self;
     
