@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic) float *distance;
 
 @property (nonatomic) NSString *phoneNumberURLString;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -41,20 +42,98 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
+
     
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         //remember to add mapkit and update plist with NSLocationWhenInUseUsageDescription
         [self.locationManager requestWhenInUseAuthorization];
     }
-    MKCoordinateSpan span = MKCoordinateSpanMake(0.003, 0.003);
-    MKCoordinateRegion region = MKCoordinateRegionMake(self.lastLocation.coordinate, span);
-    [self.mapView setRegion:region animated:YES];
+
     [self createAnnots];
     
     self.imageView.image = self.receivedRestaurant.image;
     self.addressLabel.text = self.receivedRestaurant.address;
     self.verbalLabel.text = self.receivedRestaurant.verbalAddress;
     self.nameLabel.text = self.receivedRestaurant.name;
+
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.003, 0.003);
+    MKCoordinateRegion region = MKCoordinateRegionMake(self.lastLocation.coordinate, span);
+    [self.mapView setRegion:region animated:YES];
+
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+        [self zoomToFitMapAnnotations:self.mapView];
+    
+    MKPlacemark *source = [[MKPlacemark alloc]initWithCoordinate:CLLocationCoordinate2DMake(self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude) addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
+    
+    MKMapItem *srcMapItem = [[MKMapItem alloc]initWithPlacemark:source];
+    [srcMapItem setName:@""];
+    
+    MKPlacemark *destination = [[MKPlacemark alloc]initWithCoordinate:CLLocationCoordinate2DMake(self.receivedRestaurant.latitude, self.receivedRestaurant.longitude) addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
+    
+    MKMapItem *distMapItem = [[MKMapItem alloc]initWithPlacemark:destination];
+    [distMapItem setName:@""];
+    
+    
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+    
+    request.source = srcMapItem;
+    
+    request.destination = distMapItem ;
+    request.requestsAlternateRoutes = YES;
+    request.transportType = MKDirectionsTransportTypeWalking;
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+
+    
+    [directions calculateDirectionsWithCompletionHandler:
+     ^(MKDirectionsResponse *response, NSError *error) {
+         if (error) {
+             // Handle Error
+         } else {
+             [self showRoute:response];
+         }
+     }];
+    
+}
+
+-(void)showRoute:(MKDirectionsResponse *)response
+{
+    //    for (MKRoute *route in response.routes)
+    //    {
+    //        [self.mapView
+    //         addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
+    //    }
+    //
+    
+//    MKRoute *route = response.routes[0];
+//    [self.mapView
+//     addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
+//    
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"expectedTravelTime"
+                                                                   ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSArray *sortedRoutes = [response.routes sortedArrayUsingDescriptors:sortDescriptors];
+    
+    MKRoute *route = sortedRoutes[0];
+    [self.mapView
+     addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
+    
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
+{
+    MKPolylineRenderer *renderer =
+    [[MKPolylineRenderer alloc] initWithOverlay:overlay];
+    renderer.strokeColor = [UIColor colorWithRed:0.32 green:0.62 blue:0.97 alpha:1.0];
+    NSMutableArray * lineDash = [[NSMutableArray alloc] init];
+    [lineDash addObject:[NSNumber numberWithInt:5]];
+    [renderer setLineDashPattern:lineDash];
+    renderer.lineWidth = 3.0;
+    
+    return renderer;
 }
 
 - (IBAction)backButtonPressed:(UIButton *)sender {
@@ -77,16 +156,8 @@
      didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
     self.lastLocation = [locations lastObject];
-        
-        //set map view on current location
-        //MKCoordinateSpan span = MKCoordinateSpanMake(0.005, 0.005);
-        
-        //MKCoordinateRegion region = MKCoordinateRegionMake(self.lastLocation.coordinate, span);
-        
-        //[self.mapView setRegion:region animated:YES];
+
 }
-
-
 
 
 
@@ -175,6 +246,41 @@
     
     [self.mapView addAnnotation:newAnnot];
     
+}
+
+- (void)zoomToFitMapAnnotations:(MKMapView *)mapView {
+    if ([mapView.annotations count] == 0) return;
+    
+    CLLocationCoordinate2D topLeftCoord;
+    topLeftCoord.latitude = -90;
+    topLeftCoord.longitude = 180;
+    
+    CLLocationCoordinate2D bottomRightCoord;
+    bottomRightCoord.latitude = 90;
+    bottomRightCoord.longitude = -180;
+    
+    for(id<MKAnnotation> annotation in mapView.annotations) {
+        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
+        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
+        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
+        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
+    }
+    
+    topLeftCoord.longitude = fmin(topLeftCoord.longitude, self.lastLocation.coordinate.longitude);
+    topLeftCoord.latitude = fmax(topLeftCoord.latitude, self.lastLocation.coordinate.latitude);
+    bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, self.lastLocation.coordinate.longitude);
+    bottomRightCoord.latitude = fmin(bottomRightCoord.latitude,self.lastLocation.coordinate.latitude);
+    
+    MKCoordinateRegion region;
+    region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
+    region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
+    
+    // Add a little extra space on the sides
+    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.3;
+    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.3;
+    
+    region = [mapView regionThatFits:region];
+    [mapView setRegion:region animated:YES];
 }
 
 @end

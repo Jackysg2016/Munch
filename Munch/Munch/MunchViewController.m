@@ -43,6 +43,7 @@
 @property (nonatomic) Filter *usingFilter;
 @property (nonatomic) TempRestaurant *selectedRestaurant;
 
+
 @end
 
 
@@ -80,7 +81,7 @@
    [self.filterView setUpCategoryArray:array];
     
     self.restaurantFactory.delegate = self;
-    
+
   
     
 }
@@ -97,15 +98,18 @@
         [self closeFilter];
     } else {
         [self openFilter];
+       
     }
+    
+ 
 
     self.usingFilter = userSettings.lastFilter;
-    
+
 }
 
 
 -(void)viewWillDisappear:(BOOL)animated{
-    //[self closeFilter];
+    [self closeFilter];
 }
 
 #pragma mark - Button Action & Animation -
