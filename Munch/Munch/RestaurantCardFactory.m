@@ -312,15 +312,12 @@
 
 #warning incomplete - this is where the action should be set
 -(void)swipedRightWithCard:(UIView *)card {
-    //Save the Restaurant
-    
-    [self saveRestaurant];
-    
-    
-    
     
     // Load the next card
     [self loadNextCard];
+    
+    //Save the Restaurant
+    [self saveRestaurant];
     
     // Go to detailed view of restaurant
     [self cardClickedToPerformSegue];
@@ -364,6 +361,7 @@
     
     NSError *error;
     [self.managedObjectContext save:&error];
+    
 }
 
 -(void)loadNextCard {

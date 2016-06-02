@@ -29,6 +29,8 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     NSError *error;
+    [self.managedObjectContext save:&error];
+    
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Restaurant"];
     self.restaurants = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
