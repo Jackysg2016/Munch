@@ -72,6 +72,8 @@
     NSArray *array;
    [self.filterView setUpCategoryArray:array];
     
+    self.restaurantFactory.delegate = self;
+    
   
     
 }
@@ -214,6 +216,12 @@
                  completion:^(BOOL finished) {
                      
                  }];
+    
+#warning should fetch new data with the updated filters
+    // maybe check if the filters actually changed or something
+    // Get the new data
+    // Reset the cards
+    //[self.restaurantFactory resetCardsWithData:data];
 
 }
 
