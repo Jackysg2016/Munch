@@ -15,6 +15,8 @@
 #import "RestaurantCardFactory.h"
 #import "FilterView.h"
 #import "UserSettings.h"
+#import "TempRestaurant.h"
+#import "Filter.h"
 
 @interface MunchViewController () <CLLocationManagerDelegate, RestaurantCardFactoryDataSource>
 
@@ -33,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIView *labelBar1;
 @property (weak, nonatomic) IBOutlet UIView *labelBar2;
+
+@property (nonatomic) Filter *usingFilter;
 
 @end
 
@@ -68,6 +72,8 @@
     NSArray *array;
    [self.filterView setUpCategoryArray:array];
     
+    self.restaurantFactory.delegate = self;
+    
   
     
 }
@@ -86,6 +92,8 @@
         [self openFilter];
     }
 
+    self.usingFilter = userSettings.lastFilter;
+    
 }
 
 
@@ -114,7 +122,7 @@
             //get current coordinates. eventually in seperate function to change search results based on filter
             CLPlacemark *place = [placemarks firstObject];
             
-            NSDictionary *paramDictionary = [self getParamDictionaryWithPlace:place includeFilterCategories:NO withCategoryList:nil];
+            NSDictionary *paramDictionary = [self getParamDictionaryWithPlace:place];
             
             YelpClient *client = [YelpClient new];
             
@@ -125,7 +133,7 @@
                         for (NSDictionary *restaurant in objects) {
                             
                             //create restaurant objects
-                            Restaurant *res = [[Restaurant alloc] initWithEntity:[NSEntityDescription entityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext] insertIntoManagedObjectContext:self.managedObjectContext andDictionary:restaurant] ;
+                            TempRestaurant *res = [[TempRestaurant alloc] initWithInfo:restaurant];
                             
                             [self.restaurants addObject:res];
                             
@@ -142,7 +150,7 @@
     
 }
 
--(NSDictionary *) getParamDictionaryWithPlace:(CLPlacemark *)place includeFilterCategories:(BOOL)state withCategoryList:(NSSet *)categories {
+-(NSDictionary *) getParamDictionaryWithPlace:(CLPlacemark *)place {
     
     //Get Current Lat & Long//
     NSString *lat = [NSString stringWithFormat:@"%f",place.location.coordinate.latitude];
@@ -155,9 +163,16 @@
     paramDictionary[@"ll"] = coord;
     
     //If the filter includes categories to search for
-    if (state) {
-        NSArray *catArray = [categories allObjects];
-        NSString *catString = [catArray componentsJoinedByString:@","];
+    
+    self.usingFilter.filterByExclusion = NO;
+    if (self.usingFilter.filterByExclusion == NO) {
+        NSArray *catArray = [self.usingFilter.pickedCategories allObjects];
+        
+        NSMutableArray *searchableCats = [NSMutableArray new];
+        for (MNCCategory *cat in catArray) {
+            [searchableCats addObject:cat.searchString];
+        }
+        NSString *catString = [searchableCats componentsJoinedByString:@","];
         paramDictionary[@"category_filter"] = catString;
     }
     
@@ -201,6 +216,12 @@
                  completion:^(BOOL finished) {
                      
                  }];
+    
+#warning should fetch new data with the updated filters
+    // maybe check if the filters actually changed or something
+    // Get the new data
+    // Reset the cards
+    //[self.restaurantFactory resetCardsWithData:data];
 
 }
 

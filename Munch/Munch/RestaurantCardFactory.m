@@ -12,7 +12,7 @@
 #import "Restaurant.h"
 #import "Image.h"
 #import "MNCCategory.h"
-
+#import "TempRestaurant.h"
 
 #define CARD_WIDTH      300
 #define CARD_HEIGHT     300
@@ -58,7 +58,7 @@
     
     RestaurantCardView *newCard = [[RestaurantCardView alloc] init];
     
-    Restaurant *restaurant = self.data[index];
+    TempRestaurant *restaurant = self.data[index];
     
     newCard.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -75,8 +75,7 @@
     
     newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %.1f", restaurant.rating ];
     
-    Image *img = [restaurant.imageURLs anyObject];
-    [self downloadImageForCard:newCard withURLString:img.imageURL];
+    [self downloadImageForCard:newCard withURLString:restaurant.imageURL];
     
     newCard.imageView.image = [UIImage imageNamed:@"testImage"];
     
