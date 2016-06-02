@@ -9,9 +9,8 @@
 #import "RestaurantCardFactory.h"
 #import "RestaurantCardViewOverlay.h"
 #import "Restaurant.h"
-#import "Image.h"
 #import "MNCCategory.h"
-
+#import "AppDelegate.h"
 
 #define CARD_WIDTH      300
 #define CARD_HEIGHT     300
@@ -34,6 +33,8 @@
 @property (nonatomic) float buttonShrinkRatio;
 
 @property (nonatomic) TempRestaurant *selected;
+
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -311,8 +312,16 @@
 
 #warning incomplete - this is where the action should be set
 -(void)swipedRightWithCard:(UIView *)card {
+    //Save the Restaurant
+    
+    [self saveRestaurant];
+    
+    
+    
+    
     // Load the next card
     [self loadNextCard];
+    
     // Go to detailed view of restaurant
     [self cardClickedToPerformSegue];
 }
@@ -333,6 +342,28 @@
     // Yuck action
     // Add it to list of yucks
     
+}
+
+-(void) saveRestaurant {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = appDelegate.managedObjectContext;
+    
+    Restaurant *res = [NSEntityDescription insertNewObjectForEntityForName:@"Restaurant" inManagedObjectContext:self.managedObjectContext];
+    
+    res.name = self.selected.name;
+    res.phoneNumber = self.selected.phoneNumber;
+    res.categories = self.selected.categories;
+    res.imageURL = self.selected.imageURL;
+    res.rating = self.selected.rating;
+    res.ratingURL = self.selected.ratingURL;
+    res.latitude = self.selected.latitude;
+    res.longitude = self.selected.longitude;
+    res.address = self.selected.address;
+    res.verbalAddress = self.selected.verbalAddress;
+    res.distance = [self.selected.distance doubleValue];
+    
+    NSError *error;
+    [self.managedObjectContext save:&error];
 }
 
 -(void)loadNextCard {
