@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import "TempRestaurant.h"
 
 @interface DetailViewController : UIViewController
+
+@property (nonatomic) CLLocation *lastLocation;
+@property (nonatomic) TempRestaurant *receivedRestaurant;
 
 @end
