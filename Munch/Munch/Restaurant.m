@@ -7,8 +7,6 @@
 //
 
 #import "Restaurant.h"
-#import "Deal.h"
-#import "Image.h"
 
 @implementation Restaurant
 

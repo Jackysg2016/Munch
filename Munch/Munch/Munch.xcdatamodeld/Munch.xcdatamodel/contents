@@ -5,10 +5,6 @@
         <attribute name="searchString" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="filters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Filter" inverseName="pickedCategories" inverseEntity="Filter" syncable="YES"/>
     </entity>
-    <entity name="Deal" representedClassName="Deal" syncable="YES">
-        <attribute name="textDescription" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="imageURLs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" syncable="YES"/>
-    </entity>
     <entity name="Filter" representedClassName="Filter" syncable="YES">
         <attribute name="filterByExclusion" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="maxPricing" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -16,13 +12,11 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="pickedCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="filters" inverseEntity="Category" syncable="YES"/>
     </entity>
-    <entity name="Image" representedClassName="Image" syncable="YES">
-        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <entity name="Restaurant" representedClassName="Restaurant" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="categories" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,8 +25,6 @@
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="ratingURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="verbalAddress" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="deals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Deal" syncable="YES"/>
-        <relationship name="imageURLs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Image" syncable="YES"/>
     </entity>
     <entity name="UserSettings" representedClassName="UserSettings" syncable="YES">
         <attribute name="lastManualLocation" optional="YES" attributeType="String" syncable="YES"/>
@@ -45,10 +37,8 @@
     </entity>
     <elements>
         <element name="Category" positionX="187" positionY="-43" width="128" height="88"/>
-        <element name="Deal" positionX="-144" positionY="18" width="128" height="73"/>
         <element name="Filter" positionX="243" positionY="224" width="128" height="118"/>
-        <element name="Image" positionX="99" positionY="144" width="128" height="58"/>
-        <element name="Restaurant" positionX="-288" positionY="3" width="128" height="238"/>
+        <element name="Restaurant" positionX="-288" positionY="3" width="128" height="225"/>
         <element name="UserSettings" positionX="-92" positionY="275" width="128" height="148"/>
     </elements>
 </model>

@@ -15,16 +15,15 @@
 
 @dynamic address;
 @dynamic categories;
+@dynamic distance;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic name;
+@dynamic phoneNumber;
 @dynamic pricing;
 @dynamic rating;
-@dynamic verbalAddress;
-@dynamic distance;
 @dynamic ratingURL;
-@dynamic phoneNumber;
-@dynamic deals;
-@dynamic imageURLs;
+@dynamic verbalAddress;
+@dynamic imageURL;
 
 @end
