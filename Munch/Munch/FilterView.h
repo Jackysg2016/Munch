@@ -10,6 +10,8 @@
 
 @interface FilterView : UIView <UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
+
 -(void)setUpCategoryArray:(NSArray *)array;
 
 @end

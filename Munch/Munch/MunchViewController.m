@@ -59,6 +59,7 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     
+    //Enochs stuff//
     self.filterView.layer.cornerRadius = 7;
     self.filterView.layer.shadowRadius = 4;
     self.filterView.layer.shadowOpacity = 0.2;
@@ -112,13 +113,8 @@
         [coder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
             //get current coordinates. eventually in seperate function to change search results based on filter
             CLPlacemark *place = [placemarks firstObject];
-
-            NSMutableSet *testCategories = [[NSMutableSet alloc] init];
-            [testCategories addObject:@"mexican"];
-            [testCategories addObject:@"vegetarian"];
-            [testCategories addObject:@"vegan"];
             
-            NSDictionary *paramDictionary = [self getParamDictionaryWithPlace:place includeFilterCategories:YES withCategoryList:testCategories];
+            NSDictionary *paramDictionary = [self getParamDictionaryWithPlace:place includeFilterCategories:NO withCategoryList:nil];
             
             YelpClient *client = [YelpClient new];
             

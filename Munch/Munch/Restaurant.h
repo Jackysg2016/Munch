@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Deal, Image, MNCCategory;
+@class Deal, Image;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Restaurant : NSManagedObject
 
 -(NSManagedObject *)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context andDictionary:(NSDictionary *)info;
+
 @end
 
 NS_ASSUME_NONNULL_END
