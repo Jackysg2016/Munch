@@ -311,7 +311,7 @@
 				TargetAttributes = {
 					77B5351A1CFCB99A004C0A5E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = F9TL8X93F7;
+						DevelopmentTeam = 3C2PX6DCKS;
 					};
 				};
 			};
@@ -416,7 +416,6 @@
 				772496241CFD15D200F7972B /* Image.m in Sources */,
 				77B382991CFF582400FED4DC /* FilterView.m in Sources */,
 				777B73A41CFFBFB300623DFE /* ContainerClassViewController.m in Sources */,
-				342745CB1CFFA62900CD2452 /* Filter.m in Sources */,
 				77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */,
 				582A10D41CFCDF1D00BE7493 /* RestaurantCardFactory.m in Sources */,
 				342745DE1CFFD22A00CD2452 /* Filter.m in Sources */,
