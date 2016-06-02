@@ -32,6 +32,8 @@
 		773935A61CFE35A30046ECEC /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773935A51CFE35A30046ECEC /* SettingsViewController.m */; };
 		777B739B1CFF85A600623DFE /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B739A1CFF85A600623DFE /* CategoryCell.m */; };
 		777B73A11CFFA87400623DFE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B73A01CFFA87400623DFE /* DetailViewController.m */; };
+		777B73A41CFFBFB300623DFE /* ContainerClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B73A31CFFBFB300623DFE /* ContainerClassViewController.m */; };
+		777B73A61CFFC2DF00623DFE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777B73A51CFFC2DF00623DFE /* MapKit.framework */; };
 		77AFACC71CFD7B4C001850AC /* MunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AFACC61CFD7B4C001850AC /* MunchViewController.m */; };
 		77B382991CFF582400FED4DC /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B382981CFF582400FED4DC /* FilterView.m */; };
 		77B535201CFCB99A004C0A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5351F1CFCB99A004C0A5E /* main.m */; };
@@ -106,6 +108,9 @@
 		777B739A1CFF85A600623DFE /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		777B739F1CFFA87400623DFE /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		777B73A01CFFA87400623DFE /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		777B73A21CFFBFB300623DFE /* ContainerClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerClassViewController.h; sourceTree = "<group>"; };
+		777B73A31CFFBFB300623DFE /* ContainerClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerClassViewController.m; sourceTree = "<group>"; };
+		777B73A51CFFC2DF00623DFE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		77AFACC51CFD7B4C001850AC /* MunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MunchViewController.h; sourceTree = "<group>"; };
 		77AFACC61CFD7B4C001850AC /* MunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MunchViewController.m; sourceTree = "<group>"; };
 		77B382971CFF582400FED4DC /* FilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterView.h; sourceTree = "<group>"; };
@@ -131,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				777B73A61CFFC2DF00623DFE /* MapKit.framework in Frameworks */,
 				77B535391CFCB9BD004C0A5E /* CoreData.framework in Frameworks */,
 				C613BC975401119C8F89B38B /* Pods_Munch.framework in Frameworks */,
 			);
@@ -224,6 +230,8 @@
 				77B382981CFF582400FED4DC /* FilterView.m */,
 				777B73991CFF85A600623DFE /* CategoryCell.h */,
 				777B739A1CFF85A600623DFE /* CategoryCell.m */,
+				777B73A21CFFBFB300623DFE /* ContainerClassViewController.h */,
+				777B73A31CFFBFB300623DFE /* ContainerClassViewController.m */,
 				77AFACC51CFD7B4C001850AC /* MunchViewController.h */,
 				77AFACC61CFD7B4C001850AC /* MunchViewController.m */,
 				582A10CE1CFCBC8500BE7493 /* Swipe Cards */,
@@ -253,6 +261,7 @@
 		ECA64AAB12B3221B52291B48 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				777B73A51CFFC2DF00623DFE /* MapKit.framework */,
 				75256FEAF675B6CE308BC748 /* Pods_Munch.framework */,
 			);
 			name = Frameworks;
@@ -406,6 +415,8 @@
 				342745DF1CFFD22A00CD2452 /* MNCCategory+CoreDataProperties.m in Sources */,
 				772496241CFD15D200F7972B /* Image.m in Sources */,
 				77B382991CFF582400FED4DC /* FilterView.m in Sources */,
+				777B73A41CFFBFB300623DFE /* ContainerClassViewController.m in Sources */,
+				342745CB1CFFA62900CD2452 /* Filter.m in Sources */,
 				77B535231CFCB99A004C0A5E /* AppDelegate.m in Sources */,
 				582A10D41CFCDF1D00BE7493 /* RestaurantCardFactory.m in Sources */,
 				342745DE1CFFD22A00CD2452 /* Filter.m in Sources */,

@@ -7,36 +7,99 @@
 //
 
 #import "DetailViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface DetailViewController ()
-@property (weak, nonatomic) IBOutlet UITabBarItem *tabBarItem;
-@property (weak, nonatomic) IBOutlet UITabBar *tabBar;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+@property (nonatomic) NSString *phoneNumberURLString;
+
 
 @end
 
 @implementation DetailViewController
 
--(void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event //here enable the touch
-{
-    UITouch *touch = [[event allTouches] anyObject];
+-(void)viewDidLoad{
     
-    CGPoint touchLocation = [touch locationInView:self.view];
-    if (CGRectContainsPoint(self.tabBar.frame, touchLocation))
-    {
-        [self dismissViewControllerAnimated:YES completion:^{
-            NSLog(@"Dismiss completed");
-        }];
-    }
+    self.phoneNumberURLString = @"telprompt:://+16043158701";
+    
+    [self.callButton addTarget:self action:@selector(holdDown:) forControlEvents:UIControlEventTouchDown];
+    [self.callButton addTarget:self action:@selector(holdRelease:) forControlEvents:UIControlEventTouchUpInside];
+    [self.callButton addTarget:self action:@selector(holdReleaseOutside:) forControlEvents:UIControlEventTouchUpOutside];
 }
 
+- (IBAction)backButtonPressed:(UIButton *)sender {
 
-- (IBAction)pressedMunchButton:(UIBarButtonItem *)sender {
-    
     [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"Dismiss completed");
     }];
 
 
 }
+
+
+
+
+
+
+
+-(void)holdDown:(UIButton *)sender{
+    [UIView animateWithDuration:0.1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         sender.layer.transform = CATransform3DMakeScale(0.80,0.80, 1);
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+    
+}
+
+-(void)holdRelease:(UIButton *)sender{
+    [UIView animateWithDuration:0.1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         sender.layer.transform = CATransform3DMakeScale(1.1,1.1, 1);
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [UIView animateWithDuration:0.05
+                                               delay:0
+                                             options:UIViewAnimationOptionCurveEaseOut
+                                          animations:^{
+                                              sender.layer.transform = CATransform3DMakeScale(1,1, 1);
+                                          }
+                                          completion:^(BOOL finished) {
+                                              
+                                              //makes phone call
+                                              [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.phoneNumberURLString]];
+                                              
+                                              
+                                          }];
+                     }];
+}
+
+-(void)holdReleaseOutside:(UIButton *)sender{
+    [UIView animateWithDuration:0.1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         sender.layer.transform = CATransform3DMakeScale(1.1,1.1, 1);
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [UIView animateWithDuration:0.05
+                                               delay:0
+                                             options:UIViewAnimationOptionCurveEaseOut
+                                          animations:^{
+                                              sender.layer.transform = CATransform3DMakeScale(1,1, 1);
+                                          }
+                                          completion:^(BOOL finished) {
+                                          }];
+                     }];
+}
+
 
 @end
