@@ -17,31 +17,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSString *address;
 @property (nullable, nonatomic, retain) NSString *categories;
+@property (nonatomic) double distance;
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
 @property (nullable, nonatomic, retain) NSString *name;
+@property (nullable, nonatomic, retain) NSString *phoneNumber;
 @property (nonatomic) int64_t pricing;
 @property (nonatomic) float rating;
-@property (nullable, nonatomic, retain) NSString *verbalAddress;
-@property (nonatomic) double distance;
 @property (nullable, nonatomic, retain) NSString *ratingURL;
-@property (nullable, nonatomic, retain) NSString *phoneNumber;
-@property (nullable, nonatomic, retain) NSSet<Deal *> *deals;
-@property (nullable, nonatomic, retain) NSSet<Image *> *imageURLs;
-
-@end
-
-@interface Restaurant (CoreDataGeneratedAccessors)
-
-- (void)addDealsObject:(Deal *)value;
-- (void)removeDealsObject:(Deal *)value;
-- (void)addDeals:(NSSet<Deal *> *)values;
-- (void)removeDeals:(NSSet<Deal *> *)values;
-
-- (void)addImageURLsObject:(Image *)value;
-- (void)removeImageURLsObject:(Image *)value;
-- (void)addImageURLs:(NSSet<Image *> *)values;
-- (void)removeImageURLs:(NSSet<Image *> *)values;
+@property (nullable, nonatomic, retain) NSString *verbalAddress;
+@property (nullable, nonatomic, retain) NSString *imageURL;
 
 @end
 

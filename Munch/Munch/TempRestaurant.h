@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "Deal.h"
-#import "Image.h"
 
 @interface TempRestaurant : NSObject
 
@@ -22,7 +20,6 @@
 @property (nonatomic) float rating;
 @property (nonatomic) NSString *verbalAddress;
 @property (nonatomic) NSString *categories;
-@property (nonatomic) NSSet<Deal *> *deals;
 @property (nonatomic) NSString *imageURL;
 @property (nonatomic) NSString *phoneNumber;
 @property (nonatomic) NSNumber *distance;
