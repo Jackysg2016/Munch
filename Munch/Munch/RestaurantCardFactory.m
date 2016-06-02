@@ -200,12 +200,17 @@
     
     [cardView.overlay updateMode:RestaurantCardViewOverlayModeRight];
     [UIView animateWithDuration:0.2 animations:^{
-        cardView.overlay.alpha = 1;
+        cardView.overlay.alpha = 0.5;
     } completion:^(BOOL finished) {
-        [cardView yesClickAction];
+         [cardView yesClickAction];
     }];
     
 }
+
+//-(void)delayYesClickAction:(RestaurantCardView *)cardView{
+//    [cardView yesClickAction];
+//}
+
 - (void)noPressed:(UIButton *)sender {
     
     RestaurantCardView *cardView = [self.loadedRestaurants firstObject];
@@ -213,7 +218,7 @@
     
     [cardView.overlay updateMode:RestaurantCardViewOverlayModeLeft];
     [UIView animateWithDuration:0.2 animations:^{
-        cardView.overlay.alpha = 1;
+        cardView.overlay.alpha = 0.5;
     } completion:^(BOOL finished) {
         [cardView noClickAction];
     }];
@@ -320,7 +325,11 @@
     [self saveRestaurant];
     
     // Go to detailed view of restaurant
-    [self cardClickedToPerformSegue];
+    [NSTimer scheduledTimerWithTimeInterval:0.4
+                                     target:self
+                                   selector:@selector(cardClickedToPerformSegue)
+                                   userInfo:nil
+                                    repeats:NO];
 }
 
 #warning incomplete - this is where the action should be set
