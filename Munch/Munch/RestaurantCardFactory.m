@@ -114,21 +114,21 @@
 }
 
 // This may come in handy later so keep it here
-//-(void)refreshData {
-//    
-//    // Get rid of the now outdated views
-//    for (RestaurantCardView *view in self.loadedRestaurants) {
-//        [view removeFromSuperview];
-//    }
-//    
-//    [self.loadedRestaurants removeAllObjects];
-//    [self.restaurants removeAllObjects];
-//    
-//    self.restaurantLoadedIndex = 0;
-//    
-//    [self loadRestaurantCards];
-//    
-//}
+-(void)resetCardsWithData:(NSArray *)data {
+    
+    // Get rid of the now outdated views
+    for (RestaurantCardView *view in self.loadedRestaurants) {
+        [view removeFromSuperview];
+    }
+    
+    [self.loadedRestaurants removeAllObjects];
+    [self.restaurants removeAllObjects];
+    
+    self.restaurantLoadedIndex = 0;
+    
+    [self loadRestaurantCardsWithData:data];
+    
+}
 
 
 -(void)loadRestaurantCardsWithData:(NSArray*)data {
@@ -203,7 +203,6 @@
     
 }
 - (void)yukPressed:(UIButton *)sender {
-#warning incomplete
     RestaurantCardView *cardView = [self.loadedRestaurants firstObject];
     [self swipedDownWithCard:cardView];
     [cardView.overlay updateMode:RestaurantCardViewOverlayModeLeft];
@@ -291,49 +290,31 @@
 
 #warning incomplete - this is where the action should be set
 -(void)swipedRightWithCard:(UIView *)card {
-    // Remove the top card
-    [self.loadedRestaurants removeObjectAtIndex:0];
+    // Load the next card
+    [self loadNextCard];
     
-    if(self.restaurantLoadedIndex < self.restaurants.count) {
-        // If we have more restaurants to load
-        [self.loadedRestaurants addObject:[self.restaurants objectAtIndex:self.restaurantLoadedIndex]];
-        self.restaurantLoadedIndex += 1;
-        
-        // Add the view and set it up
-        [self insertSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 2]];
-        [self setupConstraintsForCard:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1]];
-        
-        [self layoutIfNeeded];
-
-    }
-    
-    // Check to see if the buttons should be enabled or not
-    [self checkButtons];
-    
+    // Go to detailed view of restaurant
 }
 
 #warning incomplete - this is where the action should be set
 -(void)swipedLeftWithCard:(UIView *)card {
-    // Remove the top card
-    [self.loadedRestaurants removeObjectAtIndex:0];
+    // Load the next card
+    [self loadNextCard];
     
-    if(self.restaurantLoadedIndex < self.restaurants.count) {
-        // If we have more restaurants to load
-        [self.loadedRestaurants addObject:[self.restaurants objectAtIndex:self.restaurantLoadedIndex]];
-        self.restaurantLoadedIndex += 1;
-        
-        // Add the view and set it up
-        [self insertSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1] belowSubview:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 2]];
-        [self setupConstraintsForCard:[self.loadedRestaurants objectAtIndex:MAX_BUFFER_SIZE - 1]];
-        
-        [self layoutIfNeeded];
-    }
-
-    // Check to see if the buttons should be enabled or not
-    [self checkButtons];
+    // Do action
 }
 
+#warning incomplete - yuck action needs to be implemented
 -(void)swipedDownWithCard:(UIView *)card {
+    // Load the next card
+    [self loadNextCard];
+    
+    // Yuck action
+    // Add it to list of yucks
+    
+}
+
+-(void)loadNextCard {
     // Remove the top card
     [self.loadedRestaurants removeObjectAtIndex:0];
     
@@ -348,7 +329,10 @@
         
         [self layoutIfNeeded];
     }
-    
+    else {
+        // If we have no more restaurants go get more from the datasource
+        [self.delegate getMoreRestaurants];
+    }
     // Check to see if the buttons should be enabled or not
     [self checkButtons];
 

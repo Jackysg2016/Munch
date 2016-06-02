@@ -68,6 +68,7 @@
     _titleLabel.textColor = [UIColor blackColor];
     _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:21];
+    _titleLabel.minimumScaleFactor = 0.5;
     
     // Cusine Type Label
     _cusineLabel = [[UILabel alloc]init];
@@ -75,6 +76,7 @@
     _cusineLabel.translatesAutoresizingMaskIntoConstraints = NO;
     _cusineLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:17];
     _cusineLabel.textColor = [UIColor colorWithRed:0.464 green:0.465 blue:0.464 alpha:1];
+    _cusineLabel.minimumScaleFactor = 0.5;
     
     // Price Label
     _priceLabel = [[UILabel alloc] init];
@@ -117,11 +119,14 @@
     
     // Cusine Label
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.priceLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1 constant:-16]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.cusineLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    
     
     // Title Label
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.cusineLabel attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1 constant:-16]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     
     // ImageView
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeWidth multiplier:1 constant:-8]];

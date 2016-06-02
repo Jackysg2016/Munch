@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RestaurantCardFactoryDataSource <NSObject>
+
+-(void)getMoreRestaurants;
+
+@end
+
 @interface RestaurantCardFactory : UIView
 
 @property (nonatomic) NSArray *data;
+@property (nonatomic) id<RestaurantCardFactoryDataSource> delegate;
 
 -(void)loadRestaurantCardsWithData:(NSArray*)data;
+-(void)resetCardsWithData:(NSArray *)data;
+
 
 @end
