@@ -2,7 +2,7 @@
 //  Restaurant+CoreDataProperties.h
 //  Munch
 //
-//  Created by Taylor Benna on 2016-06-01.
+//  Created by Taylor Benna on 2016-06-02.
 //  Copyright © 2016 Enoch Ng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,13 +16,16 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Restaurant (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *address;
+@property (nullable, nonatomic, retain) NSString *categories;
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nonatomic) int64_t pricing;
 @property (nonatomic) float rating;
 @property (nullable, nonatomic, retain) NSString *verbalAddress;
-@property (nullable, nonatomic, retain) NSString *categories;
+@property (nonatomic) double distance;
+@property (nullable, nonatomic, retain) NSString *ratingURL;
+@property (nullable, nonatomic, retain) NSString *phoneNumber;
 @property (nullable, nonatomic, retain) NSSet<Deal *> *deals;
 @property (nullable, nonatomic, retain) NSSet<Image *> *imageURLs;
 

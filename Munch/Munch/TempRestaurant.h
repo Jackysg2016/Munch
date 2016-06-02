@@ -23,6 +23,9 @@
 @property (nonatomic) NSString *categories;
 @property (nonatomic) NSSet<Deal *> *deals;
 @property (nonatomic) NSString *imageURL;
+@property (nonatomic) NSString *phoneNumber;
+@property (nonatomic) NSNumber *distance;
+@property (nonatomic) NSString *ratingURL;
 
 
 - (instancetype)initWithInfo:(NSDictionary *)info;
