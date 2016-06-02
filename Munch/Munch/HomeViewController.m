@@ -106,7 +106,7 @@
                                                   
                                               }
                                               
-                                              
+                                              self.tabBarController.selectedIndex = 1;
                                               
                                           }];
                      }];

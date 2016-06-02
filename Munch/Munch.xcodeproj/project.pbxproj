@@ -30,6 +30,7 @@
 		773935A31CFE26470046ECEC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773935A21CFE26470046ECEC /* HomeViewController.m */; };
 		773935A61CFE35A30046ECEC /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773935A51CFE35A30046ECEC /* SettingsViewController.m */; };
 		777B739B1CFF85A600623DFE /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B739A1CFF85A600623DFE /* CategoryCell.m */; };
+		777B73A11CFFA87400623DFE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B73A01CFFA87400623DFE /* DetailViewController.m */; };
 		77AFACC71CFD7B4C001850AC /* MunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AFACC61CFD7B4C001850AC /* MunchViewController.m */; };
 		77B382991CFF582400FED4DC /* FilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B382981CFF582400FED4DC /* FilterView.m */; };
 		77B535201CFCB99A004C0A5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5351F1CFCB99A004C0A5E /* main.m */; };
@@ -100,6 +101,8 @@
 		773935A51CFE35A30046ECEC /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		777B73991CFF85A600623DFE /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		777B739A1CFF85A600623DFE /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
+		777B739F1CFFA87400623DFE /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		777B73A01CFFA87400623DFE /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		77AFACC51CFD7B4C001850AC /* MunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MunchViewController.h; sourceTree = "<group>"; };
 		77AFACC61CFD7B4C001850AC /* MunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MunchViewController.m; sourceTree = "<group>"; };
 		77B382971CFF582400FED4DC /* FilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterView.h; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 				340ED43F1CFCE8B300609428 /* YelpClient.m */,
 				773935A41CFE35A30046ECEC /* SettingsViewController.h */,
 				773935A51CFE35A30046ECEC /* SettingsViewController.m */,
+				777B739F1CFFA87400623DFE /* DetailViewController.h */,
+				777B73A01CFFA87400623DFE /* DetailViewController.m */,
 				773935A11CFE26470046ECEC /* HomeViewController.h */,
 				773935A21CFE26470046ECEC /* HomeViewController.m */,
 				77B382971CFF582400FED4DC /* FilterView.h */,
@@ -408,6 +413,7 @@
 				7724961F1CFD15D200F7972B /* UserSettings+CoreDataProperties.m in Sources */,
 				77AFACC71CFD7B4C001850AC /* MunchViewController.m in Sources */,
 				7724961B1CFD15D200F7972B /* Filter+CoreDataProperties.m in Sources */,
+				777B73A11CFFA87400623DFE /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
