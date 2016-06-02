@@ -16,24 +16,19 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Restaurant (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *address;
-@property (nullable, nonatomic, retain) NSNumber *latitude;
-@property (nullable, nonatomic, retain) NSNumber *longitude;
+@property (nonatomic) double latitude;
+@property (nonatomic) double longitude;
 @property (nullable, nonatomic, retain) NSString *name;
-@property (nullable, nonatomic, retain) NSNumber *pricing;
-@property (nullable, nonatomic, retain) NSNumber *rating;
+@property (nonatomic) int64_t pricing;
+@property (nonatomic) float rating;
 @property (nullable, nonatomic, retain) NSString *verbalAddress;
-@property (nullable, nonatomic, retain) NSSet<MNCCategory *> *categories;
+@property (nullable, nonatomic, retain) NSString *categories;
 @property (nullable, nonatomic, retain) NSSet<Deal *> *deals;
 @property (nullable, nonatomic, retain) NSSet<Image *> *imageURLs;
 
 @end
 
 @interface Restaurant (CoreDataGeneratedAccessors)
-
-- (void)addCategoriesObject:(MNCCategory *)value;
-- (void)removeCategoriesObject:(MNCCategory *)value;
-- (void)addCategories:(NSSet<MNCCategory *> *)values;
-- (void)removeCategories:(NSSet<MNCCategory *> *)values;
 
 - (void)addDealsObject:(Deal *)value;
 - (void)removeDealsObject:(Deal *)value;

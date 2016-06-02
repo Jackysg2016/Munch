@@ -67,21 +67,13 @@
 
     newCard.distanceLabel.text = restaurant.verbalAddress;
     
+
+
     
-    // This needs to be changed to grab a category or something
-    // MNCCategory *category = [restaurant.categories anyObject];
     
-    NSMutableArray *allCategoryNames = [NSMutableArray array];
+    newCard.cusineLabel.text = restaurant.categories;
     
-    for (MNCCategory *cat in [restaurant.categories allObjects]) {
-        [allCategoryNames addObject:cat.name];
-    }
-    
-    NSString *categoryString = [allCategoryNames componentsJoinedByString:@", "];
-    
-    newCard.cusineLabel.text = categoryString;
-    
-    newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %@", restaurant.rating ];
+    newCard.priceLabel.text = [NSString stringWithFormat:@"Rating: %.1f", restaurant.rating ];
     
     Image *img = [restaurant.imageURLs anyObject];
     [self downloadImageForCard:newCard withURLString:img.imageURL];

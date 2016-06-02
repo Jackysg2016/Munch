@@ -9,7 +9,6 @@
 #import "Restaurant.h"
 #import "Deal.h"
 #import "Image.h"
-#import "MNCCategory.h"
 
 @implementation Restaurant
 
@@ -19,19 +18,17 @@
         
         self.name = info[@"name"];
         self.address = [info[@"location"][@"address"] firstObject];
-        self.latitude = @([info[@"location"][@"coordinate"][@"latitude"] doubleValue]);
-        self.longitude = @([info[@"location"][@"coordinate"][@"longitude"] doubleValue]);
-        self.rating = @([info[@"rating"] floatValue]);
+        self.latitude = [info[@"location"][@"coordinate"][@"latitude"] doubleValue];
+        self.longitude = [info[@"location"][@"coordinate"][@"longitude"] doubleValue];
+        self.rating = [info[@"rating"] floatValue];
         self.verbalAddress = info[@"location"][@"cross_streets"];
         
+        NSMutableArray *categoryArray = [[NSMutableArray alloc] init];
+        
         for (NSArray *cat in info[@"categories"]) {
-            
-            MNCCategory *cate = [[MNCCategory alloc] initWithEntity:[NSEntityDescription entityForName:@"Category" inManagedObjectContext:context] insertIntoManagedObjectContext:context];
-            cate.name = [cat firstObject];
-            cate.searchString = cat[1];
-            
-            [self addCategoriesObject:cate];
+            [categoryArray addObject:[cat firstObject]];
         }
+        self.categories = [categoryArray componentsJoinedByString:@", "];
         
         Image *img = [[Image alloc] initWithEntity:[NSEntityDescription entityForName:@"Image" inManagedObjectContext:context] insertIntoManagedObjectContext:context];
         img.imageURL = info[@"image_url"];
@@ -41,6 +38,5 @@
     }
     return self;
 }
-
 
 @end

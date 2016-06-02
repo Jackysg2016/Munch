@@ -1,19 +1,13 @@
 //
-//  CategoryCell.m
+//  DetailViewController.h
 //  Munch
 //
 //  Created by Enoch Ng on 2016-06-01.
 //  Copyright © 2016 Enoch Ng. All rights reserved.
 //
 
-#import "CategoryCell.h"
+#import <UIKit/UIKit.h>
 
-@interface CategoryCell ()
-
-
-@end
-
-@implementation CategoryCell
+@interface DetailViewController : UIViewController
 
 @end
-
