@@ -253,6 +253,7 @@
 //CLOSE FILTER FUNCTION
 -(void)closeFilter{
     
+    
     self.filterHeightConstraint.constant = 0.0;
     
     [UIView animateWithDuration:0.7
@@ -324,6 +325,7 @@
         if (CGRectContainsPoint(self.dimView.frame, touchLocation))
         {
             [self closeFilter];
+            [self loadRestaurantsFromYelp];
         }
     }
     
