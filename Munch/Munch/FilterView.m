@@ -144,4 +144,9 @@
     }
 }
 
+-(IBAction)clearButtonPressed:(UIButton *)sender{
+    self.thisFilter.pickedCategories = nil;
+    [self.categoryCollectionView reloadData];
+}
+
 @end

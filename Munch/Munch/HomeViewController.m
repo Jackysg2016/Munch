@@ -115,9 +115,9 @@
 }
 
 -(void)makeFilterDrop {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    [defaults setBool:YES forKey:@"dropFilter"];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    
+//    [defaults setBool:YES forKey:@"dropFilter"];
 }
 
 -(void)holdReleaseOutside:(UIButton *)sender{

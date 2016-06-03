@@ -79,18 +79,22 @@
     [self.view addSubview:self.spinner];
     
     //Enochs stuff//
-    self.filterView.layer.cornerRadius = 7;
-    self.filterView.layer.shadowRadius = 4;
-    self.filterView.layer.shadowOpacity = 0.2;
-    self.filterView.layer.shadowOffset = CGSizeMake(0.0f, 3.0);
+//    self.filterView.layer.cornerRadius = 7;
+//    self.filterView.layer.shadowRadius = 4;
+//    self.filterView.layer.shadowOpacity = 0.2;
+//    self.filterView.layer.shadowOffset = CGSizeMake(0.0f, 3.0);
 
     NSArray *array;
    [self.filterView setUpCategoryArray:array];
     
     self.restaurantFactory.delegate = self;
 
-  
-    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults boolForKey:@"dropFilter"]) {
+        [self openFilter];
+        [defaults setBool:NO forKey:@"dropFilter"];
+    }
+   
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -100,21 +104,8 @@
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"UserSettings"];
     NSArray *userSettingsDataArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     UserSettings *userSettings = [userSettingsDataArray firstObject];
-    
-    if(userSettings.sessionType == 0){
-        [self closeFilter];
-    } else {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        if([defaults boolForKey:@"dropFilter"]) {
-            [self openFilter];
-            [defaults setBool:NO forKey:@"dropFilter"];
 
-        }
-        
-    }
     
- 
-
     self.usingFilter = userSettings.lastFilter;
 
 }
