@@ -27,6 +27,7 @@
 @implementation DetailViewController
 
 -(void)viewDidLoad{
+
     
     NSString *phoneNumber = self.receivedRestaurant.phoneNumber;
     if(phoneNumber) {

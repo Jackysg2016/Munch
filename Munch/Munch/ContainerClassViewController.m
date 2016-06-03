@@ -9,11 +9,14 @@
 #import "ContainerClassViewController.h"
 #import "DetailViewController.h"
 
+@interface ContainerClassViewController ()
+
+@end;
+
+
 @implementation ContainerClassViewController
 
 -(void)viewDidLoad{
-    
-
 
 }
 
