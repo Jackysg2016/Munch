@@ -107,7 +107,7 @@
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         selectedCell.imageView.alpha = 0.5;
+                         selectedCell.imageView.alpha = 1;
                          selectedCell.imageView.layer.transform = CATransform3DMakeScale(1.1,1.1, 1);
                      }
                      completion:^(BOOL finished) {

@@ -36,8 +36,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *filterTabButton;
 @property (weak, nonatomic) IBOutlet UIView *dimView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterHeightConstraint;
-@property (weak, nonatomic) IBOutlet UIView *labelBar1;
-@property (weak, nonatomic) IBOutlet UIView *labelBar2;
+@property (weak, nonatomic) IBOutlet UIView *line1;
+@property (weak, nonatomic) IBOutlet UIView *line2;
+
 @property (nonatomic) NSNumber *offset;
 
 @property (nonatomic) Filter *usingFilter;
@@ -261,6 +262,8 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.dimView.alpha = 0.0;
+                         self.line1.alpha = 0.0;
+                         self.line2.alpha = 0.0;
                      }
                      completion:^(BOOL finished) {
                          
@@ -288,6 +291,8 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.dimView.alpha = 0.2;
+                         self.line1.alpha = 1.0;
+                         self.line2.alpha = 1.0;
                          
                      }
                      completion:^(BOOL finished) {
