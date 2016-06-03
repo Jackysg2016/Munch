@@ -103,6 +103,7 @@
                                               } else if([sender isEqual:self.cravieButton]){
                                                   [self updateSession:2];
                                                   NSLog(@"changed to cravie mode %lli", self.userSettings.sessionType);
+                                                  [self makeFilterDrop];
                                                   
                                               }
                                               
@@ -111,6 +112,12 @@
                                           }];
                      }];
     
+}
+
+-(void)makeFilterDrop {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setBool:YES forKey:@"dropFilter"];
 }
 
 -(void)holdReleaseOutside:(UIButton *)sender{
@@ -133,6 +140,7 @@
                                           }];
                      }];
 }
+
 
 
 

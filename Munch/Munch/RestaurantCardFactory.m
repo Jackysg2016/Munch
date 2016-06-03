@@ -50,6 +50,7 @@
         _loadedRestaurants = [NSMutableArray array];
         _verticalOffset = 0;
         self.buttonShrinkRatio = 0.8;
+        [self checkButtons];
     }
     return self;
 }
@@ -302,7 +303,7 @@
 }
 // This is so that when there are no items left we cannot press a button and crash the app
 -(void)checkButtons {
-    if (self.loadedRestaurants.count == 0) {
+    if (!self.loadedRestaurants.count) {
         self.yukButton.enabled = NO;
         self.nopeButton.enabled = NO;
         self.munchNowButton.enabled = NO;
@@ -332,7 +333,6 @@
                                     repeats:NO];
 }
 
-#warning incomplete - this is where the action should be set
 -(void)swipedLeftWithCard:(UIView *)card {
     // Load the next card
     [self loadNextCard];

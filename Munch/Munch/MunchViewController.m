@@ -97,8 +97,13 @@
     if(userSettings.sessionType == 0){
         [self closeFilter];
     } else {
-        [self openFilter];
-       
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        if([defaults boolForKey:@"dropFilter"]) {
+            [self openFilter];
+            [defaults setBool:NO forKey:@"dropFilter"];
+
+        }
+        
     }
     
  
