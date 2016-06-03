@@ -55,7 +55,7 @@
 -(void)layoutSubviews {
     [super layoutSubviews];
     
-    self.imageView.frame = CGRectMake(0, 0, 300, 300);
+    self.imageView.frame = CGRectMake(0, 0, 300, 200);
     self.imageView.center = CGPointMake(self.bounds.size.height/2, self.bounds.size.width/2);
 }
 

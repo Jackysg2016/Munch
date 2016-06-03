@@ -22,6 +22,22 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ratingImage;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
+@property (nonatomic) MKDirectionsResponse *walking;
+@property (nonatomic) MKDirectionsResponse *driving;
+@property (nonatomic) BOOL isWalking;
+
+
+
+@property (weak, nonatomic) IBOutlet UIView *buttonContainer;
+@property (weak, nonatomic) IBOutlet UIView *callButtonContainerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *callButtonLeadingConstraint;
+@property (weak, nonatomic) IBOutlet UIView *munchNowContainerView;
+@property (weak, nonatomic) IBOutlet UIButton *munchNowDynamicButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hackViewWidthConstraint;
+
+
+
+
 @end
 
 @implementation DetailViewController
@@ -33,12 +49,18 @@
     if(phoneNumber) {
         self.phoneNumberURLString = [@"telprompt:://" stringByAppendingString:phoneNumber];
         [self.callButton addTarget:self action:@selector(holdDown:) forControlEvents:UIControlEventTouchDown];
-        [self.callButton addTarget:self action:@selector(holdRelease:) forControlEvents:UIControlEventTouchUpInside];
+        [self.callButton addTarget:self action:@selector(holdReleasePhone:) forControlEvents:UIControlEventTouchUpInside];
         [self.callButton addTarget:self action:@selector(holdReleaseOutside:) forControlEvents:UIControlEventTouchUpOutside];
         self.callButton.adjustsImageWhenHighlighted = NO;
     } else {
         self.callButton.enabled = NO;
     }
+    
+    [self.munchNowDynamicButton addTarget:self action:@selector(holdDown:) forControlEvents:UIControlEventTouchDown];
+    [self.munchNowDynamicButton addTarget:self action:@selector(holdRelease:) forControlEvents:UIControlEventTouchUpInside];
+    [self.munchNowDynamicButton addTarget:self action:@selector(holdReleaseOutside:) forControlEvents:UIControlEventTouchUpOutside];
+    self.munchNowDynamicButton.adjustsImageWhenHighlighted = NO;
+    
 
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -60,10 +82,27 @@
     [self.mapView setRegion:region animated:YES];
     
     self.mapView.showsPointsOfInterest = YES;
+    
+    self.isWalking = YES;
 
+    
+    if(self.showMunchNowButton){
+        self.munchNowContainerView.alpha = 1.0;
+        self.callButtonLeadingConstraint.constant = 0.0;
+    } else {
+        self.munchNowContainerView.alpha = 0.0;
+       // self.callButtonLeadingConstraint.constant = self.buttonContainer.frame.size.width/2 - self.callButton.frame.size.width/2;
+//        
+        self.hackViewWidthConstraint.constant = self.buttonContainer.frame.size.width/4 - self.callButton.frame.size.width/2;
+    }
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+
+   
+    
+    
         [self zoomToFitMapAnnotations:self.mapView];
     
     MKPlacemark *source = [[MKPlacemark alloc]initWithCoordinate:CLLocationCoordinate2DMake(self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude) addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
@@ -76,57 +115,89 @@
     MKMapItem *distMapItem = [[MKMapItem alloc]initWithPlacemark:destination];
     [distMapItem setName:@""];
     
-    
     MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
-    
     request.source = srcMapItem;
-    
     request.destination = distMapItem ;
     request.requestsAlternateRoutes = YES;
     request.transportType = MKDirectionsTransportTypeWalking;
     MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
-
-    
     [directions calculateDirectionsWithCompletionHandler:
      ^(MKDirectionsResponse *response, NSError *error) {
          if (error) {
              // Handle Error
+             NSLog(@"error in walking");
          } else {
-             [self showRoute:response];
+             self.walking = response;
+             
+             MKDirectionsRequest *request2 = [[MKDirectionsRequest alloc] init];
+             request2.source = srcMapItem;
+             request2.destination = distMapItem ;
+             request2.requestsAlternateRoutes = YES;
+             request2.transportType = MKDirectionsTransportTypeAutomobile;
+             MKDirections *directions2 = [[MKDirections alloc] initWithRequest:request2];
+             [directions2 calculateDirectionsWithCompletionHandler:
+              ^(MKDirectionsResponse *response, NSError *error) {
+                  if (error) {
+                      // Handle Error
+                      NSLog(@"error in driving");
+                  } else {
+                      self.driving = response;
+                      
+                      
+                      
+                      [self processRoutesToDetermineOnMap];
+                  }
+              }];
+             
          }
      }];
     
 }
 
--(void)showRoute:(MKDirectionsResponse *)response
+
+
+
+-(void)processRoutesToDetermineOnMap
 {
-    //    for (MKRoute *route in response.routes)
-    //    {
-    //        [self.mapView
-    //         addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
-    //    }
-    //
-    
-//    MKRoute *route = response.routes[0];
-//    [self.mapView
-//     addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
-//    
-    
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"expectedTravelTime"
                                                                    ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    
-    NSArray *sortedRoutes = [response.routes sortedArrayUsingDescriptors:sortDescriptors];
-    
-    MKRoute *route = sortedRoutes[0];
-    [self.mapView
-     addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
-    
-    float seconds = route.expectedTravelTime;
+    NSArray *sortedRoutesWalking = [self.walking.routes sortedArrayUsingDescriptors:sortDescriptors];
+        MKRoute *walkingRoute = sortedRoutesWalking[0];
+
+    float seconds = walkingRoute.expectedTravelTime;
     float minutes = seconds / 60;
     
-    self.distanceLabel.text = [NSString stringWithFormat:@"%1.0f mins",minutes + 3];
+    if(minutes < 30){
+    self.distanceLabel.text = [NSString stringWithFormat:@"%1.0f mins",minutes];
+        
+        [self.mapView
+         addOverlay:walkingRoute.polyline level:MKOverlayLevelAboveRoads];
     
+    } else {
+        
+    NSArray *sortedRoutesDriving = [self.driving.routes sortedArrayUsingDescriptors:sortDescriptors];
+    MKRoute *drivingRoute = sortedRoutesDriving[0];
+       
+        seconds = drivingRoute.expectedTravelTime;
+        minutes = seconds / 60;
+        float hours = minutes / 60;
+        
+        if(minutes < 60){
+            
+        self.distanceLabel.text = [NSString stringWithFormat:@"%1.0f min drive",minutes];
+        [self.mapView
+         addOverlay:drivingRoute.polyline level:MKOverlayLevelAboveRoads];
+            
+        } else {
+            
+            self.distanceLabel.text = [NSString stringWithFormat:@"%1.1f hr drive",hours];
+            [self.mapView
+             addOverlay:drivingRoute.polyline level:MKOverlayLevelAboveRoads];
+        
+        }
+        
+    }
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
@@ -141,6 +212,8 @@
     renderer.lineWidth = 3.0;
     
     return renderer;
+    
+    
 }
 
 - (IBAction)backButtonPressed:(UIButton *)sender {
@@ -180,7 +253,7 @@
     
 }
 
--(void)holdRelease:(UIButton *)sender{
+-(void)holdReleasePhone:(UIButton *)sender{
     [UIView animateWithDuration:0.1
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -200,6 +273,27 @@
                                               //makes phone call
                                               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.phoneNumberURLString]];
                                               
+                                              
+                                          }];
+                     }];
+}
+
+-(void)holdRelease:(UIButton *)sender{
+    [UIView animateWithDuration:0.1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         sender.layer.transform = CATransform3DMakeScale(1.1,1.1, 1);
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [UIView animateWithDuration:0.05
+                                               delay:0
+                                             options:UIViewAnimationOptionCurveEaseOut
+                                          animations:^{
+                                              sender.layer.transform = CATransform3DMakeScale(1,1, 1);
+                                          }
+                                          completion:^(BOOL finished) {
                                               
                                           }];
                      }];
@@ -306,5 +400,35 @@
 }
 
 
+- (IBAction)munchNowPressed:(UIButton *)sender {
+    
+    [UIView animateWithDuration:1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.munchNowContainerView.alpha = 0.0;
+                     
+                                             }
+                     completion:^(BOOL finished) {
+                        
+
+                     }];
+    
+
+   // self.hackViewWidthConstraint.constant = self.buttonContainer.frame.size.width/2;
+    
+        [UIView animateWithDuration:1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+//                         self.hackViewWidthConstraint.constant = self.view.frame.size.width/2 - self.callButton.frame.size.width;
+                         self.callButtonContainerView.center = CGPointMake(self.view.frame.size.width/2 * 0.65,self.callButtonContainerView.center.y);
+                         
+                         [self.view setNeedsLayout];
+                         
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+}
 
 @end

@@ -15,6 +15,7 @@
 -(void)getMoreRestaurants;
 -(void)performSegueToDetailView;
 -(void)receivedRestaurant:(TempRestaurant *)tempRestaurant;
+-(void)justShowDetails;
 
 @end
 
