@@ -13,7 +13,7 @@
 
 @interface YumListTableViewController() <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic) NSArray *restaurants;
+@property (nonatomic) NSMutableArray *restaurants;
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -34,19 +34,16 @@
     NSError *error;
     [self.managedObjectContext save:&error];
     
+    self.restaurants = [[NSMutableArray alloc] init];
+    
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Restaurant"];
-    self.restaurants = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *tempRes = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    for (int i = (int)tempRes.count - 1; i >= 0; i--) {
+        [self.restaurants addObject:tempRes[i]];
+    }
     
     [self.tableView reloadData];
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerCell"];
-    return sectionView;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
