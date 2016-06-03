@@ -27,6 +27,7 @@
 		7724961F1CFD15D200F7972B /* UserSettings+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724960C1CFD15D200F7972B /* UserSettings+CoreDataProperties.m */; };
 		772496201CFD15D200F7972B /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 7724960E1CFD15D200F7972B /* UserSettings.m */; };
 		773935A31CFE26470046ECEC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773935A21CFE26470046ECEC /* HomeViewController.m */; };
+		77638D801D013E61004D0FD1 /* onLaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77638D7F1D013E61004D0FD1 /* onLaunchViewController.m */; };
 		777B739B1CFF85A600623DFE /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B739A1CFF85A600623DFE /* CategoryCell.m */; };
 		777B73A11CFFA87400623DFE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B73A01CFFA87400623DFE /* DetailViewController.m */; };
 		777B73A41CFFBFB300623DFE /* ContainerClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777B73A31CFFBFB300623DFE /* ContainerClassViewController.m */; };
@@ -95,6 +96,8 @@
 		7724960E1CFD15D200F7972B /* UserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettings.m; sourceTree = "<group>"; };
 		773935A11CFE26470046ECEC /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		773935A21CFE26470046ECEC /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		77638D7E1D013E61004D0FD1 /* onLaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = onLaunchViewController.h; sourceTree = "<group>"; };
+		77638D7F1D013E61004D0FD1 /* onLaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = onLaunchViewController.m; sourceTree = "<group>"; };
 		777B73991CFF85A600623DFE /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCell.h; sourceTree = "<group>"; };
 		777B739A1CFF85A600623DFE /* CategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCell.m; sourceTree = "<group>"; };
 		777B739F1CFFA87400623DFE /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -201,6 +204,8 @@
 				77B535251CFCB99A004C0A5E /* ViewController.m */,
 				340ED4301CFCC6E800609428 /* APIKeys.h */,
 				582A11061CFD1FC800BE7493 /* APIKeys.m */,
+				77638D7E1D013E61004D0FD1 /* onLaunchViewController.h */,
+				77638D7F1D013E61004D0FD1 /* onLaunchViewController.m */,
 				340ED43E1CFCE8B300609428 /* YelpClient.h */,
 				340ED43F1CFCE8B300609428 /* YelpClient.m */,
 				777B739F1CFFA87400623DFE /* DetailViewController.h */,
@@ -407,6 +412,7 @@
 				342745E01CFFD22A00CD2452 /* MNCCategory.m in Sources */,
 				77B535201CFCB99A004C0A5E /* main.m in Sources */,
 				342745B61CFF746B00CD2452 /* ParseData.swift in Sources */,
+				77638D801D013E61004D0FD1 /* onLaunchViewController.m in Sources */,
 				772496201CFD15D200F7972B /* UserSettings.m in Sources */,
 				7724961F1CFD15D200F7972B /* UserSettings+CoreDataProperties.m in Sources */,
 				77AFACC71CFD7B4C001850AC /* MunchViewController.m in Sources */,

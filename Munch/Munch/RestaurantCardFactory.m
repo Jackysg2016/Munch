@@ -332,7 +332,7 @@
     [self saveRestaurant];
     
     // Go to detailed view of restaurant
-    [NSTimer scheduledTimerWithTimeInterval:0.4
+    [NSTimer scheduledTimerWithTimeInterval:0.5
                                      target:self
                                    selector:@selector(cardClickedToPerformSegue)
                                    userInfo:nil
