@@ -143,8 +143,6 @@
     [self.loadedRestaurants removeAllObjects];
     [self.restaurants removeAllObjects];
     
-    self.restaurantLoadedIndex = 0;
-    
     [self loadRestaurantCardsWithData:data];
     
 }
@@ -153,6 +151,7 @@
 -(void)loadRestaurantCardsWithData:(NSArray*)data {
     // Actual Data
     self.data = data;
+    self.restaurantLoadedIndex = 0;
     
     // If we have less than the buffer size of restaurants left we don't want to try to load 3
     NSInteger numLoadedCardsCap;
