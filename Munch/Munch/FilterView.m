@@ -68,7 +68,11 @@
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    if([collectionView indexPathsForSelectedItems].count < 4) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -93,6 +97,7 @@
     NSError *error;
     [self.managedObjectContext save:&error];
 }
+
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
  
