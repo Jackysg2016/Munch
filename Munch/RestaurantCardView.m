@@ -312,6 +312,8 @@
 }
 
 -(void)yukClickAction {
+    
+    
     [self removeFromSuperview];
 }
 
