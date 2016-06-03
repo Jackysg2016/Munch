@@ -26,6 +26,18 @@
 @property (nonatomic) MKDirectionsResponse *driving;
 @property (nonatomic) BOOL isWalking;
 
+
+
+@property (weak, nonatomic) IBOutlet UIView *buttonContainer;
+@property (weak, nonatomic) IBOutlet UIView *callButtonContainerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *callButtonLeadingConstraint;
+@property (weak, nonatomic) IBOutlet UIView *munchNowContainerView;
+@property (weak, nonatomic) IBOutlet UIButton *munchNowDynamicButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *hackViewWidthConstraint;
+
+
+
+
 @end
 
 @implementation DetailViewController
@@ -37,12 +49,18 @@
     if(phoneNumber) {
         self.phoneNumberURLString = [@"telprompt:://" stringByAppendingString:phoneNumber];
         [self.callButton addTarget:self action:@selector(holdDown:) forControlEvents:UIControlEventTouchDown];
-        [self.callButton addTarget:self action:@selector(holdRelease:) forControlEvents:UIControlEventTouchUpInside];
+        [self.callButton addTarget:self action:@selector(holdReleasePhone:) forControlEvents:UIControlEventTouchUpInside];
         [self.callButton addTarget:self action:@selector(holdReleaseOutside:) forControlEvents:UIControlEventTouchUpOutside];
         self.callButton.adjustsImageWhenHighlighted = NO;
     } else {
         self.callButton.enabled = NO;
     }
+    
+    [self.munchNowDynamicButton addTarget:self action:@selector(holdDown:) forControlEvents:UIControlEventTouchDown];
+    [self.munchNowDynamicButton addTarget:self action:@selector(holdRelease:) forControlEvents:UIControlEventTouchUpInside];
+    [self.munchNowDynamicButton addTarget:self action:@selector(holdReleaseOutside:) forControlEvents:UIControlEventTouchUpOutside];
+    self.munchNowDynamicButton.adjustsImageWhenHighlighted = NO;
+    
 
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -67,9 +85,24 @@
     
     self.isWalking = YES;
 
+    
+    if(self.showMunchNowButton){
+        self.munchNowContainerView.alpha = 1.0;
+        self.callButtonLeadingConstraint.constant = 0.0;
+    } else {
+        self.munchNowContainerView.alpha = 0.0;
+       // self.callButtonLeadingConstraint.constant = self.buttonContainer.frame.size.width/2 - self.callButton.frame.size.width/2;
+//        
+        self.hackViewWidthConstraint.constant = self.buttonContainer.frame.size.width/4 - self.callButton.frame.size.width/2;
+    }
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+
+   
+    
+    
         [self zoomToFitMapAnnotations:self.mapView];
     
     MKPlacemark *source = [[MKPlacemark alloc]initWithCoordinate:CLLocationCoordinate2DMake(self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude) addressDictionary:[NSDictionary dictionaryWithObjectsAndKeys:@"",@"", nil] ];
@@ -220,7 +253,7 @@
     
 }
 
--(void)holdRelease:(UIButton *)sender{
+-(void)holdReleasePhone:(UIButton *)sender{
     [UIView animateWithDuration:0.1
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -240,6 +273,27 @@
                                               //makes phone call
                                               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.phoneNumberURLString]];
                                               
+                                              
+                                          }];
+                     }];
+}
+
+-(void)holdRelease:(UIButton *)sender{
+    [UIView animateWithDuration:0.1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         sender.layer.transform = CATransform3DMakeScale(1.1,1.1, 1);
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [UIView animateWithDuration:0.05
+                                               delay:0
+                                             options:UIViewAnimationOptionCurveEaseOut
+                                          animations:^{
+                                              sender.layer.transform = CATransform3DMakeScale(1,1, 1);
+                                          }
+                                          completion:^(BOOL finished) {
                                               
                                           }];
                      }];
@@ -346,5 +400,35 @@
 }
 
 
+- (IBAction)munchNowPressed:(UIButton *)sender {
+    
+    [UIView animateWithDuration:1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.munchNowContainerView.alpha = 0.0;
+                     
+                                             }
+                     completion:^(BOOL finished) {
+                        
+
+                     }];
+    
+
+   // self.hackViewWidthConstraint.constant = self.buttonContainer.frame.size.width/2;
+    
+        [UIView animateWithDuration:1
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+//                         self.hackViewWidthConstraint.constant = self.view.frame.size.width/2 - self.callButton.frame.size.width;
+                         self.callButtonContainerView.center = CGPointMake(self.view.frame.size.width/2 * 0.65,self.callButtonContainerView.center.y);
+                         
+                         [self.view setNeedsLayout];
+                         
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+}
 
 @end

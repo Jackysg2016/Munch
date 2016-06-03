@@ -410,9 +410,16 @@
 -(void)cardClickedToPerformSegue{
     
     [self.delegate receivedRestaurant:self.selected];
+    //[self.delegate ]
     [self.delegate performSegueToDetailView];
     
 
+}
+
+-(void)justShowDetails{
+    
+    [self.delegate justShowDetails];
+    
 }
 
 -(void)updateSelectedRestaurant{

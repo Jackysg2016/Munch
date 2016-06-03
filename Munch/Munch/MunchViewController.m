@@ -36,15 +36,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *filterTabButton;
 @property (weak, nonatomic) IBOutlet UIView *dimView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *filterHeightConstraint;
-@property (weak, nonatomic) IBOutlet UIView *labelBar1;
-@property (weak, nonatomic) IBOutlet UIView *labelBar2;
+@property (weak, nonatomic) IBOutlet UIView *line1;
+@property (weak, nonatomic) IBOutlet UIView *line2;
+
 @property (nonatomic) NSNumber *offset;
 
 @property (nonatomic) Filter *usingFilter;
 @property (nonatomic) TempRestaurant *selectedRestaurant;
 
 @property (nonatomic) UIActivityIndicatorView *spinner;
-
+@property (nonatomic) BOOL showMunchButton;
 
 @end
 
@@ -95,6 +96,7 @@
         [defaults setBool:NO forKey:@"dropFilter"];
     }
    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -107,6 +109,8 @@
 
     
     self.usingFilter = userSettings.lastFilter;
+    
+    self.showMunchButton = NO;
 
 }
 
@@ -261,6 +265,8 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.dimView.alpha = 0.0;
+                         self.line1.alpha = 0.0;
+                         self.line2.alpha = 0.0;
                      }
                      completion:^(BOOL finished) {
                          
@@ -288,6 +294,8 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          self.dimView.alpha = 0.2;
+                         self.line1.alpha = 1.0;
+                         self.line2.alpha = 1.0;
                          
                      }
                      completion:^(BOOL finished) {
@@ -344,9 +352,8 @@
         ContainerClassViewController *CCVC = (ContainerClassViewController *)segue.destinationViewController;
         
         CCVC.lastLocation = self.lastLocation;
-        
         CCVC.receivedRestaurant = self.selectedRestaurant;
-        
+        CCVC.showMunchNowButton = self.showMunchButton;
         
     }
     
@@ -356,6 +363,11 @@
     
     self.selectedRestaurant = tempRestaurant;
     
+}
+
+-(void)justShowDetails{
+     self.showMunchButton = YES;
+
 }
 
 @end
