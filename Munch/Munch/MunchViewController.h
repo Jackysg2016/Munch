@@ -12,5 +12,4 @@
 
 @property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
-
 @end

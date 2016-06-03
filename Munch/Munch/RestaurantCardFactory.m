@@ -50,6 +50,7 @@
         _loadedRestaurants = [NSMutableArray array];
         _verticalOffset = 0;
         self.buttonShrinkRatio = 0.8;
+        [self checkButtons];
     }
     return self;
 }
@@ -142,8 +143,6 @@
     [self.loadedRestaurants removeAllObjects];
     [self.restaurants removeAllObjects];
     
-    self.restaurantLoadedIndex = 0;
-    
     [self loadRestaurantCardsWithData:data];
     
 }
@@ -152,6 +151,7 @@
 -(void)loadRestaurantCardsWithData:(NSArray*)data {
     // Actual Data
     self.data = data;
+    self.restaurantLoadedIndex = 0;
     
     // If we have less than the buffer size of restaurants left we don't want to try to load 3
     NSInteger numLoadedCardsCap;
@@ -302,7 +302,7 @@
 }
 // This is so that when there are no items left we cannot press a button and crash the app
 -(void)checkButtons {
-    if (self.loadedRestaurants.count == 0) {
+    if (!self.loadedRestaurants.count) {
         self.yukButton.enabled = NO;
         self.nopeButton.enabled = NO;
         self.munchNowButton.enabled = NO;
@@ -332,7 +332,6 @@
                                     repeats:NO];
 }
 
-#warning incomplete - this is where the action should be set
 -(void)swipedLeftWithCard:(UIView *)card {
     // Load the next card
     [self loadNextCard];
