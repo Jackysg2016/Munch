@@ -230,9 +230,16 @@
     [self swipedDownWithCard:cardView];
     [cardView.overlay updateMode:RestaurantCardViewOverlayModeLeft];
     [UIView animateWithDuration:0.2 animations:^{
-        cardView.overlay.alpha = 1;
+        cardView.overlay.alpha = 0.5;
     } completion:^(BOOL finished) {
-        [cardView yukClickAction];
+        CGPoint finishPoint = CGPointMake(self.yukButton.center.x * 2, self.yukButton.center.y + cardView.frame.size.height);
+        [UIView animateWithDuration:0.3 animations:^{
+            cardView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+            cardView.center = finishPoint;
+            cardView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [cardView yukClickAction];
+        }];
     }];
 
 }
