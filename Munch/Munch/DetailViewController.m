@@ -58,6 +58,8 @@
     MKCoordinateSpan span = MKCoordinateSpanMake(0.003, 0.003);
     MKCoordinateRegion region = MKCoordinateRegionMake(self.lastLocation.coordinate, span);
     [self.mapView setRegion:region animated:YES];
+    
+    self.mapView.showsPointsOfInterest = YES;
 
 }
 
