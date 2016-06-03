@@ -82,7 +82,7 @@
     
     self.restaurantFactory.delegate = self;
 
-  
+   // [self openFilter];
     
 }
 
@@ -94,12 +94,14 @@
     NSArray *userSettingsDataArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     UserSettings *userSettings = [userSettingsDataArray firstObject];
     
-    if(userSettings.sessionType == 0){
-        [self closeFilter];
-    } else {
-        [self openFilter];
-       
-    }
+  //  [self openFilter];
+    
+//    if(userSettings.sessionType == 0){
+//        [self closeFilter];
+//    } else {
+//        [self openFilter];
+//       
+//    }
     
  
 

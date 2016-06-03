@@ -19,7 +19,8 @@
 @property (nonatomic) NSString *phoneNumberURLString;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *verbalLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *ratingImage;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
 @end
 
@@ -37,13 +38,10 @@
     } else {
         self.callButton.enabled = NO;
     }
-    
-    
-    
+
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
 
-    
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         //remember to add mapkit and update plist with NSLocationWhenInUseUsageDescription
         [self.locationManager requestWhenInUseAuthorization];
@@ -53,8 +51,8 @@
     
     self.imageView.image = self.receivedRestaurant.image;
     self.addressLabel.text = self.receivedRestaurant.address;
-    self.verbalLabel.text = self.receivedRestaurant.verbalAddress;
     self.nameLabel.text = self.receivedRestaurant.name;
+    [ self downloadRatingImageForCardwithURLString:self.receivedRestaurant.ratingURL];
 
     MKCoordinateSpan span = MKCoordinateSpanMake(0.003, 0.003);
     MKCoordinateRegion region = MKCoordinateRegionMake(self.lastLocation.coordinate, span);
@@ -121,13 +119,19 @@
     [self.mapView
      addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
     
+    float seconds = route.expectedTravelTime;
+    float minutes = seconds / 60;
+    
+    self.distanceLabel.text = [NSString stringWithFormat:@"%1.0f mins",minutes + 3];
+    
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
 {
     MKPolylineRenderer *renderer =
     [[MKPolylineRenderer alloc] initWithOverlay:overlay];
-    renderer.strokeColor = [UIColor colorWithRed:0.32 green:0.62 blue:0.97 alpha:1.0];
+    //renderer.strokeColor = [UIColor colorWithRed:0.32 green:0.62 blue:0.97 alpha:1.0];
+    renderer.strokeColor = [UIColor grayColor];
     NSMutableArray * lineDash = [[NSMutableArray alloc] init];
     [lineDash addObject:[NSNumber numberWithInt:5]];
     [renderer setLineDashPattern:lineDash];
@@ -282,5 +286,22 @@
     region = [mapView regionThatFits:region];
     [mapView setRegion:region animated:YES];
 }
+
+-(void)downloadRatingImageForCardwithURLString:(NSString *)urlString{
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (data) {
+            UIImage *image = [UIImage imageWithData:data];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.ratingImage.image = image;
+                });
+            }
+        }
+    }];
+    [task resume];
+    
+}
+
+
 
 @end
