@@ -168,6 +168,20 @@
                     [self.restaurantFactory resetCardsWithData:self.restaurants];
                     self.offset = @([self.offset integerValue] + self.restaurants.count);
                     
+                    if (self.restaurants.count == 0) {
+                        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"NO MORE?!"
+                                                                                       message:@"It seems we've run out of restaurants to show you! Try changing your categories for new options."
+                                                                                preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"OK FINE" style:UIAlertActionStyleCancel
+                                                                             handler:^(UIAlertAction * action) {}];
+                        
+                        [alert addAction:cancelAction];
+                        
+                        [self presentViewController:alert animated:YES completion:nil];
+
+                    }
+                    
                     [self.spinner stopAnimating];
                 }
                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -239,6 +253,7 @@
 //CLOSE FILTER FUNCTION
 -(void)closeFilter{
     
+    
     self.filterHeightConstraint.constant = 0.0;
     
     [UIView animateWithDuration:0.7
@@ -306,10 +321,11 @@
     UITouch *touch = [[event allTouches] anyObject];
     
     CGPoint touchLocation = [touch locationInView:self.view];
-    if (self.filterHeightConstraint.constant == self.view.frame.size.height * 0.8) {
+    if (self.filterHeightConstraint.constant > 0) {
         if (CGRectContainsPoint(self.dimView.frame, touchLocation))
         {
             [self closeFilter];
+            [self loadRestaurantsFromYelp];
         }
     }
     
