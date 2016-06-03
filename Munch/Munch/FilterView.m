@@ -134,9 +134,11 @@
     CategoryCell *currentCell = (CategoryCell *)cell;
     
     if ([self.thisFilter.pickedCategories containsObject:currentCategory]) {
+        currentCell.selected = YES;
         [collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
         currentCell.imageView.alpha = 0.5;
     } else {
+        currentCell.selected = NO;
         [collectionView deselectItemAtIndexPath:indexPath animated:NO];
         currentCell.imageView.alpha = 0.0;
     }
