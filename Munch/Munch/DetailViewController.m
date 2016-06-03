@@ -22,6 +22,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ratingImage;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
+@property (nonatomic) MKDirectionsResponse *walking;
+@property (nonatomic) MKDirectionsResponse *driving;
+@property (nonatomic) BOOL isWalking;
+
 @end
 
 @implementation DetailViewController
@@ -60,6 +64,8 @@
     [self.mapView setRegion:region animated:YES];
     
     self.mapView.showsPointsOfInterest = YES;
+    
+    self.isWalking = YES;
 
 }
 
@@ -76,57 +82,89 @@
     MKMapItem *distMapItem = [[MKMapItem alloc]initWithPlacemark:destination];
     [distMapItem setName:@""];
     
-    
     MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
-    
     request.source = srcMapItem;
-    
     request.destination = distMapItem ;
     request.requestsAlternateRoutes = YES;
     request.transportType = MKDirectionsTransportTypeWalking;
     MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
-
-    
     [directions calculateDirectionsWithCompletionHandler:
      ^(MKDirectionsResponse *response, NSError *error) {
          if (error) {
              // Handle Error
+             NSLog(@"error in walking");
          } else {
-             [self showRoute:response];
+             self.walking = response;
+             
+             MKDirectionsRequest *request2 = [[MKDirectionsRequest alloc] init];
+             request2.source = srcMapItem;
+             request2.destination = distMapItem ;
+             request2.requestsAlternateRoutes = YES;
+             request2.transportType = MKDirectionsTransportTypeAutomobile;
+             MKDirections *directions2 = [[MKDirections alloc] initWithRequest:request2];
+             [directions2 calculateDirectionsWithCompletionHandler:
+              ^(MKDirectionsResponse *response, NSError *error) {
+                  if (error) {
+                      // Handle Error
+                      NSLog(@"error in driving");
+                  } else {
+                      self.driving = response;
+                      
+                      
+                      
+                      [self processRoutesToDetermineOnMap];
+                  }
+              }];
+             
          }
      }];
     
 }
 
--(void)showRoute:(MKDirectionsResponse *)response
+
+
+
+-(void)processRoutesToDetermineOnMap
 {
-    //    for (MKRoute *route in response.routes)
-    //    {
-    //        [self.mapView
-    //         addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
-    //    }
-    //
-    
-//    MKRoute *route = response.routes[0];
-//    [self.mapView
-//     addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
-//    
-    
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"expectedTravelTime"
                                                                    ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    
-    NSArray *sortedRoutes = [response.routes sortedArrayUsingDescriptors:sortDescriptors];
-    
-    MKRoute *route = sortedRoutes[0];
-    [self.mapView
-     addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
-    
-    float seconds = route.expectedTravelTime;
+    NSArray *sortedRoutesWalking = [self.walking.routes sortedArrayUsingDescriptors:sortDescriptors];
+        MKRoute *walkingRoute = sortedRoutesWalking[0];
+
+    float seconds = walkingRoute.expectedTravelTime;
     float minutes = seconds / 60;
     
-    self.distanceLabel.text = [NSString stringWithFormat:@"%1.0f mins",minutes + 3];
+    if(minutes < 30){
+    self.distanceLabel.text = [NSString stringWithFormat:@"%1.0f mins",minutes];
+        
+        [self.mapView
+         addOverlay:walkingRoute.polyline level:MKOverlayLevelAboveRoads];
     
+    } else {
+        
+    NSArray *sortedRoutesDriving = [self.driving.routes sortedArrayUsingDescriptors:sortDescriptors];
+    MKRoute *drivingRoute = sortedRoutesDriving[0];
+       
+        seconds = drivingRoute.expectedTravelTime;
+        minutes = seconds / 60;
+        float hours = minutes / 60;
+        
+        if(minutes < 60){
+            
+        self.distanceLabel.text = [NSString stringWithFormat:@"%1.0f min drive",minutes];
+        [self.mapView
+         addOverlay:drivingRoute.polyline level:MKOverlayLevelAboveRoads];
+            
+        } else {
+            
+            self.distanceLabel.text = [NSString stringWithFormat:@"%1.1f hr drive",hours];
+            [self.mapView
+             addOverlay:drivingRoute.polyline level:MKOverlayLevelAboveRoads];
+        
+        }
+        
+    }
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
@@ -141,6 +179,8 @@
     renderer.lineWidth = 3.0;
     
     return renderer;
+    
+    
 }
 
 - (IBAction)backButtonPressed:(UIButton *)sender {
