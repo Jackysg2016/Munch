@@ -16,6 +16,7 @@
 -(void)swipedRightWithCard:(UIView*)card;
 -(void)cardClickedToPerformSegue;
 -(void)updateSelectedRestaurant;
+-(void)justShowDetails;
 
 @optional
 -(void)swipedUpWithCard:(UIView*)card;

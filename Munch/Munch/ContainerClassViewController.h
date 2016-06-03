@@ -15,5 +15,6 @@
 @property (nonatomic) CLLocation *lastLocation;
 @property (nonatomic) TempRestaurant *receivedRestaurant;
 
+@property (nonatomic) BOOL showMunchNowButton;
 
 @end

@@ -45,7 +45,7 @@
 @property (nonatomic) TempRestaurant *selectedRestaurant;
 
 @property (nonatomic) UIActivityIndicatorView *spinner;
-
+@property (nonatomic) BOOL showMunchButton;
 
 @end
 
@@ -96,6 +96,7 @@
         [defaults setBool:NO forKey:@"dropFilter"];
     }
    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -108,6 +109,8 @@
 
     
     self.usingFilter = userSettings.lastFilter;
+    
+    self.showMunchButton = NO;
 
 }
 
@@ -349,9 +352,8 @@
         ContainerClassViewController *CCVC = (ContainerClassViewController *)segue.destinationViewController;
         
         CCVC.lastLocation = self.lastLocation;
-        
         CCVC.receivedRestaurant = self.selectedRestaurant;
-        
+        CCVC.showMunchNowButton = self.showMunchButton;
         
     }
     
@@ -361,6 +363,11 @@
     
     self.selectedRestaurant = tempRestaurant;
     
+}
+
+-(void)justShowDetails{
+     self.showMunchButton = YES;
+
 }
 
 @end

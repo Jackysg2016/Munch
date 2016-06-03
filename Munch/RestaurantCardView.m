@@ -214,8 +214,10 @@
 -(void)isTapped:(UITapGestureRecognizer*)sender {
 
     if(sender.state == UIGestureRecognizerStateEnded){
+        [self.delegate justShowDetails];
         [self.delegate updateSelectedRestaurant];
         [self.delegate cardClickedToPerformSegue];
+        
     }
     
 }

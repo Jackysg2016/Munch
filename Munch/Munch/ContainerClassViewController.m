@@ -26,11 +26,11 @@
         
         DetailViewController *DVC = (DetailViewController *)segue.destinationViewController;
         
-       DVC.lastLocation = self.lastLocation;
+        DVC.lastLocation = self.lastLocation;
         
         DVC.receivedRestaurant = self.receivedRestaurant;
         
-        
+        DVC.showMunchNowButton = self.showMunchNowButton;
     }
     
 
