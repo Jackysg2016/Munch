@@ -43,6 +43,8 @@
 @property (nonatomic) Filter *usingFilter;
 @property (nonatomic) TempRestaurant *selectedRestaurant;
 
+@property (nonatomic) UIActivityIndicatorView *spinner;
+
 
 @end
 
@@ -70,6 +72,11 @@
     }
     
     self.offset = @0;
+    
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.center = CGPointMake(self.view.center.x, self.view.center.y * 0.6);
+    self.spinner.hidesWhenStopped = YES;
+    [self.view addSubview:self.spinner];
     
     //Enochs stuff//
     self.filterView.layer.cornerRadius = 7;
@@ -127,20 +134,17 @@
     
     if (self.lastLocation == nil) {
         self.lastLocation = currentLocation;
-        [self loadRestaurantsFromYelpWithReset:NO];
+        [self loadRestaurantsFromYelp];
     }
 //    
 //    self.lastLocation = currentLocation;
     
 }
 
--(void) loadRestaurantsFromYelpWithReset:(BOOL)reset {
+-(void) loadRestaurantsFromYelp {
     
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    spinner.center = CGPointMake(self.view.center.x, self.view.center.y * 0.6);
-    spinner.hidesWhenStopped = YES;
-    [self.view addSubview:spinner];
-    [spinner startAnimating];
+    
+    [self.spinner startAnimating];
     
     CLGeocoder *coder = [[CLGeocoder alloc] init];
     
@@ -165,18 +169,30 @@
                         [self.restaurants addObject:res];
                         
                     }
-                    
-                    if(reset) {
-                        [self.restaurantFactory resetCardsWithData:self.restaurants];
-                    } else {
-                        [self.restaurantFactory loadRestaurantCardsWithData:self.restaurants];
-                    }
+                    [self.restaurantFactory resetCardsWithData:self.restaurants];
                     self.offset = @([self.offset integerValue] + self.restaurants.count);
                     
-                    [spinner stopAnimating];
+                    [self.spinner stopAnimating];
                 }
                 failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"Restaurants didn't load! :(");
+                    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops!"
+                                                                                   message:@"It seems the restaurants didn't load properly! Did you want to try again?"
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"CANCEL" style:UIAlertActionStyleCancel
+                                                                          handler:^(UIAlertAction * action) {}];
+                    
+                    UIAlertAction* yesAction = [UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {
+                                                                      
+                                                                          [self loadRestaurantsFromYelp];
+                                                                      
+                                                                      }];
+
+                    [alert addAction:cancelAction];
+                    [alert addAction:yesAction];
+                    
+                    [self presentViewController:alert animated:YES completion:nil];
                 }];
     }];
 }
@@ -220,7 +236,7 @@
     } else {
         
         [self closeFilter];
-        [self loadRestaurantsFromYelpWithReset:YES];
+        [self loadRestaurantsFromYelp];
     }
 }
 
@@ -283,7 +299,7 @@
 #pragma mark - RestaurantCardFactoryDatasource methods -
 
 -(void)getMoreRestaurants {
-        [self loadRestaurantsFromYelpWithReset:NO];
+        [self loadRestaurantsFromYelp];
 }
 
 
