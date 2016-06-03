@@ -45,7 +45,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     
-    float gapTime = 0.2;
+    float gapTime = 0.1;
     
  [NSTimer scheduledTimerWithTimeInterval:0.13
                                      target:self
