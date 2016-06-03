@@ -22,6 +22,7 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pa-wx-apx">
                                 <rect key="frame" x="0.0" y="60" width="600" height="540"/>
+                                <color key="backgroundColor" red="1" green="0.80784313730000001" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <segue destination="bym-OZ-bWS" kind="embed" id="Edu-bw-9Zp"/>
                                 </connections>
@@ -200,7 +201,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.80784313730000001" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2Pa-wx-apx" firstAttribute="centerX" secondItem="cAc-bj-c4z" secondAttribute="centerX" id="0X0-Jw-8bs"/>
                             <constraint firstItem="2Pa-wx-apx" firstAttribute="top" secondItem="zfr-Pi-IAg" secondAttribute="bottom" id="4qL-zp-F99"/>
@@ -317,10 +318,6 @@
                                             <constraint firstItem="RxC-im-cS5" firstAttribute="centerX" secondItem="Kbh-Z9-sSO" secondAttribute="centerX" id="hcr-gZ-oF5"/>
                                             <constraint firstItem="i0s-Gi-TYK" firstAttribute="centerY" secondItem="Kbh-Z9-sSO" secondAttribute="centerY" multiplier="0.546" id="zhf-NU-vtL"/>
                                         </constraints>
-                                    </view>
-                                    <view alpha="0.20000000000000001" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yVM-zS-R4c" userLabel="DimView">
-                                        <rect key="frame" x="0.0" y="-11" width="600" height="491"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -477,6 +474,10 @@
                                     <outlet property="categoryCollectionView" destination="30O-bX-2Ht" id="7Rg-pn-BHd"/>
                                 </connections>
                             </view>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yVM-zS-R4c" userLabel="DimView">
+                                <rect key="frame" x="0.0" y="450" width="600" height="41"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWV-k5-u9k">
                                 <rect key="frame" x="0.0" y="450" width="120" height="27"/>
                                 <state key="normal" title="Filters" image="tab">
@@ -497,10 +498,17 @@
                             <constraint firstItem="n5x-aA-xW3" firstAttribute="centerX" secondItem="HTg-zm-GwX" secondAttribute="centerX" id="IC3-G4-55n"/>
                             <constraint firstItem="n5x-aA-xW3" firstAttribute="centerY" secondItem="HTg-zm-GwX" secondAttribute="centerY" multiplier="1.04" id="NIh-D7-15T"/>
                             <constraint firstItem="xWV-k5-u9k" firstAttribute="height" secondItem="HTg-zm-GwX" secondAttribute="height" multiplier="0.05" id="NaJ-pV-N91"/>
+                            <constraint firstItem="yVM-zS-R4c" firstAttribute="centerY" secondItem="HTg-zm-GwX" secondAttribute="centerY" id="WiA-lZ-urS"/>
+                            <constraint firstItem="yVM-zS-R4c" firstAttribute="centerX" secondItem="HTg-zm-GwX" secondAttribute="centerX" id="diI-3I-VAD"/>
                             <constraint firstItem="xWV-k5-u9k" firstAttribute="top" secondItem="CWP-Lb-zR0" secondAttribute="bottom" id="eth-Zb-PdS"/>
                             <constraint firstItem="n5x-aA-xW3" firstAttribute="height" secondItem="HTg-zm-GwX" secondAttribute="height" id="g2f-jJ-oOk"/>
+                            <constraint firstItem="yVM-zS-R4c" firstAttribute="top" secondItem="CWP-Lb-zR0" secondAttribute="bottom" id="h26-fO-fWe"/>
                             <constraint firstItem="2Al-Ib-eHe" firstAttribute="height" secondItem="HTg-zm-GwX" secondAttribute="height" multiplier="0.02" id="hfQ-by-TQh"/>
+                            <constraint firstItem="qDd-qO-naz" firstAttribute="top" secondItem="yVM-zS-R4c" secondAttribute="bottom" id="hg6-7L-8PX"/>
                             <constraint firstItem="n5x-aA-xW3" firstAttribute="width" secondItem="HTg-zm-GwX" secondAttribute="width" id="izf-Wb-BaI"/>
+                            <constraint firstItem="yVM-zS-R4c" firstAttribute="top" secondItem="CWP-Lb-zR0" secondAttribute="bottom" id="pL6-8l-aVe"/>
+                            <constraint firstItem="qDd-qO-naz" firstAttribute="top" secondItem="yVM-zS-R4c" secondAttribute="bottom" id="v9v-Ld-rDT"/>
+                            <constraint firstItem="yVM-zS-R4c" firstAttribute="width" secondItem="HTg-zm-GwX" secondAttribute="width" id="vDH-DD-pBZ"/>
                             <constraint firstItem="CWP-Lb-zR0" firstAttribute="width" secondItem="HTg-zm-GwX" secondAttribute="width" id="wVB-gV-jRa"/>
                             <constraint firstItem="xWV-k5-u9k" firstAttribute="centerX" secondItem="HTg-zm-GwX" secondAttribute="centerX" id="yxR-Uz-Jc9"/>
                         </constraints>
@@ -509,6 +517,9 @@
                                 <exclude reference="hfQ-by-TQh"/>
                                 <exclude reference="5Zz-ZK-Y7S"/>
                                 <exclude reference="yxR-Uz-Jc9"/>
+                                <exclude reference="WiA-lZ-urS"/>
+                                <exclude reference="h26-fO-fWe"/>
+                                <exclude reference="hg6-7L-8PX"/>
                             </mask>
                         </variation>
                     </view>

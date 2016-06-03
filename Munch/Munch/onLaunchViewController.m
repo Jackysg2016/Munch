@@ -45,49 +45,51 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     
+    float gapTime = 0.2;
+    
  [NSTimer scheduledTimerWithTimeInterval:0.13
                                      target:self
                                    selector:@selector(mPop)
                                    userInfo:nil
                                     repeats:NO];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.26
+    [NSTimer scheduledTimerWithTimeInterval:0.26+gapTime*1
                                      target:self
                                    selector:@selector(uPop)
                                    userInfo:nil
                                     repeats:NO];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.39
+    [NSTimer scheduledTimerWithTimeInterval:0.39+gapTime*2
                                      target:self
                                    selector:@selector(nPop)
                                    userInfo:nil
                                     repeats:NO];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.42
+    [NSTimer scheduledTimerWithTimeInterval:0.42+gapTime*3
                                      target:self
                                    selector:@selector(cPop)
                                    userInfo:nil
                                     repeats:NO];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.55
+    [NSTimer scheduledTimerWithTimeInterval:0.55+gapTime*4
                                      target:self
                                    selector:@selector(hPop)
                                    userInfo:nil
                                     repeats:NO];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.68
+    [NSTimer scheduledTimerWithTimeInterval:0.68+gapTime*5
                                      target:self
                                    selector:@selector(exPop)
                                    userInfo:nil
                                     repeats:NO];
     
-    [NSTimer scheduledTimerWithTimeInterval:1.3
+    [NSTimer scheduledTimerWithTimeInterval:1.3+gapTime*5
                                      target:self
                                    selector:@selector(logoPop)
                                    userInfo:nil
                                     repeats:NO];
     
-    [NSTimer scheduledTimerWithTimeInterval:2
+    [NSTimer scheduledTimerWithTimeInterval:2+gapTime*5
                                      target:self
                                    selector:@selector(splitScreenAnimation)
                                    userInfo:nil
@@ -138,7 +140,7 @@
 
 -(void)popLogoAnimation:(UIImageView *)imageView{
     
-    [UIView animateWithDuration:0.12
+    [UIView animateWithDuration:0.13
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
