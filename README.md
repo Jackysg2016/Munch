@@ -2,7 +2,7 @@
 
 Munch is a tinder-styled restaurant recommendation iOS mobile application (Lighthouse Labs Project)
 
-"Making deciding what to eat a fun and mindless process."
+"Simplifying the age old question 'What should we eat?'"
 
 Core features:
 - restaurant recommendations powered by Yelp's API
