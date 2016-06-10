@@ -9,7 +9,7 @@ Core features:
 - suggestions based on user location
 - closest route by either walking or driving (mapKit + corelocation)
 - filter by cuisine types; "what you feel like eating"
-- easy-to-use, tinder-styled interaction; 
+- easy-to-use, tinder-styled interaction
 
 ## Intro animation
 ![alt text](https://github.com/enochng1/Munch/blob/master/munch%20launch.gif?raw=true "Munch Intro Animation")
