@@ -1,4 +1,4 @@
-## ![alt text](https://raw.githubusercontent.com/enochng1/Munch/master/munchAppIcon.png)Munch
+## ![alt text](https://raw.githubusercontent.com/enochng1/Munch/master/munchAppIcon.png)  Munch
 
 Munch is a tinder-styled restaurant recommendation iOS mobile application (Lighthouse Labs Project)
 
