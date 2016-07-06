@@ -1,5 +1,8 @@
 ## ![alt text](https://raw.githubusercontent.com/enochng1/Munch/master/munchAppIcon.png)  Munch
 
+![alt text](https://raw.githubusercontent.com/enochng1/Munch/master/poster-01.png)
+
+
 Munch is a tinder-styled restaurant recommendation iOS mobile application.
 
 "Simplifying the age old question 'What should we eat?'"
